@@ -11,7 +11,7 @@ const NavbarItem = ({ title, classProps }) => {
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   return (
-    <nav className="w-full flex md:justify-center justify-between items-center p-4">
+    <nav className="w-full font-medieval flex md:justify-center justify-between items-center p-4">
       <div className="md:flex-[0.5] flex-initial justify-center items-center">
         <img src={logo} alt="logo" className="w-48 cursor-pointer" />
       </div>
@@ -19,8 +19,8 @@ const Navbar = () => {
         {["Barracks", "Arena", "Merchant", "Tutorials"].map((item, index) => (
           <NavbarItem key={item + index} title={item} />
         ))}
-        <li className="bg-[#8e0005] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]">
-          Login
+        <li className="bg-[#8e0005] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#b20006]">
+          Connect
         </li>
       </ul>
       <div className="flex relative">
@@ -51,6 +51,9 @@ const Navbar = () => {
                 />
               )
             )}
+            <li className="bg-[#8e0005] py-2 px-5 mx-4 rounded-full cursor-pointer hover:bg-[#b20006]">
+              Connect
+            </li>
           </ul>
         )}
       </div>
