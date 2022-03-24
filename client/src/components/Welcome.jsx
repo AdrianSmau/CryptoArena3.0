@@ -1,11 +1,19 @@
-import { AiFillPlayCircle } from "react-icons/ai";
-import { SiEthereum } from "react-icons/si";
-import { BsInfoCircle } from "react-icons/bs";
+import React, { useContext } from "react";
 
+import warrior from "../../images/warrior256.png";
+import samurai from "../../images/samurai256.png";
+import druid from "../../images/druid256.png";
+
+import b_tier_slash from "../../images/BTierSlash.png";
+import a_tier_slash from "../../images/ATierSlash.png";
+import s_tier_slash from "../../images/STierSlash.png";
+import b_tier_blunt from "../../images/BTierBlunt.png";
+import a_tier_blunt from "../../images/ATierBlunt.png";
+import s_tier_blunt from "../../images/STierBlunt.png";
+
+import { BlockchainContext } from "../context/Context";
 import { Loader } from "./";
-
-const commonStyles =
-  "min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white";
+import { shorten_address } from "../utils/shorten_address";
 
 const Input = ({ placeholder, name, type, value, handleChange }) => (
   <input
@@ -19,82 +27,178 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
 );
 
 const Welcome = () => {
-  const connectWallet = () => {};
-  const handleSubmit = () => {};
+  const { currentAccount, formData, createFighter, handleChange } =
+    useContext(BlockchainContext);
+  const handleSubmit = (e) => {
+    const { fighterName } = formData;
+    e.preventDefault();
+    if (!fighterName) {
+      return;
+    }
+    createFighter();
+  };
   return (
-    <div className="flex w-full justify-center items-center">
-      <div className="flex mf:flex-row flex-col items-start justify-between md:p-20 py-12 px-4">
-        <div className="flex flex-1 justify-start flex-col mf:mr-10">
-          <h1 className="text-3xl sm:text-5xl text-white text-gradient font-medieval py-1">
+    <div className="flex w-full justify-center items-center font-medieval">
+      {/*Toata pagina*/}
+      <div className="flex flex-col items-center justify-between md:p-20 py-12 px-4">
+        {/*Continutul efectiv al paginii, paddat si divizat in flex components*/}
+        <div className="flex flex-1 justify-start text-center flex-col">
+          {/*Prima sectiune - titlu, subtitlu, *currentAccount si !!!slideshow!!!*/}
+          <h1 className="text-3xl sm:text-5xl text-white text-gradient py-1">
             Welcome to the Arena! <br /> It's time to earn your glory!
           </h1>
-          <p className="text-left mt-5 text-white font-light md:w-9/12 w-11/12 text-base">
-            Enter the battle and be the best! Challenge new foes, recruit new troops, level up your
-            fighters and earn new weapons! Web3 has never been so fun!
+          <p className="mt-5 text-white font-light text-base">
+            Enter the battle and be the best! Challenge new foes, recruit new
+            troops, level up your fighters and earn new weapons! Web3 has never
+            been so fun!
           </p>
-          <button
-            type="button"
-            onClick={connectWallet}
-            className="flex flex-row justify-center items-center my-5 bg-[#8e0005] p-3 rounded-full cursor-pointer hover:bg-[#b20006]"
-          >
-            <p className="text-white text-base font-semibold">Connect Wallet</p>
-          </button>
-          <div className="grid sm:grid-cols-3 grid-cols-2 w-full mt-10">
-            <div className={`rounded-tl-2xl ${commonStyles}`}>Reliability</div>
-            <div className={commonStyles}>Security</div>
-            <div className={`sm:rounded-tr-2xl ${commonStyles}`}>Ethereum</div>
-            <div className={`sm:rounded-bl-2xl ${commonStyles}`}>Web 3.0</div>
-            <div className={commonStyles}>Low Fees</div>
-            <div className={`rounded-br-2xl ${commonStyles}`}>Blockchain</div>
-          </div>
+          {currentAccount && (
+            <p className="mt-5 text-white font-light text-base">
+              ⚔️Glory to you, {shorten_address(currentAccount)}!⚔️
+            </p>
+          )}
+          {/*In loc de grid, ceva pentru prima sectiune, un slideshow ceva*/}
         </div>
 
-        <div className="flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10">
-          <div className="p-3 justify-end items-start flex-col rounded-xl h-40 sm:w-72 w-full my-5 eth-card white-glassmorphism">
-            <div className="flex justify-between flex-col w-full h-full">
-              <div className="flex justify-between items-start">
-                <div className="w-10 h-10 rounded-full border-2 border-white flex justify-center items-center">
-                  <SiEthereum fontSize={21} color="#fff" />
-                </div>
-                <BsInfoCircle fontSize={17} color="#fff" />
+        <div className="h-[1px] w-full bg-gray-400 mt-10" />
+        {/*Delimitator*/}
+
+        <div className="flex flex-col flex-1 items-center justify-start w-full mt-10">
+          <h2 className="text-xl sm:text-3xl text-white text-gradient py-1">
+            Choose your class!
+          </h2>
+          {/*A doua sectiune - prezentare clase*/}
+          <div className="flex flex-col w-full text-center md:text-left flex md:justify-center justify-between md:items-start items-center p-4">
+            <div className="flex md:flex-row flex-col justify-center items-center">
+              <div className="flex-[0.5] flex-initial justify-center items-center">
+                <img
+                  src={warrior}
+                  alt="warrior"
+                  className="object-scale-down w-48"
+                />
               </div>
-              <div>
-                <p className="text-white font-light text-sm">Address</p>
-                <p className="text-white font-semibold text-lg mt-1">
-                  Ethereum
-                </p>
+              <p className="text-white font-light md:w-8/12 w-11/12 md:pl-4 text-base">
+                Fearless and effective in battle, the Warrior enters the Arena!
+                The Warrior class deals bonus damage with Blunt-type weapons!
+              </p>
+            </div>
+            <div className="flex md:flex-row flex-col justify-center items-center pt-6">
+              <div className="flex-[0.5] flex-initial justify-center items-center">
+                <img
+                  src={samurai}
+                  alt="samurai"
+                  className="object-scale-down w-48"
+                />
               </div>
+              <p className="text-white font-light md:w-8/12 w-11/12 md:pl-4 text-base">
+                Disciplined and tactical in battle, the Samurai enters the
+                Arena! The Samurai class deals bonus damage with Slash-type
+                weapons!
+              </p>
+            </div>
+            <div className="flex md:flex-row flex-col justify-center items-center pt-6">
+              <div className="flex-[0.5] flex-initial justify-center items-center">
+                <img
+                  src={druid}
+                  alt="druid"
+                  className="object-scale-down w-48"
+                />
+              </div>
+              <p className="text-white font-light md:w-8/12 w-11/12 md:pl-4 text-base">
+                Calling upon the elements of nature, the Druid enters the Arena!
+                The Druid class blocks a fraction of damage, thus improving his
+                defence!
+              </p>
             </div>
           </div>
-          <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center red-glassmorphism">
-            <Input
-              placeholder="Address To"
-              name="addressTo"
-              type="text"
-              handleChange={() => {}}
-            />
-            <Input
-              placeholder="Amount (ETH)"
-              name="amount"
-              type="number"
-              handleChange={() => {}}
-            />
-            <Input
-              placeholder="Keyword (GIF)"
-              name="keyword"
-              type="text"
-              handleChange={() => {}}
-            />
-            <Input
-              placeholder="Enter message"
-              name="message"
-              type="text"
-              handleChange={() => {}}
-            />
-            <div className="h-[1px] w-full bg-gray-400 my-2" />
-            {false ? <Loader /> : <button type="button" onClick={handleSubmit} className="text-white w-full mt-2 border-[1px] p-2 border-[#fff] rounded-full cursor-pointer">
-              Send Now
-            </button>}
+        </div>
+        <div className="h-[1px] w-full bg-gray-400 mt-10" />
+        {/*Delimitator*/}
+
+        <div className="flex flex-col flex-1 items-center justify-start w-full mt-10">
+          <h2 className="text-xl sm:text-3xl text-white text-gradient py-1">
+            Earn or purchase unique weapons!
+          </h2>
+          {/*A doua sectiune - prezentare clase*/}
+          <div className="flex flex-col w-full text-center md:text-left flex md:justify-center justify-between md:items-start items-center p-4">
+            <div className="flex md:flex-row flex-col justify-center items-center">
+              <div className="flex-[0.5] flex-initial justify-center items-center">
+                <img
+                  src={s_tier_slash}
+                  alt="s_tier_slash"
+                  className="object-scale-down w-48"
+                />
+              </div>
+              <p className="text-white font-light md:w-8/12 w-11/12 md:pl-4 text-base">
+                The S-tier Slash weapon has a requirement of AGL 8 and the
+                damage greatly scales with the level!
+              </p>
+            </div>
+            <div className="flex md:flex-row flex-col justify-center items-center pt-6">
+              <div className="flex-[0.5] flex-initial justify-center items-center">
+                <img
+                  src={s_tier_blunt}
+                  alt="s_tier_blunt"
+                  className="object-scale-down w-48"
+                />
+              </div>
+              <p className="text-white font-light md:w-8/12 w-11/12 md:pl-4 text-base">
+                The S-tier Blunt weapon has a requirement of STR 8 and the
+                damage greatly scales with the level!
+              </p>
+            </div>
+            <div className="flex md:flex-row flex-col justify-center items-center pt-6">
+              <div className="flex-[0.5] flex-initial justify-center items-center">
+                <img
+                  src={a_tier_slash}
+                  alt="a_tier_slash"
+                  className="object-scale-down w-48"
+                />
+              </div>
+              <p className="text-white font-light md:w-8/12 w-11/12 md:pl-4 text-base">
+                The A-tier Slash weapon has a requirement of AGL 6 and the
+                damage moderately scales with the level!
+              </p>
+            </div>
+            <div className="flex md:flex-row flex-col justify-center items-center pt-6">
+              <div className="flex-[0.5] flex-initial justify-center items-center">
+                <img
+                  src={a_tier_blunt}
+                  alt="a_tier_blunt"
+                  className="object-scale-down w-48"
+                />
+              </div>
+              <p className="text-white font-light md:w-8/12 w-11/12 md:pl-4 text-base">
+                The A-tier Blunt weapon has a requirement of STR 6 and the
+                damage moderately scales with the level!
+              </p>
+            </div>
+            <div className="flex md:flex-row flex-col justify-center items-center pt-6">
+              <div className="flex-[0.5] flex-initial justify-center items-center">
+                <img
+                  src={b_tier_slash}
+                  alt="b_tier_slash"
+                  className="object-scale-down w-48"
+                />
+              </div>
+              <p className="text-white font-light md:w-8/12 w-11/12 md:pl-4 text-base">
+                The B-tier Slash weapon has a requirement of AGL 3 and the
+                damage poorly scales with the level!
+              </p>
+            </div>
+            <div className="flex md:flex-row flex-col justify-center items-center pt-6">
+              <div className="flex-[0.5] flex-initial justify-center items-center">
+                <img
+                  src={b_tier_blunt}
+                  alt="a_tier_slash"
+                  className="object-scale-down w-48"
+                />
+              </div>
+              <p className="text-white font-light md:w-8/12 w-11/12 md:pl-4 text-base">
+                The B-tier Blunt weapon has a requirement of STR 3 and the
+                damage poorly scales with the level!
+              </p>
+            </div>
           </div>
         </div>
       </div>
