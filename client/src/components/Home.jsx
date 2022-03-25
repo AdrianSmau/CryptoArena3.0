@@ -1,18 +1,19 @@
 import Navbar from "./Navbar";
-import FighterCreation from "./FighterCreation";
+import Welcome from "./Welcome";
+import Transactions from "./Transactions";
 import Footer from "./Footer";
 
-const Barracks = () => {
+const Home = () => {
   return (
     <div className="min-h-screen">
       <div className="gradient-bg-welcome">
         <Navbar />
-        <FighterCreation />
+        <Welcome />
       </div>
+      <Transactions />
       <Footer />
     </div>
   );
-  };
-  
-  export default Barracks;
-  
+};
+
+export default Home;

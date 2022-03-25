@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 
@@ -7,7 +8,11 @@ import { BlockchainContext } from "../context/Context";
 import logo from "../../images/logo.png";
 
 const NavbarItem = ({ title, classProps }) => {
-  return <li className={`mx-4 cursor-pointer ${classProps}`}>{title}</li>;
+  return (
+    <li className={`mx-4 cursor-pointer ${classProps}`}>
+      <Link to={`/${title.toLowerCase()}`}>{title}</Link>
+    </li>
+  );
 };
 
 const Navbar = () => {
@@ -20,7 +25,7 @@ const Navbar = () => {
         <img src={logo} alt="logo" className="w-48 cursor-pointer" />
       </div>
       <ul className="text-white md:flex hidden list-none flex-row justify-between items-center flex-initial">
-        {["Barracks", "Arena", "Merchant", "Tutorials"].map((item, index) => (
+        {["Home", "Barracks", "Arena", "Merchant"].map((item, index) => (
           <NavbarItem key={item + index} title={item} />
         ))}
         {!currentAccount && (
@@ -52,15 +57,13 @@ const Navbar = () => {
             <li className="text-xl w-full my-2">
               <AiOutlineClose onClick={() => setToggleMenu(false)} />
             </li>
-            {["Barracks", "Arena", "Merchant", "Tutorials"].map(
-              (item, index) => (
-                <NavbarItem
-                  key={item + index}
-                  title={item}
-                  classProps="my-2 text-lg"
-                />
-              )
-            )}
+            {["Home", "Barracks", "Arena", "Merchant"].map((item, index) => (
+              <NavbarItem
+                key={item + index}
+                title={item}
+                classProps="my-2 text-lg"
+              />
+            ))}
             {!currentAccount && (
               <button
                 type="button"

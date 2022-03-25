@@ -12,31 +12,11 @@ import a_tier_blunt from "../../images/ATierBlunt.png";
 import s_tier_blunt from "../../images/STierBlunt.png";
 
 import { BlockchainContext } from "../context/Context";
-import { Loader } from "./";
 import { shorten_address } from "../utils/shorten_address";
 
-const Input = ({ placeholder, name, type, value, handleChange }) => (
-  <input
-    placeholder={placeholder}
-    type={type}
-    step="0.0001"
-    value={value}
-    onChange={(e) => handleChange(e, name)}
-    className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"
-  ></input>
-);
-
 const Welcome = () => {
-  const { currentAccount, formData, createFighter, handleChange } =
+  const { currentAccount } =
     useContext(BlockchainContext);
-  const handleSubmit = (e) => {
-    const { fighterName } = formData;
-    e.preventDefault();
-    if (!fighterName) {
-      return;
-    }
-    createFighter();
-  };
   return (
     <div className="flex w-full justify-center items-center font-medieval">
       {/*Toata pagina*/}
@@ -54,7 +34,7 @@ const Welcome = () => {
           </p>
           {currentAccount && (
             <p className="mt-5 text-white font-light text-base">
-              ⚔️Glory to you, {shorten_address(currentAccount)}!⚔️
+              ⚔️Greetings, {shorten_address(currentAccount)}!⚔️
             </p>
           )}
           {/*In loc de grid, ceva pentru prima sectiune, un slideshow ceva*/}
