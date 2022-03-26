@@ -2,7 +2,7 @@ require("@nomiclabs/hardhat-waffle");
 const {privateKey,ropstenUrl, rinkebyUrl}  = require('./secrets.json')
 
 module.exports = {
-  solidity: "0.8.4",
+  solidity: "0.8.10",
   networks: {
     ropsten: {
       url: ropstenUrl,

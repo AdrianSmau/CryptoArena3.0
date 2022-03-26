@@ -1,4 +1,8 @@
-import abi from './FighterFactory.json';
+import fighterFactAbi from './FighterFactory.json';
+import weaponFactAbi from './WeaponFactory.json';
 
-export const contractABI = abi.abi;
-export const contractAddress = '0x3FcD185545EFF122873d9F289782ed013fbDeaC2';
+export const fighterFactoryABI = fighterFactAbi.abi;
+export const weaponFactoryABI = weaponFactAbi.abi;
+
+export const fighterFactoryAddress = '0x0f6b826469CEBa9D64661140Af061526A281C806';
+export const weaponFactoryAddress = '0xb25f8d1286432d185B80eA2E5a26e05D2ADc5173';

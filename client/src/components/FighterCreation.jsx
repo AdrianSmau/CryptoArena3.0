@@ -1,7 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import Select from "react-select";
 
 import { BlockchainContext } from "../context/Context";
 import { Loader } from "./";
+
+const classOptions = [
+  { value: 0, label: "Warrior" },
+  { value: 1, label: "Samurai" },
+  { value: 2, label: "Druid" },
+];
 
 const Input = ({ placeholder, name, type, value, handleChange }) => (
   <input
@@ -14,16 +21,27 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
 );
 
 const FighterCreation = () => {
-  const { currentAccount, formData, createFighter, handleChange } =
-    useContext(BlockchainContext);
+  const [selectedClass, setSelectedClass] = useState(classOptions[0]);
+
+  const {
+    currentAccount,
+    formDataFighter,
+    createAndGetFighters,
+    handleChangeFighter,
+    isLoading
+  } = useContext(BlockchainContext);
 
   const handleSubmit = (e) => {
-    const { fighterName } = formData;
+    const fighterName = formDataFighter;
+    const fighterClass = selectedClass.value;
     e.preventDefault();
-    if (!fighterName) {
+    if (
+      !fighterName ||
+      (fighterClass != 0 && fighterClass != 1 && fighterClass != 2)
+    ) {
       return;
     }
-    createFighter();
+    createAndGetFighters(fighterClass);
   };
 
   return (
@@ -33,10 +51,15 @@ const FighterCreation = () => {
           placeholder="FighterName"
           name="fighterName"
           type="text"
-          handleChange={handleChange}
+          handleChange={handleChangeFighter}
+        />
+        <Select
+          defaultValue={selectedClass}
+          onChange={setSelectedClass}
+          options={classOptions}
         />
         <div className="h-[1px] w-full bg-gray-400 my-2" />
-        {false ? (
+        {isLoading ? (
           <Loader />
         ) : (
           <button
