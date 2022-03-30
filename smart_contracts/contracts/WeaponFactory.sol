@@ -2,14 +2,15 @@
 
 pragma solidity ^0.8.0;
 
-import "./openzeppelin/Context.sol";
+import "./openzeppelin/Ownable.sol";
 import "./openzeppelin/SafeMath.sol";
 import "./helpers/weapons/WeaponTiers.sol";
 import "./helpers/weapons/WeaponTypes.sol";
 
-contract WeaponFactory is Context {
+abstract contract WeaponFactory is Ownable {
     using SafeMath for uint256;
     using SafeMath32 for uint32;
+    using SafeMath16 for uint16;
 
     event newWeapon(
         uint32 levelReq,
@@ -21,8 +22,8 @@ contract WeaponFactory is Context {
 
     struct Weapon {
         uint32 levelReq;
-        uint32 skillReq;
         uint32 damage;
+        uint16 skillReq;
         WeaponType weapType;
         WeaponTier tier;
     }
@@ -59,28 +60,28 @@ contract WeaponFactory is Context {
     }
 
     function _forgeWeapon(
+        address _owner,
         uint32 _level,
         WeaponType _type,
         WeaponTier _tier
-    ) external validLevel(_level) validType(_type) validTier(_tier) {
-        uint32 currentSkillReq = 0;
+    ) internal validLevel(_level) validType(_type) validTier(_tier) {
+        uint16 currentSkillReq = 0;
         if (_tier == WeaponTier.S) currentSkillReq = 8;
         if (_tier == WeaponTier.A) currentSkillReq = 6;
         if (_tier == WeaponTier.B) currentSkillReq = 3;
         weapons.push(
             Weapon(
                 _level,
-                currentSkillReq,
                 _computeWeaponDamage(_level, _tier),
+                currentSkillReq,
                 _type,
                 _tier
             )
         );
         uint256 id = weapons.length - 1;
-        weapon_to_owner[id] = _msgSender();
-        owner_weapons_count[_msgSender()] = owner_weapons_count[_msgSender()]
-            .add(1);
-        emit newWeapon(_level, block.timestamp, _type, _tier, _msgSender());
+        weapon_to_owner[id] = _owner;
+        owner_weapons_count[_owner] = owner_weapons_count[_owner].add(1);
+        emit newWeapon(_level, block.timestamp, _type, _tier, _owner);
     }
 
     function _computeWeaponDamage(uint32 _level, WeaponTier _tier)
@@ -107,6 +108,25 @@ contract WeaponFactory is Context {
             }
         }
         return myWeapons;
+    }
+
+    function _getTargetWeapons(address _target)
+        internal
+        view
+        returns (Weapon[] memory)
+    {
+        uint256 toFetch = owner_weapons_count[_target];
+        Weapon[] memory targetWeapons = new Weapon[](toFetch);
+        uint256 counter = 0;
+        for (uint256 i = 0; i < weapons.length; i++) {
+            if (weapon_to_owner[i] == _target) {
+                targetWeapons[counter] = weapons[i];
+                counter++;
+                toFetch--;
+                if (toFetch == 0) break;
+            }
+        }
+        return targetWeapons;
     }
 
     function _getWeaponsCount() external view returns (uint256) {

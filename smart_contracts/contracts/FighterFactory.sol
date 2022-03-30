@@ -6,7 +6,7 @@ import "./openzeppelin/Ownable.sol";
 import "./openzeppelin/SafeMath.sol";
 import "./helpers/fighters/FighterClasses.sol";
 
-contract FighterFactory is Ownable {
+abstract contract FighterFactory is Ownable {
     using SafeMath for uint256;
     using SafeMath32 for uint32;
     using SafeMath16 for uint16;
@@ -27,18 +27,33 @@ contract FighterFactory is Ownable {
         uint32 readyTime;
         uint16 winCount;
         uint16 lossCount;
+        uint16 HP;
+        uint16 strength;
+        uint16 agility;
+        uint16 dexterity;
+        uint16 luck;
+        uint16 currentXP;
+        uint16 levelUpXP;
+        uint16 spendablePoints;
         FighterClass class;
     }
 
     struct FighterDTO {
+        uint256 id;
         Fighter fighter;
         address owner;
+    }
+
+    struct FighterBarracksDTO {
+        uint256 id;
+        Fighter fighter;
     }
 
     Fighter[] internal fighters;
 
     mapping(uint256 => address) internal fighter_to_owner;
     mapping(address => uint256) internal owner_fighters_count;
+    mapping(address => uint16) internal user_available_pupils;
 
     modifier emptyBarracks() {
         require(
@@ -48,7 +63,7 @@ contract FighterFactory is Ownable {
         _;
     }
 
-    modifier validName(string memory _name) {
+    modifier validName(string calldata _name) {
         bytes memory _nameBytes = bytes(_name);
         require(
             _nameBytes.length != 0,
@@ -68,10 +83,10 @@ contract FighterFactory is Ownable {
     }
 
     modifier uniqueName(string memory _name) {
-        Fighter[] memory userFighters = _getMyFighters();
+        FighterBarracksDTO[] memory userFighters = _getMyFighters();
         bool nameFound = false;
         for (uint256 i = 0; i < userFighters.length; i++) {
-            if (compareStrings(userFighters[i].name, _name)) {
+            if (compareStrings(userFighters[i].fighter.name, _name)) {
                 nameFound = true;
                 break;
             }
@@ -83,7 +98,7 @@ contract FighterFactory is Ownable {
         _;
     }
 
-    function _createFighter(string memory _name, FighterClass _class)
+    function _createFighter(string calldata _name, FighterClass _class)
         external
         emptyBarracks
         validName(_name)
@@ -96,6 +111,14 @@ contract FighterFactory is Ownable {
                 uint32(block.timestamp.add(cooldownTime)),
                 0,
                 0,
+                100,
+                1,
+                1,
+                1,
+                1,
+                0,
+                100,
+                0,
                 _class
             )
         );
@@ -103,17 +126,24 @@ contract FighterFactory is Ownable {
         fighter_to_owner[id] = _msgSender();
         owner_fighters_count[_msgSender()] = owner_fighters_count[_msgSender()]
             .add(1);
+        user_available_pupils[_msgSender()] = 0;
         emit NewFighter(id, _name, block.timestamp, _class, _msgSender());
     }
 
-    function _getMyFighters() public view returns (Fighter[] memory) {
+    function _getMyFighters()
+        public
+        view
+        returns (FighterBarracksDTO[] memory)
+    {
         address _owner = _msgSender();
         uint256 toFetch = owner_fighters_count[_owner];
-        Fighter[] memory myFighters = new Fighter[](toFetch);
+        FighterBarracksDTO[] memory myFighters = new FighterBarracksDTO[](
+            toFetch
+        );
         uint256 counter = 0;
         for (uint256 i = 0; i < fighters.length; i++) {
             if (fighter_to_owner[i] == _owner) {
-                myFighters[counter] = fighters[i];
+                myFighters[counter] = FighterBarracksDTO(i, fighters[i]);
                 counter++;
                 toFetch--;
                 if (toFetch == 0) break;
@@ -129,7 +159,22 @@ contract FighterFactory is Ownable {
     function _getAllFighters() external view returns (FighterDTO[] memory) {
         FighterDTO[] memory allFightersDTOs = new FighterDTO[](fighters.length);
         for (uint256 i = 0; i < fighters.length; i++) {
-            allFightersDTOs[i] = (FighterDTO(fighters[i], fighter_to_owner[i]));
+            allFightersDTOs[i] = FighterDTO(
+                i,
+                fighters[i],
+                fighter_to_owner[i]
+            );
+        }
+        return allFightersDTOs;
+    }
+
+    function _getLatestFighters() external view returns (FighterDTO[] memory) {
+        FighterDTO[] memory allFightersDTOs = new FighterDTO[](6);
+        for (uint256 i = fighters.length; i > 0; i--) {
+            allFightersDTOs[i] = (
+                FighterDTO(i, fighters[i], fighter_to_owner[i])
+            );
+            if (allFightersDTOs.length == 6) break;
         }
         return allFightersDTOs;
     }

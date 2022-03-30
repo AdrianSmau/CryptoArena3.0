@@ -15,8 +15,7 @@ import { BlockchainContext } from "../context/Context";
 import { shorten_address } from "../utils/shorten_address";
 
 const Welcome = () => {
-  const { currentAccount } =
-    useContext(BlockchainContext);
+  const { currentAccount } = useContext(BlockchainContext);
   return (
     <div className="flex w-full justify-center items-center font-medieval">
       {/*Toata pagina*/}
@@ -86,8 +85,8 @@ const Welcome = () => {
               </div>
               <p className="text-white font-light md:w-8/12 w-11/12 md:pl-4 text-base">
                 Calling upon the elements of nature, the Druid enters the Arena!
-                The Druid class blocks a fraction of damage, thus improving his
-                defence!
+                The Druid class has improved defense, being able to take more
+                damage in fights!
               </p>
             </div>
           </div>
