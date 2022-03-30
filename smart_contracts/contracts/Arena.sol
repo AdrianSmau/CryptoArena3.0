@@ -1,13 +1,16 @@
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.0;
+pragma experimental ABIEncoderV2;
 
 import "./FighterEvolution.sol";
+import "./openzeppelin/Strings.sol";
 
 contract Arena is FighterEvolution {
     using SafeMath for uint256;
     using SafeMath32 for uint32;
     using SafeMath16 for uint16;
+    using Strings for string;
 
     uint32 unarmedDamage = 10;
 
@@ -40,7 +43,7 @@ contract Arena is FighterEvolution {
         bool _hasOwnerWeapon,
         uint256 _myWeaponId,
         uint256 _targetFighterId
-    ) external onlyOwnerOf(_myFighterId) {
+    ) external onlyOwnerOf(_myFighterId) returns (bool) {
         Fighter storage _myFighter = fighters[_myFighterId];
         Fighter storage _targetFighter = fighters[_targetFighterId];
         uint32 _myDamage = unarmedDamage;
@@ -79,27 +82,29 @@ contract Arena is FighterEvolution {
                 _myDamage = myWeapon.damage;
             }
         }
-        (
-            bool _hasTargetWeapon,
-            uint256 _targetWeaponId,
-            uint32 _targetDamage
-        ) = chooseTargetWeapon(
-                fighter_to_owner[_targetFighterId],
-                _targetFighter.level,
-                _targetFighter.strength,
-                _targetFighter.agility,
-                _targetFighter.class
-            );
+        uint32 _targetDamage = chooseTargetWeapon(
+            fighter_to_owner[_targetFighterId],
+            _targetFighter.level,
+            _targetFighter.strength,
+            _targetFighter.agility,
+            _targetFighter.class
+        );
 
-        attackLogic(_myFighter, _myDamage, _targetFighter, _targetDamage);
+        bool iWon = attackLogic(
+            _myFighter,
+            _myDamage,
+            _targetFighter,
+            _targetDamage
+        );
+        if (iWon) {
+            _fighterWonFight(_myFighterId);
+            _fighterLostFight(_targetFighterId);
+        } else {
+            _fighterLostFight(_myFighterId);
+            _fighterWonFight(_targetFighterId);
+        }
+        return iWon;
     }
-
-    function attackLogic(
-        Fighter storage myFighter,
-        uint32 myDamage,
-        Fighter storage targetFighter,
-        uint32 targetDamage
-    ) private isReady(myFighter.readyTime) {}
 
     function chooseTargetWeapon(
         address _target,
@@ -107,18 +112,8 @@ contract Arena is FighterEvolution {
         uint16 targetSTR,
         uint16 targetAGL,
         FighterClass targetClass
-    )
-        private
-        view
-        returns (
-            bool,
-            uint256,
-            uint32
-        )
-    {
-        uint32 bestDamage = 0;
-        bool weaponFound = false;
-        uint256 bestWeaponId = 0;
+    ) private view returns (uint32) {
+        uint32 bestDamage = 10;
         Weapon[] memory targetWeapons = _getTargetWeapons(_target);
         for (uint256 i = 0; i < targetWeapons.length; i++) {
             if (targetWeapons[i].levelReq <= targetLevel) {
@@ -127,18 +122,10 @@ contract Arena is FighterEvolution {
                         if (targetClass == FighterClass.Samurai) {
                             if (targetWeapons[i].damage.mul(2) > bestDamage) {
                                 bestDamage = targetWeapons[i].damage.mul(2);
-                                if (weaponFound == false) {
-                                    weaponFound = true;
-                                }
-                                bestWeaponId = i;
                             }
                         } else {
                             if (targetWeapons[i].damage > bestDamage) {
                                 bestDamage = targetWeapons[i].damage;
-                                if (weaponFound == false) {
-                                    weaponFound = true;
-                                }
-                                bestWeaponId = i;
                             }
                         }
                     }
@@ -147,28 +134,76 @@ contract Arena is FighterEvolution {
                         if (targetClass == FighterClass.Warrior) {
                             if (targetWeapons[i].damage.mul(2) > bestDamage) {
                                 bestDamage = targetWeapons[i].damage.mul(2);
-                                if (weaponFound == false) {
-                                    weaponFound = true;
-                                }
-                                bestWeaponId = i;
                             }
                         } else {
                             if (targetWeapons[i].damage > bestDamage) {
                                 bestDamage = targetWeapons[i].damage;
-                                if (weaponFound == false) {
-                                    weaponFound = true;
-                                }
-                                bestWeaponId = i;
                             }
                         }
                     }
                 }
             }
         }
-        if (weaponFound) {
-            return (weaponFound, bestWeaponId, bestDamage);
+        return bestDamage;
+    }
+
+    function attackLogic(
+        Fighter storage myFighter,
+        uint32 myDamage,
+        Fighter storage targetFighter,
+        uint32 targetDamage
+    ) private isReady(myFighter.readyTime) returns (bool) {
+        _triggerCooldown(myFighter);
+        uint16 _myRemainingHP = myFighter.HP;
+        uint16 _targetRemainingHP = targetFighter.HP;
+        uint16 _damageTaken;
+        while (true) {
+            // myFighter attacks
+            _damageTaken = simulateAttack(
+                myDamage,
+                myFighter.luck,
+                _msgSender(),
+                targetFighter.dexterity
+            );
+            _targetRemainingHP = _targetRemainingHP.sub(_damageTaken);
+
+            if (_targetRemainingHP <= 0) {
+                return true;
+            }
+
+            // targetFighter attacks
+            _damageTaken = simulateAttack(
+                targetDamage,
+                targetFighter.luck,
+                _msgSender(),
+                myFighter.dexterity
+            );
+            _myRemainingHP = _myRemainingHP.sub(_damageTaken);
+
+            if (_myRemainingHP <= 0) {
+                return false;
+            }
+        }
+        assert(_myRemainingHP <= 0 || _targetRemainingHP <= 0);
+        return false; // this line of code will never be executed, it's here to shut the compiler up
+    }
+
+    function simulateAttack(
+        uint32 attackerDamage,
+        uint16 attackerLck,
+        address addressForRandomness,
+        uint16 defenderDex
+    ) private returns (uint16) {
+        if (_computeDodgeChance(addressForRandomness, defenderDex)) {
+            return 0;
         } else {
-            return (weaponFound, bestWeaponId, unarmedDamage);
+            if (
+                _computeCriticalStrikeChance(addressForRandomness, attackerLck)
+            ) {
+                return uint16(attackerDamage.mul(2));
+            } else {
+                return uint16(attackerDamage);
+            }
         }
     }
 

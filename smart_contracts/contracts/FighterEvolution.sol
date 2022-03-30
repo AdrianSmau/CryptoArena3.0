@@ -13,29 +13,26 @@ contract FighterEvolution is FighterFactory, WeaponFactory {
 
     uint256 randNonce = 0;
 
-    function _fighterWonFight(uint256 _fighterId) internal returns (bool) {
+    function _fighterWonFight(uint256 _fighterId) internal {
         Fighter storage fighter = fighters[_fighterId];
         fighter.winCount.add(1);
         fighter.currentXP.add(45);
         if (fighter.currentXP >= fighter.levelUpXP) {
-            return _levelUpLogic(fighter, _fighterId);
+            _levelUpLogic(fighter, _fighterId);
         }
-        return false;
     }
 
-    function _fighterLostFight(uint256 _fighterId) internal returns (bool) {
+    function _fighterLostFight(uint256 _fighterId) internal {
         Fighter storage fighter = fighters[_fighterId];
         fighter.lossCount.add(1);
         fighter.currentXP.add(20);
         if (fighter.currentXP >= fighter.levelUpXP) {
-            return _levelUpLogic(fighter, _fighterId);
+            _levelUpLogic(fighter, _fighterId);
         }
-        return false;
     }
 
     function _levelUpLogic(Fighter storage fighter, uint256 _fighterId)
         private
-        returns (bool)
     {
         fighter.levelUpXP.add(100);
         fighter.level.add(1);
@@ -53,10 +50,8 @@ contract FighterEvolution is FighterFactory, WeaponFactory {
                     _simulateWeaponType(_fighter_owner),
                     WeaponTier.B
                 );
-                return true;
             }
         }
-        return false;
     }
 
     // Not secure - but in the circumstances is worth the compromise!
