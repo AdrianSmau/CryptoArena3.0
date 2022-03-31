@@ -1,8 +1,6 @@
-# Basic Sample Hardhat Project
+# Hardhat Project
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
-
-Try running some of the following tasks:
+This project demonstrates a Hardhat project. The contracts file contains the smart contracts, the test folder contains the tests, and the scripts folder contains the deployment scripts!
 
 ```shell
 npx hardhat accounts

@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.0;
+pragma experimental ABIEncoderV2;
 
 import "./openzeppelin/Ownable.sol";
 import "./openzeppelin/SafeMath.sol";
@@ -98,9 +99,15 @@ abstract contract FighterFactory is Ownable {
         _;
     }
 
-    function _createFighter(string calldata _name, FighterClass _class)
+    function _createFirstFighter(string calldata _name, FighterClass _class)
         external
         emptyBarracks
+    {
+        _createFighter(_name, _class);
+    }
+
+    function _createFighter(string calldata _name, FighterClass _class)
+        internal
         validName(_name)
         validClass(_class)
     {

@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.0;
-pragma experimental ABIEncoderV2;
 
 import "./FighterEvolution.sol";
 import "./openzeppelin/Strings.sol";
@@ -12,15 +11,19 @@ contract Arena is FighterEvolution {
     using SafeMath16 for uint16;
     using Strings for string;
 
-    uint32 unarmedDamage = 10;
+    event ArenaEvent(
+        uint256 indexed attackerId,
+        uint256 indexed targetId,
+        uint16 damage,
+        bool wasCritical
+    );
 
-    modifier onlyOwnerOf(uint256 _fighterId) {
-        require(
-            _msgSender() == fighter_to_owner[_fighterId],
-            "You are not the owner of this Fighter!"
-        );
-        _;
-    }
+    event WeaponChosenForTargetEvent(
+        uint256 indexed targetId,
+        uint256 targetWeaponId
+    );
+
+    uint32 unarmedDamage = 10;
 
     modifier isReady(uint32 readyTime) {
         require(
@@ -82,7 +85,7 @@ contract Arena is FighterEvolution {
                 _myDamage = myWeapon.damage;
             }
         }
-        uint32 _targetDamage = chooseTargetWeapon(
+        (uint32 _targetDamage, uint256 targetWeaponId) = chooseTargetWeapon(
             fighter_to_owner[_targetFighterId],
             _targetFighter.level,
             _targetFighter.strength,
@@ -90,9 +93,15 @@ contract Arena is FighterEvolution {
             _targetFighter.class
         );
 
+        if (_targetDamage > uint32(10)) {
+            emit WeaponChosenForTargetEvent(_targetFighterId, targetWeaponId);
+        }
+
         bool iWon = attackLogic(
+            _myFighterId,
             _myFighter,
             _myDamage,
+            _targetFighterId,
             _targetFighter,
             _targetDamage
         );
@@ -112,8 +121,9 @@ contract Arena is FighterEvolution {
         uint16 targetSTR,
         uint16 targetAGL,
         FighterClass targetClass
-    ) private view returns (uint32) {
+    ) private view returns (uint32, uint256) {
         uint32 bestDamage = 10;
+        uint256 bestWeaponId = 0;
         Weapon[] memory targetWeapons = _getTargetWeapons(_target);
         for (uint256 i = 0; i < targetWeapons.length; i++) {
             if (targetWeapons[i].levelReq <= targetLevel) {
@@ -122,10 +132,12 @@ contract Arena is FighterEvolution {
                         if (targetClass == FighterClass.Samurai) {
                             if (targetWeapons[i].damage.mul(2) > bestDamage) {
                                 bestDamage = targetWeapons[i].damage.mul(2);
+                                bestWeaponId = i;
                             }
                         } else {
                             if (targetWeapons[i].damage > bestDamage) {
                                 bestDamage = targetWeapons[i].damage;
+                                bestWeaponId = i;
                             }
                         }
                     }
@@ -134,35 +146,47 @@ contract Arena is FighterEvolution {
                         if (targetClass == FighterClass.Warrior) {
                             if (targetWeapons[i].damage.mul(2) > bestDamage) {
                                 bestDamage = targetWeapons[i].damage.mul(2);
+                                bestWeaponId = i;
                             }
                         } else {
                             if (targetWeapons[i].damage > bestDamage) {
                                 bestDamage = targetWeapons[i].damage;
+                                bestWeaponId = i;
                             }
                         }
                     }
                 }
             }
         }
-        return bestDamage;
+        return (bestDamage, bestWeaponId);
     }
 
     function attackLogic(
+        uint256 myFighterId,
         Fighter storage myFighter,
         uint32 myDamage,
+        uint256 targetFighterId,
         Fighter storage targetFighter,
         uint32 targetDamage
     ) private isReady(myFighter.readyTime) returns (bool) {
         _triggerCooldown(myFighter);
         uint16 _myRemainingHP = myFighter.HP;
+        if (myFighter.class == FighterClass.Druid) {
+            _myRemainingHP = _myRemainingHP.mul(2);
+        }
         uint16 _targetRemainingHP = targetFighter.HP;
+        if (targetFighter.class == FighterClass.Druid) {
+            _targetRemainingHP = _targetRemainingHP.mul(2);
+        }
         uint16 _damageTaken;
         while (true) {
             // myFighter attacks
             _damageTaken = simulateAttack(
+                myFighterId,
                 myDamage,
                 myFighter.luck,
                 _msgSender(),
+                targetFighterId,
                 targetFighter.dexterity
             );
             _targetRemainingHP = _targetRemainingHP.sub(_damageTaken);
@@ -173,9 +197,11 @@ contract Arena is FighterEvolution {
 
             // targetFighter attacks
             _damageTaken = simulateAttack(
+                targetFighterId,
                 targetDamage,
                 targetFighter.luck,
                 _msgSender(),
+                myFighterId,
                 myFighter.dexterity
             );
             _myRemainingHP = _myRemainingHP.sub(_damageTaken);
@@ -189,19 +215,34 @@ contract Arena is FighterEvolution {
     }
 
     function simulateAttack(
+        uint256 attackerId,
         uint32 attackerDamage,
         uint16 attackerLck,
         address addressForRandomness,
+        uint256 defenderId,
         uint16 defenderDex
     ) private returns (uint16) {
         if (_computeDodgeChance(addressForRandomness, defenderDex)) {
+            emit ArenaEvent(attackerId, defenderId, 0, false);
             return 0;
         } else {
             if (
                 _computeCriticalStrikeChance(addressForRandomness, attackerLck)
             ) {
+                emit ArenaEvent(
+                    attackerId,
+                    defenderId,
+                    uint16(attackerDamage.mul(2)),
+                    true
+                );
                 return uint16(attackerDamage.mul(2));
             } else {
+                emit ArenaEvent(
+                    attackerId,
+                    defenderId,
+                    uint16(attackerDamage),
+                    true
+                );
                 return uint16(attackerDamage);
             }
         }
