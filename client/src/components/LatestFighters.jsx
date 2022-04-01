@@ -7,7 +7,7 @@ import druid from "../../images/druid256.png";
 import { shorten_address } from "../utils/shorten_address";
 import { BlockchainContext } from "../context/Context";
 
-const TransactionCard = ({
+const LatestFightersCard = ({
   name,
   level,
   timestamp,
@@ -58,7 +58,7 @@ const TransactionCard = ({
   );
 };
 
-const Transactions = () => {
+const LatestFighters = () => {
   const { currentAccount, fighters } = useContext(BlockchainContext);
   return (
     <div className="flex w-full justify-center items-center 2xl:px-20 gradient-bg-transactions font-medieval">
@@ -74,7 +74,7 @@ const Transactions = () => {
         )}
         <div className="flex flex-wrap justify-center items-center mt-10">
           {fighters.reverse().map((fighter, i) => (
-            <TransactionCard key={i} {...fighter} />
+            <LatestFightersCard key={i} {...fighter} />
           ))}
         </div>
       </div>
@@ -82,4 +82,4 @@ const Transactions = () => {
   );
 };
 
-export default Transactions;
+export default LatestFighters;

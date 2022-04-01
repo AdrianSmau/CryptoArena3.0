@@ -1,36 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
-import {
-  fighterFactoryABI,
-  weaponFactoryABI,
-  fighterFactoryAddress,
-  weaponFactoryAddress,
-} from "../utils/constants";
+import { abi, address } from "../utils/constants";
 
 export const BlockchainContext = React.createContext();
 
 const { ethereum } = window;
 
-const getFighterFactoryContract = () => {
+const getArenaContract = () => {
   const provider = new ethers.providers.Web3Provider(ethereum);
   const signer = provider.getSigner();
-  const contract = new ethers.Contract(
-    fighterFactoryAddress,
-    fighterFactoryABI,
-    signer
-  );
-
-  return contract;
-};
-
-const getWeaponFactoryContract = () => {
-  const provider = new ethers.providers.Web3Provider(ethereum);
-  const signer = provider.getSigner();
-  const contract = new ethers.Contract(
-    weaponFactoryAddress,
-    weaponFactoryABI,
-    signer
-  );
+  const contract = new ethers.Contract(address, abi, signer);
 
   return contract;
 };
@@ -44,10 +23,10 @@ export const BlockchainProvider = ({ children }) => {
     tier: "",
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [fighters, setFighters] = useState([]);
   const [fightersCount, setFightersCount] = useState(
     localStorage.getItem("fightersCount")
   );
-  const [fighters, setFighters] = useState([]);
 
   const handleChangeFighter = (e, name) => {
     setFormDataFighter((prevState) => ({
@@ -63,12 +42,12 @@ export const BlockchainProvider = ({ children }) => {
     }));
   };
 
-  const getAllFighters = async () => {
+  const getLatestFighters = async () => {
     try {
       if (!ethereum) return alert("Please install MetaMask!");
-      const fighterContract = getFighterFactoryContract();
-      const availableFighters = await fighterContract._getAllFighters();
-      const formattedFighters = availableFighters.map((currentFighter) => ({
+      const arenaContract = getArenaContract();
+      const latestFighters = await arenaContract._getLatestFighters(0);
+      const formattedFighters = latestFighters.map((currentFighter) => ({
         name: currentFighter.fighter.name,
         level: currentFighter.fighter.level,
         timestamp: new Date(
@@ -103,10 +82,10 @@ export const BlockchainProvider = ({ children }) => {
     }
   };
 
-  const checkIfTransactionsExist = async () => {
+  const checkIfFightersExist = async () => {
     try {
-      const fighterContract = getFighterFactoryContract();
-      const currentFightersCount = await fighterContract._getFightersCount();
+      const arenaContract = getArenaContract();
+      const currentFightersCount = await arenaContract._getLatestFighters(0);
 
       window.localStorage.setItem("fightersCount", currentFightersCount);
     } catch (error) {
@@ -197,7 +176,7 @@ export const BlockchainProvider = ({ children }) => {
 
   useEffect(() => {
     checkIfWalletIsConnected();
-    checkIfTransactionsExist();
+    checkIfFightersExist();
   }, [fightersCount]);
 
   return (

@@ -3,10 +3,9 @@
 pragma solidity ^0.8.0;
 
 import "./FighterFactory.sol";
-import "./WeaponFactory.sol";
-import "./openzeppelin/SafeMath.sol";
+import "./Merchant.sol";
 
-abstract contract FighterEvolution is FighterFactory, WeaponFactory {
+abstract contract FighterEvolution is FighterFactory, Merchant {
     using SafeMath for uint256;
     using SafeMath32 for uint32;
     using SafeMath16 for uint16;
@@ -37,6 +36,7 @@ abstract contract FighterEvolution is FighterFactory, WeaponFactory {
 
     function redeemAvailablePupil(string calldata _name, FighterClass _class)
         external
+        hasAvailablePupils
     {
         _createFighter(_name, _class);
     }
@@ -48,12 +48,20 @@ abstract contract FighterEvolution is FighterFactory, WeaponFactory {
         uint16 _LCK,
         uint16 _DEX
     ) external onlyOwnerOf(_fighterId) {
-        Fighter storage myFighter = fighters[_fighterId];
-        require(_STR + _AGL + _LCK + _DEX <= myFighter.spendablePoints);
-        myFighter.strength = myFighter.strength.add(_STR);
-        myFighter.agility = myFighter.agility.add(_AGL);
-        myFighter.dexterity = myFighter.dexterity.add(_DEX);
-        myFighter.luck = myFighter.luck.add(_LCK);
+        Fighter storage _myFighter = fighters[_fighterId];
+        uint16 total = _STR;
+        total = total.add(_AGL);
+        total = total.add(_LCK);
+        total = total.add(_DEX);
+        require(
+            total <= _myFighter.spendablePoints,
+            "You do not have enough available spendable points in order to do this action!"
+        );
+        _myFighter.spendablePoints = _myFighter.spendablePoints.sub(total);
+        _myFighter.strength = _myFighter.strength.add(_STR);
+        _myFighter.agility = _myFighter.agility.add(_AGL);
+        _myFighter.dexterity = _myFighter.dexterity.add(_DEX);
+        _myFighter.luck = _myFighter.luck.add(_LCK);
     }
 
     function _fighterWonFight(uint256 _fighterId) internal {
@@ -80,12 +88,12 @@ abstract contract FighterEvolution is FighterFactory, WeaponFactory {
         fighter.levelUpXP = fighter.levelUpXP.add(100);
         fighter.level = fighter.level.add(1);
         fighter.HP = fighter.HP.add(20);
+        fighter.spendablePoints = fighter.spendablePoints.add(1);
         if (fighter.level.mod(10) == 0) {
             address _fighter_owner = fighter_to_owner[_fighterId];
             user_available_pupils[_fighter_owner] = user_available_pupils[
                 _fighter_owner
             ].add(1);
-            fighter.spendablePoints = fighter.spendablePoints.add(1);
             if (_computeWeaponDropChance(_fighter_owner)) {
                 _forgeWeapon(
                     _fighter_owner,
@@ -126,11 +134,11 @@ abstract contract FighterEvolution is FighterFactory, WeaponFactory {
         return WeaponType.Blunt;
     }
 
-    function _computeCriticalStrikeChance(address _owner, uint16 lck)
+    function _computeCriticalStrikeOrDodgeChance(address _owner, uint16 skill)
         internal
         returns (bool)
     {
-        uint256 chance = uint256(lck) + 5;
+        uint256 chance = uint256(skill) + 5;
         randNonce = randNonce.add(1);
         uint256 generatedNumber = uint256(
             keccak256(abi.encodePacked(block.timestamp, _owner, randNonce))
@@ -141,18 +149,7 @@ abstract contract FighterEvolution is FighterFactory, WeaponFactory {
         return false;
     }
 
-    function _computeDodgeChance(address _owner, uint16 dex)
-        internal
-        returns (bool)
-    {
-        uint256 chance = uint256(dex) + 5;
-        randNonce = randNonce.add(1);
-        uint256 generatedNumber = uint256(
-            keccak256(abi.encodePacked(block.timestamp, _owner, randNonce))
-        ).mod(100);
-        if (generatedNumber <= chance) {
-            return true;
-        }
-        return false;
+    function _triggerCooldown(Fighter storage _myFighter) internal {
+        _myFighter.readyTime = uint32(block.timestamp + cooldownTime);
     }
 }

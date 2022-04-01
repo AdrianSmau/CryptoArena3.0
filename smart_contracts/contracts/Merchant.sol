@@ -2,13 +2,12 @@
 
 pragma solidity ^0.8.0;
 
-import "./openzeppelin/Ownable.sol";
-import "./openzeppelin/SafeMath.sol";
 import "./WeaponFactory.sol";
 
-contract Merchant is WeaponFactory {
+abstract contract Merchant is WeaponFactory {
     using SafeMath for uint256;
     using SafeMath32 for uint32;
+    using SafeMath16 for uint16;
 
     uint256 feePerLevel = 0.00075 ether;
     uint256 BTierPrice = 0.0005 ether;
@@ -47,7 +46,7 @@ contract Merchant is WeaponFactory {
         return basePrice.add(BTierPrice);
     }
 
-    function setFeePerLevel(uint256 _fee) external onlyOwner {
+    /*function setFeePerLevel(uint256 _fee) external onlyOwner {
         feePerLevel = _fee;
     }
 
@@ -61,7 +60,7 @@ contract Merchant is WeaponFactory {
 
     function setSTierPrice(uint256 _fee) external onlyOwner {
         STierPrice = _fee;
-    }
+    }*/
 
     function _collectMerchantBalance() external onlyOwner {
         payable(_msgSender()).transfer(address(this).balance);

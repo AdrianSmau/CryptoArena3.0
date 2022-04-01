@@ -1,4 +1,5 @@
 require("@nomiclabs/hardhat-waffle");
+require('@openzeppelin/hardhat-upgrades');
 const {privateKey,ropstenUrl, rinkebyUrl}  = require('./secrets.json')
 
 module.exports = {

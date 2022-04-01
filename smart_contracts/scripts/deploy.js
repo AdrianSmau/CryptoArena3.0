@@ -1,15 +1,10 @@
 const main = async () => {
-  const FighterFactory = await hre.ethers.getContractFactory("FighterFactory");
-  const fighter_factory = await FighterFactory.deploy();
+  const ArenaFactory = await hre.ethers.getContractFactory("Arena");
+  const arena = await ArenaFactory.deploy();
 
-  const WeaponFactory = await hre.ethers.getContractFactory("WeaponFactory");
-  const weapon_factory = await WeaponFactory.deploy();
+  await arena.deployed();
 
-  await fighter_factory.deployed();
-  await weapon_factory.deployed();
-
-  console.log("Fighter Factory deployed to:", fighter_factory.address);
-  console.log("Weapon Factory deployed to:", weapon_factory.address);
+  console.log("Arena deployed to:", arena.address);
 };
 
 const runMain = async () => {

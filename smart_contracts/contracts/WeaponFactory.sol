@@ -3,7 +3,7 @@
 pragma solidity ^0.8.0;
 pragma experimental ABIEncoderV2;
 
-import "./openzeppelin/Ownable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "./openzeppelin/SafeMath.sol";
 import "./helpers/weapons/WeaponTiers.sol";
 import "./helpers/weapons/WeaponTypes.sol";
@@ -13,13 +13,13 @@ abstract contract WeaponFactory is Ownable {
     using SafeMath32 for uint32;
     using SafeMath16 for uint16;
 
-    event newWeapon(
+    /*event newWeapon(
         uint32 levelReq,
         uint256 timestamp,
         WeaponType indexed weapType,
         WeaponTier indexed tier,
         address indexed owner
-    );
+    );*/
 
     struct Weapon {
         uint32 levelReq;
@@ -27,6 +27,11 @@ abstract contract WeaponFactory is Ownable {
         uint16 skillReq;
         WeaponType weapType;
         WeaponTier tier;
+    }
+
+    struct WeaponDTO {
+        uint256 id;
+        Weapon weapon;
     }
 
     Weapon[] internal weapons;
@@ -67,9 +72,15 @@ abstract contract WeaponFactory is Ownable {
         WeaponTier _tier
     ) internal validLevel(_level) validType(_type) validTier(_tier) {
         uint16 currentSkillReq = 0;
-        if (_tier == WeaponTier.S) currentSkillReq = 8;
-        if (_tier == WeaponTier.A) currentSkillReq = 6;
-        if (_tier == WeaponTier.B) currentSkillReq = 3;
+        if (_tier == WeaponTier.S) {
+            currentSkillReq = 8;
+        }
+        if (_tier == WeaponTier.A) {
+            currentSkillReq = 6;
+        }
+        if (_tier == WeaponTier.B) {
+            currentSkillReq = 3;
+        }
         weapons.push(
             Weapon(
                 _level,
@@ -79,10 +90,9 @@ abstract contract WeaponFactory is Ownable {
                 _tier
             )
         );
-        uint256 id = weapons.length - 1;
-        weapon_to_owner[id] = _owner;
+        weapon_to_owner[weapons.length - 1] = _owner;
         owner_weapons_count[_owner] = owner_weapons_count[_owner].add(1);
-        emit newWeapon(_level, block.timestamp, _type, _tier, _owner);
+        //emit newWeapon(_level, block.timestamp, _type, _tier, _owner);
     }
 
     function _computeWeaponDamage(uint32 _level, WeaponTier _tier)
@@ -95,42 +105,33 @@ abstract contract WeaponFactory is Ownable {
         return _level.mul(3);
     }
 
-    function _getMyWeapons() external view returns (Weapon[] memory) {
-        address _owner = _msgSender();
+    function _getUserWeapons(address _owner)
+        public
+        view
+        returns (WeaponDTO[] memory)
+    {
         uint256 toFetch = owner_weapons_count[_owner];
-        Weapon[] memory myWeapons = new Weapon[](toFetch);
+        WeaponDTO[] memory myWeapons = new WeaponDTO[](toFetch);
         uint256 counter = 0;
         for (uint256 i = 0; i < weapons.length; i++) {
             if (weapon_to_owner[i] == _owner) {
-                myWeapons[counter] = weapons[i];
+                myWeapons[counter] = WeaponDTO(i, weapons[i]);
                 counter++;
                 toFetch--;
-                if (toFetch == 0) break;
+                if (toFetch == 0) {
+                    break;
+                }
             }
         }
         return myWeapons;
     }
 
-    function _getTargetWeapons(address _target)
-        internal
-        view
-        returns (Weapon[] memory)
-    {
-        uint256 toFetch = owner_weapons_count[_target];
-        Weapon[] memory targetWeapons = new Weapon[](toFetch);
-        uint256 counter = 0;
-        for (uint256 i = 0; i < weapons.length; i++) {
-            if (weapon_to_owner[i] == _target) {
-                targetWeapons[counter] = weapons[i];
-                counter++;
-                toFetch--;
-                if (toFetch == 0) break;
-            }
-        }
-        return targetWeapons;
+    function _getWeaponById(uint256 id) external view returns (Weapon memory) {
+        require(id >= 0 && id <= (weapons.length - 1));
+        return weapons[id];
     }
 
-    function _getWeaponsCount() external view returns (uint256) {
+    /*function _getWeaponsCount() external view returns (uint256) {
         return weapons.length;
-    }
+    }*/
 }

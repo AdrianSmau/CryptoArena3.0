@@ -3,13 +3,11 @@
 pragma solidity ^0.8.0;
 
 import "./FighterEvolution.sol";
-import "./openzeppelin/Strings.sol";
 
 contract Arena is FighterEvolution {
     using SafeMath for uint256;
     using SafeMath32 for uint32;
     using SafeMath16 for uint16;
-    using Strings for string;
 
     event ArenaEvent(
         uint256 indexed attackerId,
@@ -41,12 +39,25 @@ contract Arena is FighterEvolution {
         _;
     }
 
+    modifier noFriendlyAttacks(uint256 _targetId) {
+        require(
+            fighter_to_owner[_targetId] != _msgSender(),
+            "You cannot attack your own Fighter!"
+        );
+        _;
+    }
+
     function attack(
         uint256 _myFighterId,
         bool _hasOwnerWeapon,
         uint256 _myWeaponId,
         uint256 _targetFighterId
-    ) external onlyOwnerOf(_myFighterId) returns (bool) {
+    )
+        external
+        onlyOwnerOf(_myFighterId)
+        noFriendlyAttacks(_targetFighterId)
+        returns (bool)
+    {
         Fighter storage _myFighter = fighters[_myFighterId];
         Fighter storage _targetFighter = fighters[_targetFighterId];
         uint32 _myDamage = unarmedDamage;
@@ -124,33 +135,34 @@ contract Arena is FighterEvolution {
     ) private view returns (uint32, uint256) {
         uint32 bestDamage = 10;
         uint256 bestWeaponId = 0;
-        Weapon[] memory targetWeapons = _getTargetWeapons(_target);
+        WeaponDTO[] memory targetWeapons = _getUserWeapons(_target);
         for (uint256 i = 0; i < targetWeapons.length; i++) {
-            if (targetWeapons[i].levelReq <= targetLevel) {
-                if (targetWeapons[i].weapType == WeaponType.Slash) {
-                    if (targetWeapons[i].skillReq <= targetAGL) {
+            Weapon memory currentWeapon = targetWeapons[i].weapon;
+            if (currentWeapon.levelReq <= targetLevel) {
+                if (currentWeapon.weapType == WeaponType.Slash) {
+                    if (currentWeapon.skillReq <= targetAGL) {
                         if (targetClass == FighterClass.Samurai) {
-                            if (targetWeapons[i].damage.mul(2) > bestDamage) {
-                                bestDamage = targetWeapons[i].damage.mul(2);
+                            if (currentWeapon.damage.mul(2) > bestDamage) {
+                                bestDamage = currentWeapon.damage.mul(2);
                                 bestWeaponId = i;
                             }
                         } else {
-                            if (targetWeapons[i].damage > bestDamage) {
-                                bestDamage = targetWeapons[i].damage;
+                            if (currentWeapon.damage > bestDamage) {
+                                bestDamage = currentWeapon.damage;
                                 bestWeaponId = i;
                             }
                         }
                     }
                 } else {
-                    if (targetWeapons[i].skillReq <= targetSTR) {
+                    if (currentWeapon.skillReq <= targetSTR) {
                         if (targetClass == FighterClass.Warrior) {
-                            if (targetWeapons[i].damage.mul(2) > bestDamage) {
-                                bestDamage = targetWeapons[i].damage.mul(2);
+                            if (currentWeapon.damage.mul(2) > bestDamage) {
+                                bestDamage = currentWeapon.damage.mul(2);
                                 bestWeaponId = i;
                             }
                         } else {
-                            if (targetWeapons[i].damage > bestDamage) {
-                                bestDamage = targetWeapons[i].damage;
+                            if (currentWeapon.damage > bestDamage) {
+                                bestDamage = currentWeapon.damage;
                                 bestWeaponId = i;
                             }
                         }
@@ -170,13 +182,15 @@ contract Arena is FighterEvolution {
         uint32 targetDamage
     ) private isReady(myFighter.readyTime) returns (bool) {
         _triggerCooldown(myFighter);
-        uint16 _myRemainingHP = myFighter.HP;
+        int32 _myRemainingHP = int32(uint32(myFighter.HP));
         if (myFighter.class == FighterClass.Druid) {
-            _myRemainingHP = _myRemainingHP.mul(2);
+            _myRemainingHP += 50;
+            _myRemainingHP += 10 * int32(myFighter.level);
         }
-        uint16 _targetRemainingHP = targetFighter.HP;
+        int32 _targetRemainingHP = int32(uint32(targetFighter.HP));
         if (targetFighter.class == FighterClass.Druid) {
-            _targetRemainingHP = _targetRemainingHP.mul(2);
+            _targetRemainingHP += 50;
+            _targetRemainingHP += 10 * int32(targetFighter.level);
         }
         uint16 _damageTaken;
         while (true) {
@@ -189,7 +203,8 @@ contract Arena is FighterEvolution {
                 targetFighterId,
                 targetFighter.dexterity
             );
-            _targetRemainingHP = _targetRemainingHP.sub(_damageTaken);
+
+            _targetRemainingHP -= int32(uint32(_damageTaken));
 
             if (_targetRemainingHP <= 0) {
                 return true;
@@ -204,7 +219,7 @@ contract Arena is FighterEvolution {
                 myFighterId,
                 myFighter.dexterity
             );
-            _myRemainingHP = _myRemainingHP.sub(_damageTaken);
+            _myRemainingHP -= int32(uint32(_damageTaken));
 
             if (_myRemainingHP <= 0) {
                 return false;
@@ -222,12 +237,20 @@ contract Arena is FighterEvolution {
         uint256 defenderId,
         uint16 defenderDex
     ) private returns (uint16) {
-        if (_computeDodgeChance(addressForRandomness, defenderDex)) {
+        if (
+            _computeCriticalStrikeOrDodgeChance(
+                addressForRandomness,
+                defenderDex
+            )
+        ) {
             emit ArenaEvent(attackerId, defenderId, 0, false);
             return 0;
         } else {
             if (
-                _computeCriticalStrikeChance(addressForRandomness, attackerLck)
+                _computeCriticalStrikeOrDodgeChance(
+                    addressForRandomness,
+                    attackerLck
+                )
             ) {
                 emit ArenaEvent(
                     attackerId,
@@ -246,9 +269,5 @@ contract Arena is FighterEvolution {
                 return uint16(attackerDamage);
             }
         }
-    }
-
-    function _triggerCooldown(Fighter storage _myFighter) private {
-        _myFighter.readyTime = uint32(block.timestamp + cooldownTime);
     }
 }
