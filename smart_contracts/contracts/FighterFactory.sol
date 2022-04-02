@@ -148,6 +148,9 @@ abstract contract FighterFactory is Ownable {
         FighterBarracksDTO[] memory myFighters = new FighterBarracksDTO[](
             toFetch
         );
+        if (toFetch == 0) {
+            return myFighters;
+        }
         uint256 counter = 0;
         for (uint256 i = 0; i < fighters.length; i++) {
             if (fighter_to_owner[i] == _owner) {
@@ -172,6 +175,9 @@ abstract contract FighterFactory is Ownable {
             latest = fighters.length;
         }
         FighterDTO[] memory allFightersDTOs = new FighterDTO[](latest);
+        if (fighters.length == 0) {
+            return allFightersDTOs;
+        }
         uint256 counter = 0;
         for (
             uint256 i = fighters.length - 1;

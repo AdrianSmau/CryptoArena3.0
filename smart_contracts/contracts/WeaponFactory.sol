@@ -112,6 +112,9 @@ abstract contract WeaponFactory is Ownable {
     {
         uint256 toFetch = owner_weapons_count[_owner];
         WeaponDTO[] memory myWeapons = new WeaponDTO[](toFetch);
+        if (toFetch == 0) {
+            return myWeapons;
+        }
         uint256 counter = 0;
         for (uint256 i = 0; i < weapons.length; i++) {
             if (weapon_to_owner[i] == _owner) {

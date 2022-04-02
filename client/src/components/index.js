@@ -1,10 +1,10 @@
 export { default as Loader } from "./Loader";
 
-export {default as Home} from "./Home";
+export { default as Home } from "./Home";
 
-export {default as Navbar} from "./Navbar";
-export {default as Welcome} from "./Welcome";
-export { default as Transactions } from "./Transactions";
+export { default as Navbar } from "./Navbar";
+export { default as Welcome } from "./Welcome";
+export { default as LatestFighters } from "./LatestFighters";
 export { default as Footer } from "./Footer";
 
-export {default as Barracks} from "./Barracks";
+export { default as Barracks } from "./Barracks";

@@ -14,6 +14,13 @@ const LatestFightersCard = ({
   fighterClass,
   winCount,
   lossCount,
+  HP,
+  strength,
+  agility,
+  luck,
+  dexterity,
+  currentXP,
+  levelUpXP,
   owner,
 }) => {
   return (
@@ -41,6 +48,14 @@ const LatestFightersCard = ({
           </p>
           <p className="text-white text-base">
             Ratio: {`${winCount}W / ${lossCount}L`}
+          </p>
+          <p className="text-white text-base">HP: {HP}</p>
+          <p className="text-white text-base">STR skill: {strength}</p>
+          <p className="text-white text-base">AGL skill: {agility}</p>
+          <p className="text-white text-base">LCK skill: {luck}</p>
+          <p className="text-white text-base">DEX skill: {dexterity}</p>
+          <p className="text-white text-base">
+            Progress: {`${currentXP} XP / ${levelUpXP} XP for leveling up!`}
           </p>
         </div>
         <img

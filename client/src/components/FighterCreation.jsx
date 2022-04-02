@@ -24,11 +24,10 @@ const FighterCreation = () => {
   const [selectedClass, setSelectedClass] = useState(classOptions[0]);
 
   const {
-    currentAccount,
     formDataFighter,
-    createAndGetFighters,
+    createNewFighter,
     handleChangeFighter,
-    isLoading
+    isLoading,
   } = useContext(BlockchainContext);
 
   const handleSubmit = (e) => {
@@ -41,7 +40,7 @@ const FighterCreation = () => {
     ) {
       return;
     }
-    createAndGetFighters(fighterClass);
+    createNewFighter(fighterClass);
   };
 
   return (

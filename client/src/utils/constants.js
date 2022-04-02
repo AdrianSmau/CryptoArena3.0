@@ -1,5 +1,5 @@
-import arenaABI from "./Arena.json";
+import abi from "./Arena.json";
 
-export const abi = arenaABI.abi;
+export const arenaABI = abi.abi;
 
-export const address = "0xeDE58A2Eb3cB3b8e5CFe7AB29F13C0203F767cb1";
+export const address = "0xF46496CafF513Df6B59F1ee5fFc56c7D0951BbF4";

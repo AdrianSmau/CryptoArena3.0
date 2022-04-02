@@ -1,6 +1,6 @@
 import Navbar from "./Navbar";
 import Welcome from "./Welcome";
-import Transactions from "./Transactions";
+import LatestFighters from "./LatestFighters";
 import Footer from "./Footer";
 
 const Home = () => {
