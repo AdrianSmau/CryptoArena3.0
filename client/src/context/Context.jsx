@@ -18,6 +18,8 @@ export const BlockchainProvider = ({ children }) => {
   const [currentAccount, setCurrentAccount] = useState("");
   const [formDataFighter, setFormDataFighter] = useState({ fighterName: "" });
   const [isLoading, setIsLoading] = useState(false);
+  const [isContextLoading, setIsContextLoading] = useState(false);
+
   const [fighters, setFighters] = useState([]);
   const [myFighters, setMyFighters] = useState([]);
   const [fightersCount, setFightersCount] = useState(
@@ -39,9 +41,11 @@ export const BlockchainProvider = ({ children }) => {
       if (ethereum) {
         const accounts = await ethereum.request({ method: "eth_accounts" });
         if (accounts.length) {
+          setIsContextLoading(true);
           setCurrentAccount(accounts[0]);
-          getLatestFighters(0);
-          getMyFighters(accounts[0]);
+          await getLatestFighters(0);
+          await getMyFighters(accounts[0]);
+          setIsContextLoading(false);
         } else {
           console.log("No accounts found!");
         }
@@ -79,7 +83,7 @@ export const BlockchainProvider = ({ children }) => {
         const accounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
-        setCurrentAccount(accounts[0]);
+        this.setCurrentAccount(accounts[0]);
         window.location.reload();
       } else {
         console.log("Ethereum is not present!");
@@ -100,6 +104,7 @@ export const BlockchainProvider = ({ children }) => {
           fightCount
         );
         const formattedFighters = latestFighters.map((currentFighter) => ({
+          id: currentFighter.id.toNumber(),
           name: currentFighter.fighter.name,
           level: currentFighter.fighter.level,
           timestamp: new Date(
@@ -116,6 +121,7 @@ export const BlockchainProvider = ({ children }) => {
           currentXP: currentFighter.fighter.currentXP,
           levelUpXP: currentFighter.fighter.levelUpXP,
           owner: currentFighter.owner,
+          spendablePoints: currentFighter.fighter.spendablePoints,
         }));
         setFighters(formattedFighters);
       } else {
@@ -133,6 +139,7 @@ export const BlockchainProvider = ({ children }) => {
         const arenaContract = getArenaContract();
         const myFighters = await arenaContract._getUserFighters(account);
         const formattedFighters = myFighters.map((currentFighter) => ({
+          id: currentFighter.id.toNumber(),
           name: currentFighter.fighter.name,
           level: currentFighter.fighter.level,
           timestamp: new Date(
@@ -148,7 +155,7 @@ export const BlockchainProvider = ({ children }) => {
           dexterity: currentFighter.fighter.dexterity,
           currentXP: currentFighter.fighter.currentXP,
           levelUpXP: currentFighter.fighter.levelUpXP,
-          owner: currentFighter.owner,
+          spendablePoints: currentFighter.fighter.spendablePoints,
         }));
         setMyFighters(formattedFighters);
       } else {
@@ -172,7 +179,7 @@ export const BlockchainProvider = ({ children }) => {
             {
               from: currentAccount,
               to: address,
-              gas: "0x5208",
+              gas: "A410",
             },
           ],
         });
@@ -183,9 +190,7 @@ export const BlockchainProvider = ({ children }) => {
         );
 
         setIsLoading(true);
-        console.log(`Loading - ${hash.hash}`);
         await hash.wait();
-        console.log(`Success - ${hash.hash}`);
         setIsLoading(false);
 
         const currentFightersCount = await contract._getFightersCount();
@@ -218,6 +223,7 @@ export const BlockchainProvider = ({ children }) => {
         myFighters,
         handleChangeFighter,
         isLoading,
+        isContextLoading,
       }}
     >
       {children}

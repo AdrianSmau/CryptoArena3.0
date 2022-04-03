@@ -200,7 +200,7 @@ abstract contract FighterFactory is Ownable {
         view
         returns (Fighter memory)
     {
-        require(id >= 0 && id <= (fighters.length - 1));
+        require(id >= 0 && id < fighters.length);
         return fighters[id];
     }
 

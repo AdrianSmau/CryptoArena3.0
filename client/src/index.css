@@ -27,6 +27,12 @@ body {
     radial-gradient(at 50% 50%, #5c1010 0, transparent 50%);
 }
 
+.gradient-bg-transactionsAlt {
+  background-color: #080808;
+  background-image: radial-gradient(at 0% 100%, #101010 0, transparent 50%),
+    radial-gradient(at 50% 50%, #5c1010 0, transparent 65%);
+}
+
 .gradient-bg-footer {
   background-color: #101010;
   background-image: radial-gradient(at 0% 0%, #080808 0, transparent 53%),

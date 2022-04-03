@@ -1,4 +1,7 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+
+import Loader from "./Loader";
 
 import warrior from "../../images/warrior256.png";
 import samurai from "../../images/samurai256.png";
@@ -8,17 +11,11 @@ import { shorten_address } from "../utils/shorten_address";
 import { BlockchainContext } from "../context/Context";
 
 const LatestFightersCard = ({
+  id,
   name,
   level,
   timestamp,
   fighterClass,
-  winCount,
-  lossCount,
-  HP,
-  strength,
-  agility,
-  luck,
-  dexterity,
   currentXP,
   levelUpXP,
   owner,
@@ -36,6 +33,7 @@ const LatestFightersCard = ({
               Owner: {shorten_address(owner)}
             </p>
           </a>
+          <p className="text-white text-base">Fighter's ID: {id}</p>
           <p className="text-white text-base">Fighter's name: {name}</p>
           <p className="text-white text-base">Fighter's level: {level}</p>
           <p className="text-white text-base">
@@ -47,14 +45,6 @@ const LatestFightersCard = ({
               : "Druid"}
           </p>
           <p className="text-white text-base">
-            Ratio: {`${winCount}W / ${lossCount}L`}
-          </p>
-          <p className="text-white text-base">HP: {HP}</p>
-          <p className="text-white text-base">STR skill: {strength}</p>
-          <p className="text-white text-base">AGL skill: {agility}</p>
-          <p className="text-white text-base">LCK skill: {luck}</p>
-          <p className="text-white text-base">DEX skill: {dexterity}</p>
-          <p className="text-white text-base">
             Progress: {`${currentXP} XP / ${levelUpXP} XP for leveling up!`}
           </p>
         </div>
@@ -65,8 +55,16 @@ const LatestFightersCard = ({
           alt="classImage"
           className="object-scale-down w-32"
         />
-        <div className="bg-black sm:text-lg text-sm p-2 sm:px-3 px-2 w-max rounded-3xl -mt-5 shadow-2xl">
+        <div className="bg-black sm:text-lg text-base p-2 sm:px-3 px-2 w-max rounded-3xl -mt-5 shadow-2xl text-center">
           <p className="text-white sm:font-bold font-semibold">{`Cooldown: ${timestamp}`}</p>
+        </div>
+        <div className="bg-black sm:text-base text-sm p-1 sm:px-3 px-2 w-max rounded-3xl mt-0.25 shadow-2xl text-center">
+          <Link
+            to={`/fighters/${id}`}
+            className="text-white sm:font-bold font-semibold"
+          >
+            View Fighter's Page
+          </Link>
         </div>
       </div>
     </div>
@@ -74,11 +72,14 @@ const LatestFightersCard = ({
 };
 
 const LatestFighters = () => {
-  const { currentAccount, fighters } = useContext(BlockchainContext);
+  const { currentAccount, fighters, isContextLoading } =
+    useContext(BlockchainContext);
   return (
     <div className="flex w-full justify-center items-center 2xl:px-20 gradient-bg-transactions font-medieval">
       <div className="flex flex-col md:p-12 py-12 px-4">
-        {currentAccount ? (
+        {isContextLoading ? (
+          <Loader />
+        ) : currentAccount ? (
           <h3 className="text-white text-3xl text-center my-2 text-gradient">
             The challengers of the Arena are waiting for you!
           </h3>

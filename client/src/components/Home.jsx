@@ -11,7 +11,9 @@ const Home = () => {
         <Welcome />
       </div>
       <LatestFighters />
-      <Footer />
+      <div className="gradient-bg-footer">
+        <Footer />
+      </div>
     </div>
   );
 };
