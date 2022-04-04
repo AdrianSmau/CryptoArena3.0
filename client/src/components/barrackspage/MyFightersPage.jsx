@@ -1,15 +1,15 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
-import Loader from "./Loader";
+import Loader from "../common/Loader";
 
-import colosseum from "../../images/colosseum.png";
+import colosseum from "../../../images/colosseum.png";
 
-import warrior from "../../images/warrior256.png";
-import samurai from "../../images/samurai256.png";
-import druid from "../../images/druid256.png";
+import warrior from "../../../images/warrior256.png";
+import samurai from "../../../images/samurai256.png";
+import druid from "../../../images/druid256.png";
 
-import { BlockchainContext } from "../context/Context";
+import { BlockchainContext } from "../../context/Context";
 
 const MyFightersPageCard = ({
   id,
@@ -24,9 +24,15 @@ const MyFightersPageCard = ({
     <div className="bg-[#181918] m-2 flex flex-1 2xl:min-w-[380px] 2xl:max-w-[475px] sm:min-w-[255px] sm:max-w-[275px] flex-col p-2 rounded-md hover:shadow-2xl">
       <div className="flex flex-col items-center w-full mt-2">
         <div className="w-full mb-2 p-1">
-          <p className="text-white text-base sm:text-sm text-xs">Fighter's ID: {id}</p>
-          <p className="text-white text-base sm:text-sm text-xs">Fighter's name: {name}</p>
-          <p className="text-white text-base sm:text-sm text-xs">Fighter's level: {level}</p>
+          <p className="text-white text-base sm:text-sm text-xs">
+            Fighter's ID: {id}
+          </p>
+          <p className="text-white text-base sm:text-sm text-xs">
+            Fighter's name: {name}
+          </p>
+          <p className="text-white text-base sm:text-sm text-xs">
+            Fighter's level: {level}
+          </p>
           <p className="text-white text-base sm:text-sm text-xs">
             Fighter's class:{" "}
             {fighterClass == 0
@@ -47,7 +53,7 @@ const MyFightersPageCard = ({
           className="object-scale-down w-24"
         />
         <div className="bg-black sm:text-sm text-xs p-2 sm:px-2 px-1 w-max rounded-3xl -mt-5 shadow-2xl text-center">
-          <p className="text-white sm:font-bold font-semibold">{`Cooldown: ${timestamp}`}</p>
+          <p className="text-white sm:font-bold font-semibold">{`Cooldown: ${timestamp.toLocaleString()}`}</p>
         </div>
         <div className="bg-black sm:text-sm text-xs p-1 sm:px-2 px-1 w-max rounded-3xl mt-0.25 shadow-2xl text-center">
           <Link

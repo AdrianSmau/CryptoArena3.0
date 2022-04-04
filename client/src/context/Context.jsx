@@ -25,9 +25,6 @@ export const BlockchainProvider = ({ children }) => {
   const [fightersCount, setFightersCount] = useState(
     localStorage.getItem("fightersCount")
   );
-  const [myFightersCount, setMyFightersCount] = useState(
-    localStorage.getItem("myFightersCount")
-  );
 
   const handleChangeFighter = (e, name) => {
     setFormDataFighter((prevState) => ({
@@ -83,7 +80,8 @@ export const BlockchainProvider = ({ children }) => {
         const accounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
-        this.setCurrentAccount(accounts[0]);
+        console.log(accounts);
+        setCurrentAccount(accounts[0]);
         window.location.reload();
       } else {
         console.log("Ethereum is not present!");
@@ -144,7 +142,7 @@ export const BlockchainProvider = ({ children }) => {
           level: currentFighter.fighter.level,
           timestamp: new Date(
             new Number(currentFighter.fighter.readyTime) * 1000
-          ).toLocaleString(),
+          ),
           fighterClass: currentFighter.fighter.class,
           winCount: currentFighter.fighter.winCount,
           lossCount: currentFighter.fighter.lossCount,

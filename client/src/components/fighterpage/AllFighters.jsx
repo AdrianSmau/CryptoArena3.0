@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
-import Loader from "./Loader";
+import Loader from "../common/Loader";
 
-import warrior from "../../images/warrior256.png";
-import samurai from "../../images/samurai256.png";
-import druid from "../../images/druid256.png";
+import warrior from "../../../images/warrior256.png";
+import samurai from "../../../images/samurai256.png";
+import druid from "../../../images/druid256.png";
 
-import { shorten_address } from "../utils/shorten_address";
-import { BlockchainContext } from "../context/Context";
+import { shorten_address } from "../../utils/shorten_address";
+import { BlockchainContext } from "../../context/Context";
 
 const LatestFightersCard = ({
   id,
@@ -75,7 +75,7 @@ const LatestFighters = () => {
   const { currentAccount, fighters, isContextLoading } =
     useContext(BlockchainContext);
   return (
-    <div className="flex w-full justify-center items-center 2xl:px-20 gradient-bg-transactions font-medieval">
+    <div className="flex w-full justify-center items-center 2xl:px-20 font-medieval">
       <div className="flex flex-col md:p-12 py-12 px-4">
         {isContextLoading ? (
           <Loader />

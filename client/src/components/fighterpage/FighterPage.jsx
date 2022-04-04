@@ -1,13 +1,13 @@
-import Navbar from "./Navbar";
+import Navbar from "../common/Navbar";
 import FighterPageContent from "./FighterPageContent";
-import Footer from "./Footer";
+import Footer from "../common/Footer";
 
 const FighterPage = () => {
   return (
     <div className="min-h-screen gradient-bg-welcome">
-        <Navbar />
-        <FighterPageContent />
-        <Footer />
+      <Navbar />
+      <FighterPageContent />
+      <Footer />
     </div>
   );
 };

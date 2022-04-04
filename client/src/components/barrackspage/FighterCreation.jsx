@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import Select from "react-select";
 
-import { BlockchainContext } from "../context/Context";
-import { Loader } from "./";
+import { BlockchainContext } from "../../context/Context";
+import { Loader } from "..";
 
 const classOptions = [
   { value: 0, label: "Warrior" },

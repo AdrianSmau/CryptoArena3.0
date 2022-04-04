@@ -1,14 +1,19 @@
-export { default as Loader } from "./Loader";
+export { default as Loader } from "./common/Loader";
 
-export { default as Home } from "./Home";
+export { default as Home } from "./homepage/Home";
 
-export { default as Navbar } from "./Navbar";
-export { default as Welcome } from "./Welcome";
-export { default as LatestFighters } from "./LatestFighters";
-export { default as Footer } from "./Footer";
+export { default as Navbar } from "./common/Navbar";
+export { default as Welcome } from "./homepage/Welcome";
+export { default as LatestFighters } from "./fighterpage/AllFighters";
+export { default as Footer } from "./common/Footer";
 
-export { default as Barracks } from "./Barracks";
+export { default as Barracks } from "./barrackspage/Barracks";
 
-export { default as FighterPage } from "./FighterPage";
-export { default as FighterPageContent } from "./FighterPageContent";
-export { default as MyFightersPage } from "./MyFightersPage";
+export { default as FighterPage } from "./fighterpage/FighterPage";
+export { default as FighterPageContent } from "./fighterpage/FighterPageContent";
+export { default as MyFightersPage } from "./barrackspage/MyFightersPage";
+
+export { default as Arena } from "./arenapage/Arena";
+export { default as ArenaContent } from "./arenapage/ArenaContent";
+
+export { default as NotFoundPage } from "./notfoundpage/NotFoundPage";

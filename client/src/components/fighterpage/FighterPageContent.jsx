@@ -1,16 +1,16 @@
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 
-import colosseum from "../../images/colosseum.png";
-import notFound from "../../images/404.png";
-import warrior from "../../images/warrior256.png";
-import samurai from "../../images/samurai256.png";
-import druid from "../../images/druid256.png";
+import colosseum from "../../../images/colosseum.png";
+import notFound from "../../../images/404.png";
+import warrior from "../../../images/warrior256.png";
+import samurai from "../../../images/samurai256.png";
+import druid from "../../../images/druid256.png";
 
-import Loader from "./Loader";
+import Loader from "../common/Loader";
 
-import { shorten_address } from "../utils/shorten_address";
-import { BlockchainContext } from "../context/Context";
+import { shorten_address } from "../../utils/shorten_address";
+import { BlockchainContext } from "../../context/Context";
 
 const FighterPageContentInfo = ({
   id,

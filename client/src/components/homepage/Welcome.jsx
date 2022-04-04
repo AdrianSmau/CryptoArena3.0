@@ -1,18 +1,18 @@
 import React, { useContext } from "react";
 
-import warrior from "../../images/warrior256.png";
-import samurai from "../../images/samurai256.png";
-import druid from "../../images/druid256.png";
+import warrior from "../../../images/warrior256.png";
+import samurai from "../../../images/samurai256.png";
+import druid from "../../../images/druid256.png";
 
-import b_tier_slash from "../../images/BTierSlash.png";
-import a_tier_slash from "../../images/ATierSlash.png";
-import s_tier_slash from "../../images/STierSlash.png";
-import b_tier_blunt from "../../images/BTierBlunt.png";
-import a_tier_blunt from "../../images/ATierBlunt.png";
-import s_tier_blunt from "../../images/STierBlunt.png";
+import b_tier_slash from "../../../images/BTierSlash.png";
+import a_tier_slash from "../../../images/ATierSlash.png";
+import s_tier_slash from "../../../images/STierSlash.png";
+import b_tier_blunt from "../../../images/BTierBlunt.png";
+import a_tier_blunt from "../../../images/ATierBlunt.png";
+import s_tier_blunt from "../../../images/STierBlunt.png";
 
-import { BlockchainContext } from "../context/Context";
-import { shorten_address } from "../utils/shorten_address";
+import { BlockchainContext } from "../../context/Context";
+import { shorten_address } from "../../utils/shorten_address";
 
 const Welcome = () => {
   const { currentAccount } = useContext(BlockchainContext);
