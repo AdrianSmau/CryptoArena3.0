@@ -264,7 +264,7 @@ contract Arena is FighterEvolution {
                     attackerId,
                     defenderId,
                     uint16(attackerDamage),
-                    true
+                    false
                 );
                 return uint16(attackerDamage);
             }

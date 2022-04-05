@@ -77,7 +77,7 @@ const MyFightersPage = () => {
         <Loader />
       ) : currentAccount ? (
         <div className="flex flex-col justify-center items-center">
-          <h1 className="text-white text-3xl text-center my-2 py-2 text-gradient">
+          <h1 className="text-white text-3xl text-center my-2 text-gradient">
             Welcome to your Barracks! Your fighters and weapons are displayed
             below!
           </h1>

@@ -20,7 +20,7 @@ abstract contract FighterFactory is Ownable {
         address indexed owner
     );*/
 
-    uint256 cooldownTime = 1 days;
+    uint256 cooldownTime = 12 hours;
 
     struct Fighter {
         string name;

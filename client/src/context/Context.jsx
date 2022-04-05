@@ -26,6 +26,10 @@ export const BlockchainProvider = ({ children }) => {
     localStorage.getItem("fightersCount")
   );
 
+  const [attackLogs, setAttackLogs] = useState(
+    localStorage.getItem("attackLogs")
+  );
+
   const handleChangeFighter = (e, name) => {
     setFormDataFighter((prevState) => ({
       ...prevState,
@@ -203,6 +207,73 @@ export const BlockchainProvider = ({ children }) => {
     }
   };
 
+  const attackFighter = async (myFighterId, myWeaponId, targetFighterId) => {
+    try {
+      if (ethereum) {
+        var currentAttackLogs = [];
+        var doIHaveWeapon = true;
+        const contract = getArenaContract();
+
+        contract.on(
+          "ArenaEvent",
+          (attackerId, targetId, damage, wasCritical) => {
+            if (damage == 0) {
+              currentAttackLogs.push(
+                `Fighter ${fighters[targetId].name} dodged ${fighters[attackerId].name}'s attack!`
+              );
+            } else {
+              if (wasCritical) {
+                currentAttackLogs.push(
+                  `Fighter ${fighters[attackerId].name} dealt a critical hit on ${fighters[targetId].name} for ${damage} damage!`
+                );
+              } else {
+                currentAttackLogs.push(
+                  `Fighter ${fighters[attackerId].name} hit ${fighters[targetId].name} for ${damage} damage!`
+                );
+              }
+            }
+          }
+        );
+
+        await ethereum.request({
+          method: "eth_sendTransaction",
+          params: [
+            {
+              from: currentAccount,
+              to: address,
+              gas: "11940",
+            },
+          ],
+        });
+
+        if (myWeaponId == -1) {
+          doIHaveWeapon = false;
+          myWeaponId = 0;
+        }
+
+        const hash = await contract.attack(
+          myFighterId,
+          doIHaveWeapon,
+          myWeaponId,
+          targetFighterId
+        );
+
+        setIsLoading(true);
+        await hash.wait();
+        setIsLoading(false);
+
+        setAttackLogs(currentAttackLogs);
+        console.log(currentAttackLogs);
+        window.location.replace("http://localhost:3000/arena");
+      } else {
+        console.log("Ethereum is not present!");
+      }
+    } catch (error) {
+      console.log(error);
+      throw new Error("No Ethereum object!");
+    }
+  };
+
   /* ----------------------------------------------------------------------------- */
 
   useEffect(() => {
@@ -222,6 +293,7 @@ export const BlockchainProvider = ({ children }) => {
         handleChangeFighter,
         isLoading,
         isContextLoading,
+        attackFighter,
       }}
     >
       {children}

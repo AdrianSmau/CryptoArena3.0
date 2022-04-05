@@ -7,6 +7,8 @@ import warrior from "../../../images/warrior256.png";
 import samurai from "../../../images/samurai256.png";
 import druid from "../../../images/druid256.png";
 
+import colosseum from "../../../images/colosseum.png";
+
 import { shorten_address } from "../../utils/shorten_address";
 import { BlockchainContext } from "../../context/Context";
 
@@ -75,26 +77,37 @@ const LatestFighters = () => {
   const { currentAccount, fighters, isContextLoading } =
     useContext(BlockchainContext);
   return (
-    <div className="flex w-full justify-center items-center 2xl:px-20 font-medieval">
-      <div className="flex flex-col md:p-12 py-12 px-4">
-        {isContextLoading ? (
-          <Loader />
-        ) : currentAccount ? (
-          <h3 className="text-white text-3xl text-center my-2 text-gradient">
-            The challengers of the Arena are waiting for you!
-          </h3>
-        ) : (
-          <h3 className="text-white text-3xl text-center my-2 text-gradient">
-            Connect your account to see the fighters in the Arena!
-          </h3>
-        )}
-        <div className="flex flex-wrap justify-center items-center mt-10">
-          {fighters.reverse().map((fighter, i) => (
-            <LatestFightersCard key={i} {...fighter} />
-          ))}
+    <>
+      {isContextLoading ? (
+        <Loader />
+      ) : currentAccount ? (
+        <div className="flex w-full justify-center items-center 2xl:px-20">
+          <div className="flex flex-col md:p-4 py-2 px-2">
+            <h3 className="text-white text-3xl text-center my-2 text-gradient">
+              The challengers of the Arena are waiting for you!
+            </h3>
+            <div className="flex flex-wrap justify-center items-center mt-10">
+              {fighters.reverse().map((fighter, i) => (
+                <LatestFightersCard key={i} {...fighter} />
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      ) : (
+        <div className="flex w-full justify-center items-center md:p-8 py-12 px-2 2xl:px-14 font-medieval">
+          <div className="flex flex-col justify-between items-center">
+            <h2 className="text-white text-3xl text-center my-2 text-gradient">
+              Connect your account to see the archive of all the Fighters!
+            </h2>
+            <img
+              src={colosseum}
+              alt="colosseum"
+              className="object-scale-down w-80 md:mt-10 mt-5 text-center white-glassmorphism"
+            />
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
