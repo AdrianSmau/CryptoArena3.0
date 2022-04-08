@@ -16,20 +16,9 @@ contract Arena is FighterEvolution {
         bool wasCritical
     );
 
-    event WeaponChosenForTargetEvent(
-        uint256 indexed targetId,
-        uint256 targetWeaponId
-    );
+    event WhoWon(bool youWon);
 
-    uint32 unarmedDamage = 10;
-
-    modifier isReady(uint32 readyTime) {
-        require(
-            readyTime <= block.timestamp,
-            "Your fighter is not yet ready to fight!"
-        );
-        _;
-    }
+    uint32 unarmedDamage = 15;
 
     modifier weaponCanBeUsedLevel(uint32 fighterLevel, uint32 weaponLevel) {
         require(
@@ -51,15 +40,17 @@ contract Arena is FighterEvolution {
         uint256 _myFighterId,
         bool _hasOwnerWeapon,
         uint256 _myWeaponId,
-        uint256 _targetFighterId
-    )
-        external
-        onlyOwnerOf(_myFighterId)
-        noFriendlyAttacks(_targetFighterId)
-        returns (bool)
-    {
+        uint256 _targetFighterId,
+        bool _hasTargetWeapon,
+        uint256 _targetWeaponId
+    ) external onlyOwnerOf(_myFighterId) noFriendlyAttacks(_targetFighterId) {
         Fighter storage _myFighter = fighters[_myFighterId];
-        Fighter storage _targetFighter = fighters[_targetFighterId];
+        require(
+            _myFighter.readyTime <= block.timestamp,
+            "Your fighter is not yet ready to fight!"
+        );
+        _triggerCooldown(_myFighter);
+
         uint32 _myDamage = unarmedDamage;
         if (_hasOwnerWeapon) {
             require(
@@ -96,16 +87,44 @@ contract Arena is FighterEvolution {
                 _myDamage = myWeapon.damage;
             }
         }
-        (uint32 _targetDamage, uint256 targetWeaponId) = chooseTargetWeapon(
-            fighter_to_owner[_targetFighterId],
-            _targetFighter.level,
-            _targetFighter.strength,
-            _targetFighter.agility,
-            _targetFighter.class
-        );
 
-        if (_targetDamage > uint32(10)) {
-            emit WeaponChosenForTargetEvent(_targetFighterId, targetWeaponId);
+        Fighter storage _targetFighter = fighters[_targetFighterId];
+        uint32 _targetDamage = unarmedDamage;
+        if (_hasTargetWeapon) {
+            require(
+                fighter_to_owner[_targetFighterId] ==
+                    weapon_to_owner[_targetWeaponId],
+                "You are not the owner of this Weapon!"
+            );
+
+            Weapon memory targetWeapon = weapons[_targetWeaponId];
+
+            require(
+                _targetFighter.level >= targetWeapon.levelReq,
+                "You cannot use this weapon, your level is too small!"
+            );
+            if (targetWeapon.weapType == WeaponType.Slash) {
+                require(
+                    _targetFighter.agility >= targetWeapon.skillReq,
+                    "You cannot use this weapon, your agility skill is insufficient!"
+                );
+            } else {
+                require(
+                    _targetFighter.strength >= targetWeapon.skillReq,
+                    "You cannot use this weapon, your strength skill is insufficient!"
+                );
+            }
+
+            if (
+                (_targetFighter.class == FighterClass.Samurai &&
+                    targetWeapon.weapType == WeaponType.Slash) ||
+                (_targetFighter.class == FighterClass.Warrior &&
+                    targetWeapon.weapType == WeaponType.Blunt)
+            ) {
+                _myDamage = targetWeapon.damage.mul(2);
+            } else {
+                _myDamage = targetWeapon.damage;
+            }
         }
 
         bool iWon = attackLogic(
@@ -123,54 +142,8 @@ contract Arena is FighterEvolution {
             _fighterLostFight(_myFighterId);
             _fighterWonFight(_targetFighterId);
         }
-        return iWon;
-    }
 
-    function chooseTargetWeapon(
-        address _target,
-        uint32 targetLevel,
-        uint16 targetSTR,
-        uint16 targetAGL,
-        FighterClass targetClass
-    ) private view returns (uint32, uint256) {
-        uint32 bestDamage = 10;
-        uint256 bestWeaponId = 0;
-        WeaponDTO[] memory targetWeapons = _getUserWeapons(_target);
-        for (uint256 i = 0; i < targetWeapons.length; i++) {
-            Weapon memory currentWeapon = targetWeapons[i].weapon;
-            if (currentWeapon.levelReq <= targetLevel) {
-                if (currentWeapon.weapType == WeaponType.Slash) {
-                    if (currentWeapon.skillReq <= targetAGL) {
-                        if (targetClass == FighterClass.Samurai) {
-                            if (currentWeapon.damage.mul(2) > bestDamage) {
-                                bestDamage = currentWeapon.damage.mul(2);
-                                bestWeaponId = i;
-                            }
-                        } else {
-                            if (currentWeapon.damage > bestDamage) {
-                                bestDamage = currentWeapon.damage;
-                                bestWeaponId = i;
-                            }
-                        }
-                    }
-                } else {
-                    if (currentWeapon.skillReq <= targetSTR) {
-                        if (targetClass == FighterClass.Warrior) {
-                            if (currentWeapon.damage.mul(2) > bestDamage) {
-                                bestDamage = currentWeapon.damage.mul(2);
-                                bestWeaponId = i;
-                            }
-                        } else {
-                            if (currentWeapon.damage > bestDamage) {
-                                bestDamage = currentWeapon.damage;
-                                bestWeaponId = i;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return (bestDamage, bestWeaponId);
+        emit WhoWon(iWon);
     }
 
     function attackLogic(
@@ -180,17 +153,18 @@ contract Arena is FighterEvolution {
         uint256 targetFighterId,
         Fighter storage targetFighter,
         uint32 targetDamage
-    ) private isReady(myFighter.readyTime) returns (bool) {
-        _triggerCooldown(myFighter);
-        int32 _myRemainingHP = int32(uint32(myFighter.HP));
+    ) private returns (bool) {
+        uint32 _myRemainingHP = uint32(myFighter.HP);
         if (myFighter.class == FighterClass.Druid) {
-            _myRemainingHP += 50;
-            _myRemainingHP += 10 * int32(myFighter.level);
+            _myRemainingHP = _myRemainingHP.add(25);
+            uint32 bonus = myFighter.level.mul(5);
+            _myRemainingHP = _myRemainingHP.add(bonus);
         }
-        int32 _targetRemainingHP = int32(uint32(targetFighter.HP));
+        uint32 _targetRemainingHP = uint32(targetFighter.HP);
         if (targetFighter.class == FighterClass.Druid) {
-            _targetRemainingHP += 50;
-            _targetRemainingHP += 10 * int32(targetFighter.level);
+            _targetRemainingHP = _targetRemainingHP.add(25);
+            uint32 bonus = myFighter.level.mul(5);
+            _targetRemainingHP = _targetRemainingHP.add(bonus);
         }
         uint16 _damageTaken;
         while (true) {
@@ -204,11 +178,11 @@ contract Arena is FighterEvolution {
                 targetFighter.dexterity
             );
 
-            _targetRemainingHP -= int32(uint32(_damageTaken));
-
-            if (_targetRemainingHP <= 0) {
+            if (_targetRemainingHP <= uint32(_damageTaken)) {
                 return true;
             }
+
+            _targetRemainingHP -= uint32(_damageTaken);
 
             // targetFighter attacks
             _damageTaken = simulateAttack(
@@ -219,11 +193,12 @@ contract Arena is FighterEvolution {
                 myFighterId,
                 myFighter.dexterity
             );
-            _myRemainingHP -= int32(uint32(_damageTaken));
 
-            if (_myRemainingHP <= 0) {
+            if (_myRemainingHP <= uint32(_damageTaken)) {
                 return false;
             }
+
+            _myRemainingHP -= uint32(_damageTaken);
         }
         assert(_myRemainingHP <= 0 || _targetRemainingHP <= 0);
         return false; // this line of code will never be executed, it's here to shut the compiler up

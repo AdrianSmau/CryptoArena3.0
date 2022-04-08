@@ -13,14 +13,6 @@ abstract contract WeaponFactory is Ownable {
     using SafeMath32 for uint32;
     using SafeMath16 for uint16;
 
-    /*event newWeapon(
-        uint32 levelReq,
-        uint256 timestamp,
-        WeaponType indexed weapType,
-        WeaponTier indexed tier,
-        address indexed owner
-    );*/
-
     struct Weapon {
         uint32 levelReq;
         uint32 damage;
@@ -30,8 +22,8 @@ abstract contract WeaponFactory is Ownable {
     }
 
     struct WeaponDTO {
-        uint256 id;
         Weapon weapon;
+        uint256 id;
     }
 
     Weapon[] internal weapons;
@@ -92,7 +84,6 @@ abstract contract WeaponFactory is Ownable {
         );
         weapon_to_owner[weapons.length - 1] = _owner;
         owner_weapons_count[_owner] = owner_weapons_count[_owner].add(1);
-        //emit newWeapon(_level, block.timestamp, _type, _tier, _owner);
     }
 
     function _computeWeaponDamage(uint32 _level, WeaponTier _tier)
@@ -118,7 +109,7 @@ abstract contract WeaponFactory is Ownable {
         uint256 counter = 0;
         for (uint256 i = 0; i < weapons.length; i++) {
             if (weapon_to_owner[i] == _owner) {
-                myWeapons[counter] = WeaponDTO(i, weapons[i]);
+                myWeapons[counter] = WeaponDTO(weapons[i], i);
                 counter++;
                 toFetch--;
                 if (toFetch == 0) {
@@ -127,11 +118,6 @@ abstract contract WeaponFactory is Ownable {
             }
         }
         return myWeapons;
-    }
-
-    function _getWeaponById(uint256 id) external view returns (Weapon memory) {
-        require(id >= 0 && id <= (weapons.length - 1));
-        return weapons[id];
     }
 
     /*function _getWeaponsCount() external view returns (uint256) {

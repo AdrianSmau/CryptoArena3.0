@@ -15,6 +15,8 @@ export { default as MyFightersPage } from "./barrackspage/MyFightersPage";
 
 export { default as Arena } from "./arenapage/Arena";
 export { default as ArenaContent } from "./arenapage/ArenaContent";
-export { default as ArenaModal } from "./arenapage/AttackModal";
+export { default as Modal } from "./arenapage/AttackModal";
+export { default as AttackModal } from "./arenapage/AttackLogModal";
+export { default as ErrorModal } from "./arenapage/ErrorModal";
 
 export { default as NotFoundPage } from "./notfoundpage/NotFoundPage";

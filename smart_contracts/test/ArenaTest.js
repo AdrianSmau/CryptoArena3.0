@@ -1,17 +1,28 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
-let arena, addr1, addr2, allFighters;
+let arena, addr1, addr2, addr3, addr4, allFighters;
 beforeEach(async () => {
-  [addr1, addr2] = await ethers.getSigners();
+  [addr1, addr2, addr3, addr4] = await ethers.getSigners();
   const ArenaFactory = await ethers.getContractFactory("Arena");
   arena = await ArenaFactory.deploy();
   await arena.deployed();
 });
 
 describe("CryptoArena3.0", function () {
-  // ---------------------------- FIGHTER CREATION ----------------
-  it("Create a first Fighter correctly", async function () {
+  xit("Errors attack flow", async function () {
+    await arena.connect(addr1)._createFirstFighter("addr1", 2);
+    await arena.connect(addr2)._createFirstFighter("addr2", 2);
+    await arena.connect(addr3)._createFirstFighter("addr3", 2);
+    await arena.connect(addr4)._createFirstFighter("addr4", 2);
+    await network.provider.send("evm_increaseTime", [86400]);
+    await arena.connect(addr4).attack(3, false, 0, 1);
+    await arena.connect(addr3).attack(2, false, 0, 3);
+    await arena.connect(addr2).attack(1, false, 0, 3);
+    expect(arena.connect(addr3).attack(2, false, 0, 3)).to.be.revertedWith("Your fighter is not yet ready to fight!");
+  });
+
+  xit("Create a first Fighter correctly", async function () {
     await arena._createFirstFighter("Jack", 2);
     const myFighters = await arena._getLatestFighters(1);
     expect(myFighters[0].fighter.name).to.equal("Jack");
@@ -24,26 +35,26 @@ describe("CryptoArena3.0", function () {
     expect(myFighters[0].fighter.lossCount).to.equal(0);
   });
 
-  it("Not create a first Fighter with invalid name", async function () {
+  xit("Not create a first Fighter with invalid name", async function () {
     expect(arena._createFirstFighter("", 2)).to.be.revertedWith(
       "The name you inserted for your Fighter is invalid!"
     );
   });
 
-  it("Not create a first Fighter with invalid class", async function () {
+  xit("Not create a first Fighter with invalid class", async function () {
     expect(arena._createFirstFighter("Jack", 4)).to.be.revertedWith(
       "The class you inserted for your Fighter is invalid!"
     );
   });
 
-  it("Not create a second Fighter after a first one has been created", async function () {
+  xit("Not create a second Fighter after a first one has been created", async function () {
     await arena._createFirstFighter("John", 2);
     expect(arena._createFirstFighter("Jack", 1)).to.be.revertedWith(
       "You already have fighters in your Barracks! Enter the Arena and earn yourself more Fighters!"
     );
   });
 
-  it("Not attack while on cooldown", async function () {
+  xit("Not attack while on cooldown", async function () {
     await arena.connect(addr1)._createFirstFighter("John", 2);
     await arena.connect(addr2)._createFirstFighter("Jack", 1);
     expect(arena.connect(addr1).attack(0, false, 0, 1)).to.be.revertedWith(
@@ -51,7 +62,7 @@ describe("CryptoArena3.0", function () {
     );
   });
 
-  it("Not attack with a fighter you do not own", async function () {
+  xit("Not attack with a fighter you do not own", async function () {
     await arena.connect(addr1)._createFirstFighter("John", 2);
     await arena.connect(addr2)._createFirstFighter("Jack", 1);
     await network.provider.send("evm_increaseTime", [86400]);
@@ -60,7 +71,7 @@ describe("CryptoArena3.0", function () {
     );
   });
 
-  it("Arena Fight Flow #1", async function () {
+  xit("Arena Fight Flow #1", async function () {
     await arena.connect(addr1)._createFirstFighter("John", 2);
     await arena.connect(addr2)._createFirstFighter("Jack", 1);
     await network.provider.send("evm_increaseTime", [86400]);
@@ -113,7 +124,7 @@ describe("CryptoArena3.0", function () {
     );
   });
 
-  it("Buy a Weapon correctly", async function () {
+  xit("Buy a Weapon correctly", async function () {
     await arena.connect(addr1)._purchaseWeapon(3, 0, 0, {
       value: ethers.utils.parseEther("1.0"),
     }); // S-tier weapon, level 3 => must have 12 damage and 8 skillReq
@@ -125,25 +136,25 @@ describe("CryptoArena3.0", function () {
     expect(myWeapons[0].weapon.tier).to.equal(0);
   });
 
-  it("Not create a Weapon with invalid level", async function () {
+  xit("Not create a Weapon with invalid level", async function () {
     expect(arena._purchaseWeapon(0, 0, 1), {
       value: ethers.utils.parseEther("1.0"),
     }).to.be.revertedWith("The level you inserted for your Weapon is invalid!");
   });
 
-  it("Not create a Weapon with invalid type", async function () {
+  xit("Not create a Weapon with invalid type", async function () {
     expect(arena._purchaseWeapon(10, 2, 1), {
       value: ethers.utils.parseEther("1.0"),
     }).to.be.revertedWith("The type you inserted for your Weapon is invalid!");
   });
 
-  it("Not create a Weapon with invalid tier", async function () {
+  xit("Not create a Weapon with invalid tier", async function () {
     expect(arena._purchaseWeapon(10, 1, 3), {
       value: ethers.utils.parseEther("1.0"),
     }).to.be.revertedWith("The tier you inserted for your Weapon is invalid!");
   });
 
-  it("Not create a Weapon when sending insufficient ETH but should when sending correct amount", async function () {
+  xit("Not create a Weapon when sending insufficient ETH but should when sending correct amount", async function () {
     // Price will be 0.00075 * 10 + 0.003 = 0.0105
     expect(arena._purchaseWeapon(10, 1, 0), {
       value: ethers.utils.parseEther("0.0104"),
@@ -160,7 +171,7 @@ describe("CryptoArena3.0", function () {
     expect(myWeapons[0].weapon.tier).to.equal(0);
   });
 
-  it("Arena Fight Flow #2", async function () {
+  xit("Arena Fight Flow #2", async function () {
     await arena.connect(addr1)._createFirstFighter("John", 2);
     await arena.connect(addr2)._createFirstFighter("Jack", 1);
     await network.provider.send("evm_increaseTime", [86400]);

@@ -120,10 +120,7 @@ const FighterPageContent = () => {
       {isContextLoading ? (
         <Loader />
       ) : currentAccount ? (
-        <FighterPageContentInfo
-          key={id}
-          {...fighters[fighters.length - id - 1]}
-        />
+        <FighterPageContentInfo key={id} {...fighters[id]} />
       ) : (
         <div className="flex flex-col justify-between items-center">
           <h2 className="text-white text-3xl text-center my-2 text-gradient">

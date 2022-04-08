@@ -26,9 +26,18 @@ export const BlockchainProvider = ({ children }) => {
     localStorage.getItem("fightersCount")
   );
 
-  const [attackLogs, setAttackLogs] = useState(
-    localStorage.getItem("attackLogs")
-  );
+  const [attackStats, setAttackStats] = useState([]);
+  const [youWon, setYouWon] = useState(false);
+  // 0 - you dodged
+  // 1 - target dodged
+  // 2 - you dealt critical damage
+  // 3 - target dealt critical damage
+  // 4 - you hit normal attack
+  // 5 - target hit normal attack
+
+  const [displayAttackLogs, setDisplayAttackLogs] = useState(false);
+
+  const [displayError, setDisplayError] = useState(false);
 
   const handleChangeFighter = (e, name) => {
     setFormDataFighter((prevState) => ({
@@ -125,7 +134,7 @@ export const BlockchainProvider = ({ children }) => {
           owner: currentFighter.owner,
           spendablePoints: currentFighter.fighter.spendablePoints,
         }));
-        setFighters(formattedFighters);
+        setFighters(formattedFighters.reverse());
       } else {
         console.log("Ethereum is not present!");
       }
@@ -159,7 +168,7 @@ export const BlockchainProvider = ({ children }) => {
           levelUpXP: currentFighter.fighter.levelUpXP,
           spendablePoints: currentFighter.fighter.spendablePoints,
         }));
-        setMyFighters(formattedFighters);
+        setMyFighters(formattedFighters.reverse());
       } else {
         console.log("Ethereum is not present!");
       }
@@ -181,14 +190,17 @@ export const BlockchainProvider = ({ children }) => {
             {
               from: currentAccount,
               to: address,
-              gas: "A410",
+              gas: "0x7B0C",
             },
           ],
         });
 
         const hash = await contract._createFirstFighter(
           fighterName,
-          fighterClass
+          fighterClass,
+          {
+            gasLimit: "0x33450",
+          }
         );
 
         setIsLoading(true);
@@ -210,30 +222,47 @@ export const BlockchainProvider = ({ children }) => {
   const attackFighter = async (myFighterId, myWeaponId, targetFighterId) => {
     try {
       if (ethereum) {
-        var currentAttackLogs = [];
         var doIHaveWeapon = true;
+
+        if (myWeaponId === -1) {
+          doIHaveWeapon = false;
+          myWeaponId = 0;
+        }
+
         const contract = getArenaContract();
 
         contract.on(
           "ArenaEvent",
-          (attackerId, targetId, damage, wasCritical) => {
+          async (attackerId, targetId, damage, wasCritical) => {
+            var result = -1;
             if (damage == 0) {
-              currentAttackLogs.push(
-                `Fighter ${fighters[targetId].name} dodged ${fighters[attackerId].name}'s attack!`
-              );
+              if (attackerId == myFighterId) {
+                result = 0;
+              } else {
+                result = 1;
+              }
             } else {
               if (wasCritical) {
-                currentAttackLogs.push(
-                  `Fighter ${fighters[attackerId].name} dealt a critical hit on ${fighters[targetId].name} for ${damage} damage!`
-                );
+                if (attackerId == myFighterId) {
+                  result = 2;
+                } else {
+                  result = 3;
+                }
               } else {
-                currentAttackLogs.push(
-                  `Fighter ${fighters[attackerId].name} hit ${fighters[targetId].name} for ${damage} damage!`
-                );
+                if (attackerId == myFighterId) {
+                  result = 4;
+                } else {
+                  result = 5;
+                }
               }
             }
+            setAttackStats((currentStats) => [...currentStats, result]);
           }
         );
+
+        contract.once("WhoWon", async (IWon) => {
+          setYouWon(IWon);
+        });
 
         await ethereum.request({
           method: "eth_sendTransaction",
@@ -241,36 +270,107 @@ export const BlockchainProvider = ({ children }) => {
             {
               from: currentAccount,
               to: address,
-              gas: "11940",
+              gas: "0x7B0C",
             },
           ],
         });
 
-        if (myWeaponId == -1) {
-          doIHaveWeapon = false;
-          myWeaponId = 0;
-        }
+        setAttackStats([]);
+        setYouWon(false);
 
-        const hash = await contract.attack(
-          myFighterId,
-          doIHaveWeapon,
-          myWeaponId,
+        const targetWeapons = await contract._getWeaponByFighterId(
           targetFighterId
         );
 
+        var hasTargetWeapon = false;
+        var chosenWeaponId = -1;
+        var bestDamage = 15;
+        const targetFighter = fighters[targetFighterId];
+        targetWeapons
+          .filter((weapon) => weapon.weapon.levelReq <= targetFighter.level)
+          .forEach((weapon) => {
+            if (weapon.weapon.weapType === 0) {
+              if (weapon.weapon.skillReq <= targetFighter.agility) {
+                if (targetFighter.fighterClass === 1) {
+                  if (weapon.weapon.damage * 2 > bestDamage) {
+                    if (!hasTargetWeapon) {
+                      hasTargetWeapon = true;
+                    }
+                    bestDamage = weapon.weapon.damage * 2;
+                    chosenWeaponId = weapon.id;
+                  }
+                } else {
+                  if (weapon.weapon.damage > bestDamage) {
+                    if (!hasTargetWeapon) {
+                      hasTargetWeapon = true;
+                    }
+                    bestDamage = weapon.weapon.damage;
+                    chosenWeaponId = weapon.id;
+                  }
+                }
+              }
+            } else {
+              if (weapon.weapon.skillReq <= targetFighter.strength) {
+                if (targetFighter.fighterClass === 0) {
+                  if (weapon.weapon.damage * 2 > bestDamage) {
+                    if (!hasTargetWeapon) {
+                      hasTargetWeapon = true;
+                    }
+                    bestDamage = weapon.weapon.damage * 2;
+                    chosenWeaponId = weapon.id;
+                  }
+                } else {
+                  if (weapon.weapon.damage > bestDamage) {
+                    if (!hasTargetWeapon) {
+                      hasTargetWeapon = true;
+                    }
+                    bestDamage = weapon.weapon.damage;
+                    chosenWeaponId = weapon.id;
+                  }
+                }
+              }
+            }
+          });
+
+        if (chosenWeaponId === -1) {
+          chosenWeaponId = 0;
+          console.log(
+            `For enemy fighter, no weapon was chosen, target damage is ${bestDamage}`
+          );
+        } else {
+          console.log(
+            `For enemy fighter, weapon ${chosenWeaponId} was chosen, target damage is ${bestDamage}`
+          );
+        }
+
+        const result = await contract.attack(
+          myFighterId,
+          doIHaveWeapon,
+          myWeaponId,
+          targetFighterId,
+          hasTargetWeapon,
+          chosenWeaponId,
+          {
+            gasLimit: `0x${(
+              210000 +
+              5000 *
+                (fighters[myFighterId].level + fighters[targetFighterId].level)
+            ).toString(16)}`,
+          }
+        );
+
         setIsLoading(true);
-        await hash.wait();
+        await result.wait();
         setIsLoading(false);
 
-        setAttackLogs(currentAttackLogs);
-        console.log(currentAttackLogs);
-        window.location.replace("http://localhost:3000/arena");
+        setDisplayAttackLogs(true);
       } else {
         console.log("Ethereum is not present!");
       }
     } catch (error) {
       console.log(error);
-      throw new Error("No Ethereum object!");
+      setIsLoading(false);
+      setDisplayError(true);
     }
   };
 
@@ -294,6 +394,12 @@ export const BlockchainProvider = ({ children }) => {
         isLoading,
         isContextLoading,
         attackFighter,
+        displayAttackLogs,
+        setDisplayAttackLogs,
+        attackStats,
+        youWon,
+        displayError,
+        setDisplayError,
       }}
     >
       {children}

@@ -10,12 +10,6 @@ abstract contract FighterEvolution is FighterFactory, Merchant {
     using SafeMath32 for uint32;
     using SafeMath16 for uint16;
 
-    event FighterLeveledUpEvent(
-        uint256 indexed fighterId,
-        uint32 newLevel,
-        uint16 newSpendablePoints
-    );
-
     uint256 randNonce = 0;
 
     modifier onlyOwnerOf(uint256 _fighterId) {
@@ -67,7 +61,7 @@ abstract contract FighterEvolution is FighterFactory, Merchant {
     function _fighterWonFight(uint256 _fighterId) internal {
         Fighter storage fighter = fighters[_fighterId];
         fighter.winCount = fighter.winCount.add(1);
-        fighter.currentXP = fighter.currentXP.add(45);
+        fighter.currentXP = fighter.currentXP.add(40);
         if (fighter.currentXP >= fighter.levelUpXP) {
             _levelUpLogic(fighter, _fighterId);
         }
@@ -76,7 +70,7 @@ abstract contract FighterEvolution is FighterFactory, Merchant {
     function _fighterLostFight(uint256 _fighterId) internal {
         Fighter storage fighter = fighters[_fighterId];
         fighter.lossCount = fighter.lossCount.add(1);
-        fighter.currentXP = fighter.currentXP.add(20);
+        fighter.currentXP = fighter.currentXP.add(25);
         if (fighter.currentXP >= fighter.levelUpXP) {
             _levelUpLogic(fighter, _fighterId);
         }
@@ -87,7 +81,7 @@ abstract contract FighterEvolution is FighterFactory, Merchant {
     {
         fighter.levelUpXP = fighter.levelUpXP.add(100);
         fighter.level = fighter.level.add(1);
-        fighter.HP = fighter.HP.add(20);
+        fighter.HP = fighter.HP.add(10);
         fighter.spendablePoints = fighter.spendablePoints.add(1);
         if (fighter.level.mod(10) == 0) {
             address _fighter_owner = fighter_to_owner[_fighterId];
@@ -103,11 +97,14 @@ abstract contract FighterEvolution is FighterFactory, Merchant {
                 );
             }
         }
-        emit FighterLeveledUpEvent(
-            _fighterId,
-            fighter.level,
-            fighter.spendablePoints
-        );
+    }
+
+    function _getWeaponByFighterId(uint256 id)
+        external
+        view
+        returns (WeaponDTO[] memory)
+    {
+        return (_getUserWeapons(fighter_to_owner[id]));
     }
 
     // Not secure - but in the circumstances is worth the compromise!

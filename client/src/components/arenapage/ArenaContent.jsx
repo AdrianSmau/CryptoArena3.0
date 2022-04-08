@@ -80,6 +80,7 @@ const ArenaContent = () => {
     fighters,
     isContextLoading,
     attackFighter,
+    setDisplayAttackLogs,
   } = useContext(BlockchainContext);
 
   const [myFighterSelected, setMyFighterSelected] = useState(-1);
@@ -169,11 +170,14 @@ const ArenaContent = () => {
               </h2>
               <div className="flex flex-wrap justify-center items-center md:my-5 my-3">
                 {fighters
+                  .filter((fighter) =>
+                    myFighters.find(
+                      (someFighter) => someFighter.id !== fighter.id
+                    )
+                  )
                   .filter(
                     (fighter) =>
-                      myFighters.find(
-                        (someFighter) => someFighter.id !== fighter.id
-                      ) && fighter.level >= fighters[myFighterSelected].level
+                      fighter.level >= fighters[myFighterSelected].level
                   )
                   .map((fighter, i) => (
                     <MyFightersCard

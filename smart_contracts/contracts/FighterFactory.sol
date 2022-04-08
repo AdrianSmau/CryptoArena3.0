@@ -12,20 +12,9 @@ abstract contract FighterFactory is Ownable {
     using SafeMath32 for uint32;
     using SafeMath16 for uint16;
 
-    /*event NewFighter(
-        uint256 fighterId,
-        string name,
-        uint256 timestamp,
-        FighterClass indexed fighterClass,
-        address indexed owner
-    );*/
-
-    uint256 cooldownTime = 12 hours;
+    uint256 cooldownTime = 1 minutes;
 
     struct Fighter {
-        string name;
-        uint32 level;
-        uint32 readyTime;
         uint16 winCount;
         uint16 lossCount;
         uint16 HP;
@@ -36,18 +25,21 @@ abstract contract FighterFactory is Ownable {
         uint16 currentXP;
         uint16 levelUpXP;
         uint16 spendablePoints;
+        uint32 level;
+        uint32 readyTime;
         FighterClass class;
+        string name;
     }
 
     struct FighterDTO {
-        uint256 id;
-        Fighter fighter;
         address owner;
+        Fighter fighter;
+        uint256 id;
     }
 
     struct FighterBarracksDTO {
-        uint256 id;
         Fighter fighter;
+        uint256 id;
     }
 
     Fighter[] internal fighters;
@@ -116,27 +108,26 @@ abstract contract FighterFactory is Ownable {
     {
         fighters.push(
             Fighter(
-                _name,
+                0,
+                0,
+                100,
+                1,
+                1,
+                1,
+                1,
+                0,
+                100,
+                0,
                 1,
                 uint32(block.timestamp.add(cooldownTime)),
-                0,
-                0,
-                100,
-                1,
-                1,
-                1,
-                1,
-                0,
-                100,
-                0,
-                _class
+                _class,
+                _name
             )
         );
         uint256 id = fighters.length - 1;
         fighter_to_owner[id] = _msgSender();
         owner_fighters_count[_msgSender()] = owner_fighters_count[_msgSender()]
             .add(1);
-        //emit NewFighter(id, _name, block.timestamp, _class, _msgSender());
     }
 
     function _getUserFighters(address _owner)
@@ -154,7 +145,7 @@ abstract contract FighterFactory is Ownable {
         uint256 counter = 0;
         for (uint256 i = 0; i < fighters.length; i++) {
             if (fighter_to_owner[i] == _owner) {
-                myFighters[counter] = FighterBarracksDTO(i, fighters[i]);
+                myFighters[counter] = FighterBarracksDTO(fighters[i], i);
                 counter++;
                 toFetch--;
                 if (toFetch == 0) {
@@ -185,7 +176,7 @@ abstract contract FighterFactory is Ownable {
             i--
         ) {
             allFightersDTOs[counter] = (
-                FighterDTO(i, fighters[i], fighter_to_owner[i])
+                FighterDTO(fighter_to_owner[i], fighters[i], i)
             );
             counter++;
             if (counter == latest) {
@@ -195,17 +186,12 @@ abstract contract FighterFactory is Ownable {
         return allFightersDTOs;
     }
 
-    function _getFighterById(uint256 id)
-        external
-        view
-        returns (Fighter memory)
-    {
-        require(id >= 0 && id < fighters.length);
-        return fighters[id];
-    }
-
     function _getFightersCount() external view returns (uint256) {
         return fighters.length;
+    }
+
+    function _getMyAvailablePupils() external view returns (uint256) {
+        return user_available_pupils[_msgSender()];
     }
 
     function compareStrings(string memory a, string memory b)

@@ -1,19 +1,26 @@
 import React, { useContext } from "react";
 import Navbar from "../common/Navbar";
 import ArenaContent from "./ArenaContent";
-import FighterCreation from "../barrackspage/FighterCreation";
 import Footer from "../common/Footer";
 import Loader from "../common/Loader";
 
 import Modal from "./AttackModal";
+import AttackModal from "./AttackLogModal";
+import ErrorModal from "./ErrorModal";
 
 import colosseum from "../../../images/colosseum.png";
 
 import { BlockchainContext } from "../../context/Context";
 
 const Arena = () => {
-  const { currentAccount, myFighters, isContextLoading, isLoading } =
-    useContext(BlockchainContext);
+  const {
+    currentAccount,
+    myFighters,
+    isContextLoading,
+    isLoading,
+    displayAttackLogs,
+    displayError,
+  } = useContext(BlockchainContext);
   return (
     <div className="min-h-screen gradient-bg-welcome font-medieval">
       <Navbar />
@@ -53,6 +60,8 @@ const Arena = () => {
       )}
       <Footer />
       {isLoading && <Modal />}
+      {displayAttackLogs && <AttackModal />}
+      {displayError && <ErrorModal />}
     </div>
   );
 };
