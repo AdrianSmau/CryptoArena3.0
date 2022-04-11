@@ -9,6 +9,13 @@ import warrior from "../../../images/warrior256.png";
 import samurai from "../../../images/samurai256.png";
 import druid from "../../../images/druid256.png";
 
+import ATierBlunt from "../../../images/ATierBlunt.png";
+import ATierSlash from "../../../images/ATierSlash.png";
+import BTierBlunt from "../../../images/BTierBlunt.png";
+import BTierSlash from "../../../images/BTierSlash.png";
+import STierBlunt from "../../../images/STierBlunt.png";
+import STierSlash from "../../../images/STierSlash.png";
+
 import { BlockchainContext } from "../../context/Context";
 
 const MyFightersPageCard = ({
@@ -68,8 +75,63 @@ const MyFightersPageCard = ({
   );
 };
 
+const MyWeaponsPageCard = ({
+  id,
+  levelReq,
+  damage,
+  skillReq,
+  weapType,
+  tier,
+}) => {
+  return (
+    <div className="bg-[#181918] m-2 flex flex-1 2xl:min-w-[380px] 2xl:max-w-[475px] sm:min-w-[255px] sm:max-w-[275px] flex-col p-2 rounded-md hover:shadow-2xl">
+      <div className="flex flex-col items-center w-full mt-2">
+        <div className="w-full mb-2 p-1">
+          <p className="text-white text-base sm:text-sm text-xs">
+            Weapon's ID: {id}
+          </p>
+          <p className="text-white text-base sm:text-sm text-xs">
+            Weapon's tier:{" "}
+            {tier == 0 ? "S-tier" : tier == 1 ? "A-Tier" : "B-Tier"}
+          </p>
+          <p className="text-white text-base sm:text-sm text-xs">
+            Weapon's type: {weapType == 0 ? "Slash" : "Blunt"}
+          </p>
+          <p className="text-white text-base sm:text-sm text-xs">
+            Weapon's level requirement: {levelReq}
+          </p>
+          <p className="text-white text-base sm:text-sm text-xs">
+            Weapon's skill requirement:{" "}
+            {weapType == 0 ? `${skillReq} AGL` : `${skillReq} STR`}
+          </p>
+          <p className="text-white text-base sm:text-sm text-xs">
+            Weapon's base damage: {damage}
+          </p>
+        </div>
+        <img
+          src={
+            weapType == 0
+              ? tier == 0
+                ? STierSlash
+                : tier == 1
+                ? ATierSlash
+                : BTierSlash
+              : tier == 0
+              ? STierBlunt
+              : tier == 1
+              ? ATierBlunt
+              : BTierBlunt
+          }
+          alt="classImage"
+          className="object-scale-down w-24"
+        />
+      </div>
+    </div>
+  );
+};
+
 const MyFightersPage = () => {
-  const { currentAccount, myFighters, isContextLoading } =
+  const { currentAccount, myFighters, myWeapons, isContextLoading } =
     useContext(BlockchainContext);
   return (
     <div className="flex flex-col md:p-4 py-2 px-2">
@@ -84,6 +146,11 @@ const MyFightersPage = () => {
           <div className="flex flex-wrap justify-center items-center md:mt-5 mt-3">
             {myFighters.reverse().map((fighter, i) => (
               <MyFightersPageCard key={i} {...fighter} />
+            ))}
+          </div>
+          <div className="flex flex-wrap justify-center items-center md:mt-5 mt-3">
+            {myWeapons.reverse().map((weapon, i) => (
+              <MyWeaponsPageCard key={i} {...weapon} />
             ))}
           </div>
         </div>

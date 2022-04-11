@@ -20,13 +20,13 @@ const MyFightersCard = ({
   fighterClass,
 }) => {
   return (
-    <div className="relative">
+    <div className="relative p-2">
       {currentChoice == id && (
         <div className="absolute -inset-0.5 bg-[#940000] rounded-md blur-md"></div>
       )}
       <div
         onClick={() => changeFunction(id)}
-        className="relative bg-[#181918] m-3 px-2 flex flex-1 2xl:min-w-[215px] 2xl:max-w-[305px] sm:min-w-[175px] sm:max-w-[200px] flex-col rounded-md hover:shadow-2xl"
+        className="relative p-2 bg-[#181918] m-3 px-2 flex flex-1 2xl:min-w-[215px] 2xl:max-w-[305px] sm:min-w-[175px] sm:max-w-[200px] flex-col rounded-md hover:shadow-2xl"
       >
         <div className="flex flex-col justify-center items-center w-full mt-2 w-full mb-2">
           <p className="text-white text-base sm:text-sm text-xs">
@@ -56,13 +56,13 @@ const MyFightersCard = ({
 
 const MyWeaponCard = ({ changeFunction, currentChoice, id }) => {
   return (
-    <div className="relative">
+    <div className="relative p-2">
       {currentChoice == id && (
         <div className="absolute -inset-2.5 bg-[#940000] rounded-md blur-md"></div>
       )}
       <div
         onClick={() => changeFunction(id)}
-        className="relative bg-[#181918] flex flex-1 2xl:min-w-[215px] 2xl:max-w-[305px] sm:min-w-[175px] sm:max-w-[200px] flex-col rounded-md hover:shadow-2xl"
+        className="relative p-2 bg-[#181918] flex flex-1 2xl:min-w-[215px] 2xl:max-w-[305px] sm:min-w-[175px] sm:max-w-[200px] flex-col rounded-md hover:shadow-2xl"
       >
         <div className="flex flex-col justify-center items-center w-full mt-2 w-full mb-2">
           <p className="text-white text-base sm:text-sm text-xs">None</p>
@@ -80,7 +80,6 @@ const ArenaContent = () => {
     fighters,
     isContextLoading,
     attackFighter,
-    setDisplayAttackLogs,
   } = useContext(BlockchainContext);
 
   const [myFighterSelected, setMyFighterSelected] = useState(-1);

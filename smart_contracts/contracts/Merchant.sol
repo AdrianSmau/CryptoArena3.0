@@ -43,7 +43,7 @@ abstract contract Merchant is WeaponFactory {
         uint256 basePrice = feePerLevel.mul(uint256(_level));
         if (_tier == WeaponTier.B) return basePrice.add(BTierPrice);
         if (_tier == WeaponTier.S) return basePrice.add(STierPrice);
-        return basePrice.add(BTierPrice);
+        return basePrice.add(ATierPrice);
     }
 
     /*function setFeePerLevel(uint256 _fee) external onlyOwner {

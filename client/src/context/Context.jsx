@@ -22,6 +22,7 @@ export const BlockchainProvider = ({ children }) => {
 
   const [fighters, setFighters] = useState([]);
   const [myFighters, setMyFighters] = useState([]);
+  const [myWeapons, setMyWeapons] = useState([]);
   const [fightersCount, setFightersCount] = useState(
     localStorage.getItem("fightersCount")
   );
@@ -36,8 +37,17 @@ export const BlockchainProvider = ({ children }) => {
   // 5 - target hit normal attack
 
   const [displayAttackLogs, setDisplayAttackLogs] = useState(false);
-
   const [displayError, setDisplayError] = useState(false);
+
+  const [displayConfirmationModal, setDisplayConfirmationModal] =
+    useState(false);
+  const [displayReceipt, setDisplayReceipt] = useState(false);
+  const [formDataPurchase, setFormDataPurchase] = useState({
+    level: 0,
+    type: -1,
+    tier: -1,
+    value: 0,
+  });
 
   const handleChangeFighter = (e, name) => {
     setFormDataFighter((prevState) => ({
@@ -55,6 +65,7 @@ export const BlockchainProvider = ({ children }) => {
           setCurrentAccount(accounts[0]);
           await getLatestFighters(0);
           await getMyFighters(accounts[0]);
+          await getMyWeapons(accounts[0]);
           setIsContextLoading(false);
         } else {
           console.log("No accounts found!");
@@ -169,6 +180,29 @@ export const BlockchainProvider = ({ children }) => {
           spendablePoints: currentFighter.fighter.spendablePoints,
         }));
         setMyFighters(formattedFighters.reverse());
+      } else {
+        console.log("Ethereum is not present!");
+      }
+    } catch (error) {
+      console.log(error);
+      throw new Error("No Ethereum object!");
+    }
+  };
+
+  const getMyWeapons = async (account) => {
+    try {
+      if (ethereum) {
+        const arenaContract = getArenaContract();
+        const myWeapons = await arenaContract._getUserWeapons(account);
+        const formattedWeapons = myWeapons.map((currentWeapon) => ({
+          id: currentWeapon.id.toNumber(),
+          levelReq: currentWeapon.weapon.levelReq,
+          damage: currentWeapon.weapon.damage,
+          skillReq: currentWeapon.weapon.skillReq,
+          weapType: currentWeapon.weapon.weapType,
+          tier: currentWeapon.weapon.tier,
+        }));
+        setMyWeapons(formattedWeapons.reverse());
       } else {
         console.log("Ethereum is not present!");
       }
@@ -374,6 +408,78 @@ export const BlockchainProvider = ({ children }) => {
     }
   };
 
+  const computeWeaponPrice = async (level, tier) => {
+    try {
+      if (ethereum) {
+        const contract = getArenaContract();
+        const price = await contract._computeWeaponPrice(level, tier);
+
+        return price;
+      } else {
+        console.log("Ethereum is not present!");
+      }
+    } catch (error) {
+      console.log(error);
+      throw new Error("No Ethereum object!");
+    }
+  };
+
+  const showConfirmationDisplay = async (level, tier, type, value) => {
+    try {
+      if (ethereum) {
+        setFormDataPurchase((prevState) => ({
+          ...prevState,
+          ["level"]: level,
+          ["tier"]: tier,
+          ["type"]: type,
+          ["value"]: value,
+        }));
+        setDisplayConfirmationModal(true);
+      } else {
+        console.log("Ethereum is not present!");
+      }
+    } catch (error) {
+      console.log(error);
+      throw new Error("No Ethereum object!");
+    }
+  };
+
+  const purchaseWeapon = async (level, tier, type, value) => {
+    try {
+      if (ethereum) {
+        const contract = getArenaContract();
+
+        await ethereum.request({
+          method: "eth_sendTransaction",
+          params: [
+            {
+              from: currentAccount,
+              to: address,
+              gas: "0x7B0C",
+            },
+          ],
+        });
+
+        const result = await contract._purchaseWeapon(level, type, tier, {
+          gasLimit: "0x1FBD0",
+          value: ethers.utils.parseEther(value)._hex,
+        });
+
+        setIsLoading(true);
+        await result.wait();
+        setIsLoading(false);
+
+        setDisplayReceipt(true);
+      } else {
+        console.log("Ethereum is not present!");
+      }
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+      setDisplayError(true);
+    }
+  };
+
   /* ----------------------------------------------------------------------------- */
 
   useEffect(() => {
@@ -390,6 +496,7 @@ export const BlockchainProvider = ({ children }) => {
         createNewFighter,
         fighters,
         myFighters,
+        myWeapons,
         handleChangeFighter,
         isLoading,
         isContextLoading,
@@ -400,6 +507,15 @@ export const BlockchainProvider = ({ children }) => {
         youWon,
         displayError,
         setDisplayError,
+        purchaseWeapon,
+        computeWeaponPrice,
+        showConfirmationDisplay,
+        formDataPurchase,
+        setFormDataPurchase,
+        displayConfirmationModal,
+        setDisplayConfirmationModal,
+        displayReceipt,
+        setDisplayReceipt,
       }}
     >
       {children}

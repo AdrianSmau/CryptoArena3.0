@@ -19,4 +19,10 @@ export { default as Modal } from "./arenapage/AttackModal";
 export { default as AttackModal } from "./arenapage/AttackLogModal";
 export { default as ErrorModal } from "./arenapage/ErrorModal";
 
+export { default as Merchant } from "./merchantpage/Merchant";
+export { default as MerchantContent } from "./merchantpage/MerchantContent";
+export { default as PurchaseModal } from "./merchantpage/PurchaseModal";
+export { default as LoadingModal } from "./merchantpage/LoadingModal";
+export { default as ReceiptModal } from "./merchantpage/ReceiptModal";
+
 export { default as NotFoundPage } from "./notfoundpage/NotFoundPage";
