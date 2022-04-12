@@ -12,6 +12,7 @@ export { default as Barracks } from "./barrackspage/Barracks";
 export { default as FighterPage } from "./fighterpage/FighterPage";
 export { default as FighterPageContent } from "./fighterpage/FighterPageContent";
 export { default as MyFightersPage } from "./barrackspage/MyFightersPage";
+export { default as SpendablePointsResult } from "./barrackspage/SpendablePointsResult";
 
 export { default as Arena } from "./arenapage/Arena";
 export { default as ArenaContent } from "./arenapage/ArenaContent";

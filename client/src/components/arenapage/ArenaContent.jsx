@@ -9,6 +9,13 @@ import warrior from "../../../images/warrior256.png";
 import samurai from "../../../images/samurai256.png";
 import druid from "../../../images/druid256.png";
 
+import ATierBlunt from "../../../images/ATierBlunt.png";
+import ATierSlash from "../../../images/ATierSlash.png";
+import BTierBlunt from "../../../images/BTierBlunt.png";
+import BTierSlash from "../../../images/BTierSlash.png";
+import STierBlunt from "../../../images/STierBlunt.png";
+import STierSlash from "../../../images/STierSlash.png";
+
 import { BlockchainContext } from "../../context/Context";
 
 const MyFightersCard = ({
@@ -54,7 +61,7 @@ const MyFightersCard = ({
   );
 };
 
-const MyWeaponCard = ({ changeFunction, currentChoice, id }) => {
+const NoWeaponCard = ({ changeFunction, currentChoice, id }) => {
   return (
     <div className="relative p-2">
       {currentChoice == id && (
@@ -62,11 +69,125 @@ const MyWeaponCard = ({ changeFunction, currentChoice, id }) => {
       )}
       <div
         onClick={() => changeFunction(id)}
-        className="relative p-2 bg-[#181918] flex flex-1 2xl:min-w-[215px] 2xl:max-w-[305px] sm:min-w-[175px] sm:max-w-[200px] flex-col rounded-md hover:shadow-2xl"
+        className="relative p-2 bg-[#181918] flex flex-1 2xl:min-w-[215px] 2xl:max-w-[305px] sm:min-w-[175px] sm:max-w-[200px] h-[200px] flex-col justify-center items-center rounded-md hover:shadow-2xl"
       >
         <div className="flex flex-col justify-center items-center w-full mt-2 w-full mb-2">
           <p className="text-white text-base sm:text-sm text-xs">None</p>
+          <p className="text-white text-base sm:text-sm text-xs">
+            Unarmed damage: 15
+          </p>
           <img src={none} alt="none" className="object-scale-down w-24" />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const MyWeaponCard = ({
+  changeFunction,
+  currentChoice,
+  id,
+  damage,
+  weapType,
+  tier,
+}) => {
+  return (
+    <div className="relative p-2">
+      {currentChoice == id && (
+        <div className="absolute -inset-2.5 bg-[#940000] rounded-md blur-md"></div>
+      )}
+      <div
+        onClick={() => changeFunction(id)}
+        className="relative p-2 bg-[#181918] flex flex-1 2xl:min-w-[215px] 2xl:max-w-[305px] sm:min-w-[175px] sm:max-w-[200px] h-[200px] flex-col justify-center items-center rounded-md hover:shadow-2xl"
+      >
+        <div className="flex flex-col justify-center items-center w-full mt-2 w-full mb-2">
+          {weapType == 0 ? (
+            tier == 0 ? (
+              <>
+                <p className="text-white text-base sm:text-sm text-xs">
+                  S-Tier Slash Weapon - ID #{id}
+                </p>
+                <p className="text-white text-base sm:text-sm text-xs">
+                  Base damage: {damage} (doubled for Samurai class)
+                </p>
+                <img
+                  src={STierSlash}
+                  alt="STierSlash"
+                  className="object-scale-down w-24"
+                />
+              </>
+            ) : tier == 1 ? (
+              <>
+                <p className="text-white text-base sm:text-sm text-xs">
+                  A-Tier Slash Weapon - ID #{id}
+                </p>
+                <p className="text-white text-base sm:text-sm text-xs">
+                  Base damage: {damage} (doubled for Samurai class)
+                </p>
+                <img
+                  src={ATierSlash}
+                  alt="ATierSlash"
+                  className="object-scale-down w-24"
+                />
+              </>
+            ) : (
+              <>
+                <p className="text-white text-base sm:text-sm text-xs">
+                  B-Tier Slash Weapon - ID #{id}
+                </p>
+                <p className="text-white text-base sm:text-sm text-xs">
+                  Base damage: {damage} (doubled for Samurai class)
+                </p>
+                <img
+                  src={BTierSlash}
+                  alt="BTierSlash"
+                  className="object-scale-down w-24"
+                />
+              </>
+            )
+          ) : tier == 0 ? (
+            <>
+              <p className="text-white text-base sm:text-sm text-xs">
+                S-Tier Blunt Weapon - ID #{id}
+              </p>
+              <p className="text-white text-base sm:text-sm text-xs">
+                Base damage: {damage} (doubled for Warrior class)
+              </p>
+              <img
+                src={STierBlunt}
+                alt="STierBlunt"
+                className="object-scale-down w-24"
+              />
+            </>
+          ) : tier == 1 ? (
+            <>
+              <p className="text-white text-base sm:text-sm text-xs">
+                A-Tier Blunt Weapon - ID #{id}
+              </p>
+              <p className="text-white text-base sm:text-sm text-xs">
+                Base damage: {damage} (doubled for Warrior class)
+              </p>
+              <img
+                src={ATierBlunt}
+                alt="ATierBlunt"
+                className="object-scale-down w-24"
+              />
+            </>
+          ) : (
+            <>
+              <p className="text-white text-base sm:text-sm text-xs">
+                B-Tier Blunt Weapon - ID #{id}
+              </p>
+              <p className="text-white text-base sm:text-sm text-xs">
+                Base damage: {damage} (doubled for Warrior class)
+              </p>
+              <img
+                src={BTierBlunt}
+                alt="BTierBlunt"
+                className="object-scale-down w-24"
+              />
+            </>
+          )}
         </div>
       </div>
     </div>
@@ -77,6 +198,7 @@ const ArenaContent = () => {
   const {
     currentAccount,
     myFighters,
+    myWeapons,
     fighters,
     isContextLoading,
     attackFighter,
@@ -140,6 +262,7 @@ const ArenaContent = () => {
               .filter(
                 (fighter) => fighter.timestamp.getTime() < new Date().getTime()
               )
+              .slice(0, 3)
               .map((fighter, i) => (
                 <MyFightersCard
                   key={i}
@@ -155,13 +278,32 @@ const ArenaContent = () => {
                 Next up, select your weapon!
               </h2>
               <div className="flex flex-wrap justify-center items-center md:my-5 my-3">
-                {
-                  <MyWeaponCard
-                    changeFunction={setMyWeaponSelected}
-                    currentChoice={myWeaponSelected}
-                    id={-1}
-                  />
-                }
+                <NoWeaponCard
+                  changeFunction={setMyWeaponSelected}
+                  currentChoice={myWeaponSelected}
+                  id={-1}
+                />
+                {myWeapons
+                  .filter(
+                    (weapon) =>
+                      fighters[myFighterSelected].level >= weapon.levelReq
+                  )
+                  .filter((weapon) => {
+                    const necessarySkill =
+                      weapon.weapType == 0
+                        ? fighters[myFighterSelected].agility
+                        : fighters[myFighterSelected].strength;
+                    return necessarySkill >= weapon.skillReq;
+                  })
+                  .map((weapon, i) => (
+                    <MyWeaponCard
+                      changeFunction={setMyWeaponSelected}
+                      currentChoice={myWeaponSelected}
+                      key={i}
+                      id={weapon.id}
+                      {...weapon}
+                    />
+                  ))}
               </div>
               <h2 className="text-white text-xl text-center my-2 py-2 text-gradient">
                 Finally, because you chose Fighter #{myFighterSelected}, here

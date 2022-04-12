@@ -42,6 +42,9 @@ export const BlockchainProvider = ({ children }) => {
   const [displayConfirmationModal, setDisplayConfirmationModal] =
     useState(false);
   const [displayReceipt, setDisplayReceipt] = useState(false);
+
+  const [displaySpendingResult, setDisplaySpendingResult] = useState(false);
+
   const [formDataPurchase, setFormDataPurchase] = useState({
     level: 0,
     type: -1,
@@ -218,17 +221,6 @@ export const BlockchainProvider = ({ children }) => {
         const fighterName = formDataFighter.fighterName;
         const contract = getArenaContract();
 
-        await ethereum.request({
-          method: "eth_sendTransaction",
-          params: [
-            {
-              from: currentAccount,
-              to: address,
-              gas: "0x7B0C",
-            },
-          ],
-        });
-
         const hash = await contract._createFirstFighter(
           fighterName,
           fighterClass,
@@ -265,6 +257,8 @@ export const BlockchainProvider = ({ children }) => {
 
         const contract = getArenaContract();
 
+        setAttackStats([]);
+
         contract.on(
           "ArenaEvent",
           async (attackerId, targetId, damage, wasCritical) => {
@@ -298,18 +292,6 @@ export const BlockchainProvider = ({ children }) => {
           setYouWon(IWon);
         });
 
-        await ethereum.request({
-          method: "eth_sendTransaction",
-          params: [
-            {
-              from: currentAccount,
-              to: address,
-              gas: "0x7B0C",
-            },
-          ],
-        });
-
-        setAttackStats([]);
         setYouWon(false);
 
         const targetWeapons = await contract._getWeaponByFighterId(
@@ -449,17 +431,6 @@ export const BlockchainProvider = ({ children }) => {
       if (ethereum) {
         const contract = getArenaContract();
 
-        await ethereum.request({
-          method: "eth_sendTransaction",
-          params: [
-            {
-              from: currentAccount,
-              to: address,
-              gas: "0x7B0C",
-            },
-          ],
-        });
-
         const result = await contract._purchaseWeapon(level, type, tier, {
           gasLimit: "0x1FBD0",
           value: ethers.utils.parseEther(value)._hex,
@@ -470,6 +441,37 @@ export const BlockchainProvider = ({ children }) => {
         setIsLoading(false);
 
         setDisplayReceipt(true);
+      } else {
+        console.log("Ethereum is not present!");
+      }
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+      setDisplayError(true);
+    }
+  };
+
+  const redeemSpendablePoints = async (id, str, agl, lck, dex) => {
+    try {
+      if (ethereum) {
+        const contract = getArenaContract();
+
+        const result = await contract._spendAvailablePoints(
+          id,
+          str,
+          agl,
+          lck,
+          dex,
+          {
+            gasLimit: "0xC350",
+          }
+        );
+
+        setIsLoading(true);
+        await result.wait();
+        setIsLoading(false);
+
+        setDisplaySpendingResult(true);
       } else {
         console.log("Ethereum is not present!");
       }
@@ -516,6 +518,9 @@ export const BlockchainProvider = ({ children }) => {
         setDisplayConfirmationModal,
         displayReceipt,
         setDisplayReceipt,
+        redeemSpendablePoints,
+        displaySpendingResult,
+        setDisplaySpendingResult,
       }}
     >
       {children}

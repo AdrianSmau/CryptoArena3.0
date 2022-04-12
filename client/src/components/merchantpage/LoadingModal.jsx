@@ -6,7 +6,7 @@ const LoadingModal = () => {
       <div className="flex h-screen justify-center items-center">
         <div className="flex flex-col justify-center items-center bg-black p-2 md:p-4 border-4 border-red-900 rounded-xl">
           <p className="text-white md:text-xl text-2xl text-center text-gradient">
-            Purchasing weapon!
+            Purchasing weapon!...
           </p>
           <img
             src={ethCoin}

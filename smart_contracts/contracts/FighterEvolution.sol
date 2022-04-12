@@ -28,6 +28,14 @@ abstract contract FighterEvolution is FighterFactory, Merchant {
         _;
     }
 
+    function fetchAvailablePupils(address _owner)
+        external
+        view
+        returns (uint16)
+    {
+        return user_available_pupils[_owner];
+    }
+
     function redeemAvailablePupil(string calldata _name, FighterClass _class)
         external
         hasAvailablePupils
