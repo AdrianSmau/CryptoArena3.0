@@ -121,9 +121,9 @@ contract Arena is FighterEvolution {
                 (_targetFighter.class == FighterClass.Warrior &&
                     targetWeapon.weapType == WeaponType.Blunt)
             ) {
-                _myDamage = targetWeapon.damage.mul(2);
+                _targetDamage = targetWeapon.damage.mul(2);
             } else {
-                _myDamage = targetWeapon.damage;
+                _targetDamage = targetWeapon.damage;
             }
         }
 

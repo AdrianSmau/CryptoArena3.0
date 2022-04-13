@@ -18,6 +18,7 @@ import STierSlash from "../../../images/STierSlash.png";
 
 import LoadingRedeemModal from "./LoadingRedeemModal";
 import SpendablePointsResult from "./SpendablePointsResult";
+import PupilRedeem from "./PupilRedeem";
 
 import { BlockchainContext } from "../../context/Context";
 
@@ -224,7 +225,7 @@ const MyFightersPageCard = ({
 
   return (
     <>
-      <div className="bg-[#181918] m-2 flex flex-1 2xl:min-w-[380px] 2xl:max-w-[475px] sm:min-w-[255px] sm:max-w-[275px] flex-col p-2 rounded-md hover:shadow-2xl">
+      <div className="bg-[#181918] m-2 flex flex-1 2xl:min-w-[380px] 2xl:max-w-[475px] sm:min-w-[255px] sm:max-w-[275px] h-[325px] align-center justify-center flex-col p-2 rounded-md hover:shadow-2xl">
         <div className="flex flex-col items-center w-full mt-2">
           <div className="w-full mb-2 p-1">
             <p className="text-white text-base sm:text-sm text-xs">
@@ -345,52 +346,71 @@ const MyFightersPage = () => {
     currentAccount,
     myFighters,
     myWeapons,
+    myPupils,
     isContextLoading,
     redeemSpendablePoints,
     displaySpendingResult,
     isLoading,
+    showRecruitModal,
+    setShowRecruitModal,
   } = useContext(BlockchainContext);
 
   return (
-    <div className="flex flex-col md:p-4 py-2 px-2">
-      {isContextLoading ? (
-        <Loader />
-      ) : currentAccount ? (
-        <div className="flex flex-col justify-center items-center">
-          <h1 className="text-white text-3xl text-center my-2 text-gradient">
-            Welcome to your Barracks! Your fighters and weapons are displayed
-            below!
-          </h1>
-          <div className="flex flex-wrap justify-center items-center md:mt-5 mt-3">
-            {myFighters.reverse().map((fighter, i) => (
-              <MyFightersPageCard
-                key={i}
-                spendablePointsFunction={redeemSpendablePoints}
-                showResultModal={displaySpendingResult}
-                isLoading={isLoading}
-                {...fighter}
-              />
-            ))}
+    <>
+      <div className="flex flex-col md:p-4 py-2 px-2">
+        {isContextLoading ? (
+          <Loader />
+        ) : currentAccount ? (
+          <div className="flex flex-col justify-center items-center">
+            <h1 className="text-white text-3xl text-center my-2 text-gradient">
+              Welcome to your Barracks! Your fighters and weapons are displayed
+              below!
+            </h1>
+            <h2 className="text-white text-2xl text-center my-2 text-gradient">
+              You have {myPupils} pupil(s) to redeem!
+            </h2>
+            {myPupils > 0 && (
+              <div
+                className="cursor-pointer"
+                onClick={() => setShowRecruitModal(true)}
+              >
+                <h2 className="text-white text-2xl text-center my-2 text-gradient">
+                  Recruit new pupil here!
+                </h2>
+              </div>
+            )}
+            <div className="flex flex-wrap justify-center items-center md:mt-5 mt-3">
+              {myFighters.reverse().map((fighter, i) => (
+                <MyFightersPageCard
+                  key={i}
+                  spendablePointsFunction={redeemSpendablePoints}
+                  showResultModal={displaySpendingResult}
+                  isLoading={isLoading}
+                  {...fighter}
+                />
+              ))}
+            </div>
+            <div className="flex flex-wrap justify-center items-center md:mt-5 mt-3">
+              {myWeapons.reverse().map((weapon, i) => (
+                <MyWeaponsPageCard key={i} {...weapon} />
+              ))}
+            </div>
           </div>
-          <div className="flex flex-wrap justify-center items-center md:mt-5 mt-3">
-            {myWeapons.reverse().map((weapon, i) => (
-              <MyWeaponsPageCard key={i} {...weapon} />
-            ))}
+        ) : (
+          <div className="flex flex-col justify-between items-center">
+            <h2 className="text-white text-3xl text-center my-2 text-gradient">
+              Connect your account to see this Fighter!
+            </h2>
+            <img
+              src={colosseum}
+              alt="colosseum"
+              className="object-scale-down w-80 md:mt-10 mt-5 text-center white-glassmorphism"
+            />
           </div>
-        </div>
-      ) : (
-        <div className="flex flex-col justify-between items-center">
-          <h2 className="text-white text-3xl text-center my-2 text-gradient">
-            Connect your account to see this Fighter!
-          </h2>
-          <img
-            src={colosseum}
-            alt="colosseum"
-            className="object-scale-down w-80 md:mt-10 mt-5 text-center white-glassmorphism"
-          />
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+      {showRecruitModal && <PupilRedeem />}
+    </>
   );
 };
 

@@ -214,6 +214,10 @@ const ArenaContent = () => {
   useEffect(() => {
     if (myFighterSelected >= 0) {
       setIsMyFighterSelected(true);
+      setMyWeaponSelected(-2);
+      setIsMyWeaponSelected(false);
+      setTargetFighterSelected(-1);
+      setIsTargetFighterSelected(false);
     }
     console.log("My selected fighter is: " + myFighterSelected);
   }, [myFighterSelected]);
@@ -262,7 +266,6 @@ const ArenaContent = () => {
               .filter(
                 (fighter) => fighter.timestamp.getTime() < new Date().getTime()
               )
-              .slice(0, 3)
               .map((fighter, i) => (
                 <MyFightersCard
                   key={i}
@@ -311,15 +314,17 @@ const ArenaContent = () => {
               </h2>
               <div className="flex flex-wrap justify-center items-center md:my-5 my-3">
                 {fighters
-                  .filter((fighter) =>
-                    myFighters.find(
-                      (someFighter) => someFighter.id !== fighter.id
-                    )
+                  .filter(
+                    (fighter) =>
+                      myFighters.find(
+                        (myFighter) => myFighter.id == fighter.id
+                      ) === undefined
                   )
                   .filter(
                     (fighter) =>
                       fighter.level >= fighters[myFighterSelected].level
                   )
+                  .slice(0, 3)
                   .map((fighter, i) => (
                     <MyFightersCard
                       key={i}

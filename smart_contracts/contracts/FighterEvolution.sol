@@ -41,6 +41,9 @@ abstract contract FighterEvolution is FighterFactory, Merchant {
         hasAvailablePupils
     {
         _createFighter(_name, _class);
+        user_available_pupils[_msgSender()] = user_available_pupils[
+            _msgSender()
+        ].sub(1);
     }
 
     function _spendAvailablePoints(

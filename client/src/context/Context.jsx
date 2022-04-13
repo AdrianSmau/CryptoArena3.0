@@ -23,6 +23,10 @@ export const BlockchainProvider = ({ children }) => {
   const [fighters, setFighters] = useState([]);
   const [myFighters, setMyFighters] = useState([]);
   const [myWeapons, setMyWeapons] = useState([]);
+  const [myPupils, setMyPupils] = useState(0);
+
+  const [showRecruitModal, setShowRecruitModal] = useState(false);
+
   const [fightersCount, setFightersCount] = useState(
     localStorage.getItem("fightersCount")
   );
@@ -69,6 +73,7 @@ export const BlockchainProvider = ({ children }) => {
           await getLatestFighters(0);
           await getMyFighters(accounts[0]);
           await getMyWeapons(accounts[0]);
+          await getMyPupils(accounts[0]);
           setIsContextLoading(false);
         } else {
           console.log("No accounts found!");
@@ -215,6 +220,23 @@ export const BlockchainProvider = ({ children }) => {
     }
   };
 
+  const getMyPupils = async (account) => {
+    try {
+      if (ethereum) {
+        const arenaContract = getArenaContract();
+        const availablePupils = await arenaContract.fetchAvailablePupils(
+          account
+        );
+        setMyPupils(availablePupils);
+      } else {
+        console.log("Ethereum is not present!");
+      }
+    } catch (error) {
+      console.log(error);
+      throw new Error("No Ethereum object!");
+    }
+  };
+
   const createNewFighter = async (fighterClass) => {
     try {
       if (ethereum) {
@@ -222,6 +244,36 @@ export const BlockchainProvider = ({ children }) => {
         const contract = getArenaContract();
 
         const hash = await contract._createFirstFighter(
+          fighterName,
+          fighterClass,
+          {
+            gasLimit: "0x33450",
+          }
+        );
+
+        setIsLoading(true);
+        await hash.wait();
+        setIsLoading(false);
+
+        const currentFightersCount = await contract._getFightersCount();
+        setFightersCount(currentFightersCount.toNumber());
+        window.location.reload();
+      } else {
+        console.log("Ethereum is not present!");
+      }
+    } catch (error) {
+      console.log(error);
+      throw new Error("No Ethereum object!");
+    }
+  };
+
+  const recruitPupil = async (fighterClass) => {
+    try {
+      if (ethereum) {
+        const fighterName = formDataFighter.fighterName;
+        const contract = getArenaContract();
+
+        const hash = await contract.redeemAvailablePupil(
           fighterName,
           fighterClass,
           {
@@ -369,7 +421,7 @@ export const BlockchainProvider = ({ children }) => {
           {
             gasLimit: `0x${(
               210000 +
-              5000 *
+              7500 *
                 (fighters[myFighterId].level + fighters[targetFighterId].level)
             ).toString(16)}`,
           }
@@ -496,6 +548,7 @@ export const BlockchainProvider = ({ children }) => {
         currentAccount,
         formDataFighter,
         createNewFighter,
+        recruitPupil,
         fighters,
         myFighters,
         myWeapons,
@@ -521,6 +574,9 @@ export const BlockchainProvider = ({ children }) => {
         redeemSpendablePoints,
         displaySpendingResult,
         setDisplaySpendingResult,
+        myPupils,
+        showRecruitModal,
+        setShowRecruitModal,
       }}
     >
       {children}
