@@ -137,6 +137,11 @@ export const BlockchainProvider = ({ children }) => {
           id: currentFighter.id.toNumber(),
           name: currentFighter.fighter.name,
           level: currentFighter.fighter.level,
+          url:
+            "https://rinkeby.rarible.com/token/" +
+            address.toLowerCase() +
+            ":" +
+            currentFighter.id,
           timestamp: new Date(
             new Number(currentFighter.fighter.readyTime) * 1000
           ).toLocaleString(),

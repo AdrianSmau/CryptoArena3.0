@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import Select from "react-select";
 
 import { BlockchainContext } from "../../context/Context";
-import { Loader } from "..";
+import CreatingFighterModal from "./CreatingFighterModal";
 
 const classOptions = [
   { value: 0, label: "Warrior" },
@@ -18,15 +18,15 @@ const customStyles = {
     width: 125,
     boxShadow: state.isFocused ? null : null,
   }),
-  menu: base => ({
+  menu: (base) => ({
     ...base,
     borderRadius: 0,
-    marginTop: 0
+    marginTop: 0,
   }),
-  menuList: base => ({
+  menuList: (base) => ({
     ...base,
-    padding: 0
-  })
+    padding: 0,
+  }),
 };
 
 const Input = ({ placeholder, name, type, value, handleChange }) => (
@@ -42,8 +42,13 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
 const FighterCreation = () => {
   const [selectedClass, setSelectedClass] = useState(classOptions[0]);
 
-  const { formDataFighter, createNewFighter, handleChangeFighter, isLoading } =
-    useContext(BlockchainContext);
+  const {
+    formDataFighter,
+    createNewFighter,
+    handleChangeFighter,
+    isLoading,
+    isMinting,
+  } = useContext(BlockchainContext);
 
   const handleSubmit = (e) => {
     const fighterName = formDataFighter;
@@ -59,37 +64,35 @@ const FighterCreation = () => {
   };
 
   return (
-    <div className="flex w-full justify-center items-center font-medieval">
-      <div className="flex flex-col justify-center items-center md:p-4 py-2 px-2">
-        <h2 className="text-center text-3xl sm:text-4xl text-white text-gradient py-2 mb-8 md:mb-12">
-          So you are new here! <br /> Go ahead and create your first fighter!
-        </h2>
-        <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center red-glassmorphism">
-          <Input
-            placeholder="Insert the fighter's name here!"
-            name="fighterName"
-            type="text"
-            handleChange={handleChangeFighter}
-          />
-          <Select
-            defaultValue={selectedClass}
-            onChange={setSelectedClass}
-            options={classOptions}
-            theme={(theme) => ({
-              ...theme,
-              colors: {
-                ...theme.colors,
-                text: "black",
-                primary25: "#8b0000",
-                primary: "black",
-              },
-            })}
-            styles={customStyles}
-          />
-          <div className="h-[1px] w-full bg-gray-400 my-2" />
-          {isLoading ? (
-            <Loader />
-          ) : (
+    <>
+      <div className="flex w-full justify-center items-center font-medieval">
+        <div className="flex flex-col justify-center items-center md:p-4 py-2 px-2">
+          <h2 className="text-center text-3xl sm:text-4xl text-white text-gradient py-2 mb-8 md:mb-12">
+            So you are new here! <br /> Go ahead and create your first fighter!
+          </h2>
+          <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center red-glassmorphism">
+            <Input
+              placeholder="Insert the fighter's name here!"
+              name="fighterName"
+              type="text"
+              handleChange={handleChangeFighter}
+            />
+            <Select
+              defaultValue={selectedClass}
+              onChange={setSelectedClass}
+              options={classOptions}
+              theme={(theme) => ({
+                ...theme,
+                colors: {
+                  ...theme.colors,
+                  text: "black",
+                  primary25: "#8b0000",
+                  primary: "black",
+                },
+              })}
+              styles={customStyles}
+            />
+            <div className="h-[1px] w-full bg-gray-400 my-2" />
             <button
               type="button"
               onClick={handleSubmit}
@@ -97,10 +100,11 @@ const FighterCreation = () => {
             >
               Create new fighter!
             </button>
-          )}
+          </div>
         </div>
       </div>
-    </div>
+      {isLoading && <CreatingFighterModal />}
+    </>
   );
 };
 

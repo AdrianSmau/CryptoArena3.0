@@ -29,6 +29,7 @@ const FighterPageContentInfo = ({
   currentXP,
   levelUpXP,
   owner,
+  url,
 }) => {
   if (id === undefined) {
     return (
@@ -79,6 +80,11 @@ const FighterPageContentInfo = ({
             Fighter's owner: {shorten_address(owner)}
           </p>
         </a>
+        <a href={url} target="_blank" rel="noopener noreferrer">
+          <p className="text-white md:text-2xl text-xl text-center my-4 text-base">
+            Link to this NFT from Rariable here!
+          </p>
+        </a>
         <p className="text-white md:text-2xl text-xl text-center my-4 text-base">
           Fighter's level: {level} ({currentXP} / {levelUpXP} for progression)
         </p>
@@ -89,7 +95,8 @@ const FighterPageContentInfo = ({
           Fighter's win/lose ratio: {winCount}W / {lossCount}L
         </p>
         <p className="text-white md:text-2xl text-xl text-center my-4 text-base">
-          Fighter's total Health Points: {HP} (improved during fights for Druids)
+          Fighter's total Health Points: {HP} (improved during fights for
+          Druids)
         </p>
         <p className="text-white md:text-2xl text-xl text-center my-4 text-base">
           Fighter's STR skill: {strength}

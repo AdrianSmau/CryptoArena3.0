@@ -4,10 +4,13 @@ pragma solidity ^0.8.0;
 pragma experimental ABIEncoderV2;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
+import "@openzeppelin/contracts/utils/Base64.sol";
 import "./openzeppelin/SafeMath.sol";
 import "./helpers/fighters/FighterClasses.sol";
 
-abstract contract FighterFactory is Ownable {
+abstract contract FighterFactory is Ownable, ERC721 {
     using SafeMath for uint256;
     using SafeMath32 for uint32;
     using SafeMath16 for uint16;
@@ -47,6 +50,86 @@ abstract contract FighterFactory is Ownable {
     mapping(uint256 => address) internal fighter_to_owner;
     mapping(address => uint256) internal owner_fighters_count;
     mapping(address => uint16) internal user_available_pupils;
+
+    mapping(FighterClass => string) internal fighter_classes_string;
+    mapping(FighterClass => string) internal fighter_classes_images_path;
+
+    constructor() ERC721("CryptoArenaFighters", "Fighter") {
+        fighter_classes_string[FighterClass.Warrior] = "Warrior";
+        fighter_classes_string[FighterClass.Samurai] = "Samurai";
+        fighter_classes_string[FighterClass.Druid] = "Druid";
+
+        fighter_classes_images_path[
+            FighterClass.Warrior
+        ] = "https://i.imgur.com/yhJOzNT.png";
+        fighter_classes_images_path[
+            FighterClass.Samurai
+        ] = "https://i.imgur.com/ttEuemz.png";
+        fighter_classes_images_path[
+            FighterClass.Druid
+        ] = "https://i.imgur.com/aS92Faz.png";
+    }
+
+    modifier onlyOwnerOf(uint256 _fighterId) {
+        require(
+            _msgSender() == fighter_to_owner[_fighterId],
+            "You are not the owner of this Fighter!"
+        );
+        _;
+    }
+
+    function tokenURI(uint256 _id)
+        public
+        view
+        override
+        returns (string memory)
+    {
+        Fighter memory _fighter = fighters[_id];
+
+        string memory HP_str = Strings.toString(_fighter.HP);
+        string memory level_str = Strings.toString(_fighter.level);
+        string memory STR_str = Strings.toString(_fighter.strength);
+        string memory AGL_str = Strings.toString(_fighter.agility);
+        string memory LCK_str = Strings.toString(_fighter.luck);
+        string memory DEX_str = Strings.toString(_fighter.dexterity);
+
+        string memory json = Base64.encode(
+            abi.encodePacked(
+                '{"name": "[Fighter #',
+                Strings.toString(_id),
+                "] - ",
+                _fighter.name,
+                " the ",
+                fighter_classes_string[_fighter.class],
+                '", "description": "This NFT represents a CryptoArena3.0 Fighter!", "image": "',
+                fighter_classes_images_path[_fighter.class],
+                '", "attributes": [{"trait_type": "level", "value": ',
+                level_str,
+                "},",
+                '{"trait_type": "Health Points", "value": ',
+                HP_str,
+                "},",
+                '{"trait_type": "Strength", "value": ',
+                STR_str,
+                "},",
+                '{"trait_type": "Agility", "value": ',
+                AGL_str,
+                "},",
+                '{"trait_type": "Luck", "value": ',
+                LCK_str,
+                "},",
+                '{"trait_type": "Dexterity", "value": ',
+                DEX_str,
+                "}]}"
+            )
+        );
+
+        string memory output = string(
+            abi.encodePacked("data:application/json;base64,", json)
+        );
+
+        return output;
+    }
 
     modifier emptyBarracks() {
         require(
@@ -128,6 +211,7 @@ abstract contract FighterFactory is Ownable {
         fighter_to_owner[id] = _msgSender();
         owner_fighters_count[_msgSender()] = owner_fighters_count[_msgSender()]
             .add(1);
+        _safeMint(_msgSender(), id);
     }
 
     function _getUserFighters(address _owner)

@@ -10,6 +10,15 @@ beforeEach(async () => {
 });
 
 describe("CryptoArena3.0", function () {
+  it("mint & tokenUri", async function () {
+    await arena.connect(addr1)._createFirstFighter("addr1", 2);
+
+    await arena.connect(addr1)._mintFighter(0);
+
+    const tokenUri = await arena.connect(addr1).tokenURI(0);
+    console.log("Token URI is: ", tokenUri);
+  });
+
   xit("Errors attack flow", async function () {
     await arena.connect(addr1)._createFirstFighter("addr1", 2);
     await arena.connect(addr2)._createFirstFighter("addr2", 2);
@@ -19,7 +28,9 @@ describe("CryptoArena3.0", function () {
     await arena.connect(addr4).attack(3, false, 0, 1);
     await arena.connect(addr3).attack(2, false, 0, 3);
     await arena.connect(addr2).attack(1, false, 0, 3);
-    expect(arena.connect(addr3).attack(2, false, 0, 3)).to.be.revertedWith("Your fighter is not yet ready to fight!");
+    expect(arena.connect(addr3).attack(2, false, 0, 3)).to.be.revertedWith(
+      "Your fighter is not yet ready to fight!"
+    );
   });
 
   xit("Create a first Fighter correctly", async function () {

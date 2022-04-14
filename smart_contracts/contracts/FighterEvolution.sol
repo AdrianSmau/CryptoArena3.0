@@ -12,14 +12,6 @@ abstract contract FighterEvolution is FighterFactory, Merchant {
 
     uint256 randNonce = 0;
 
-    modifier onlyOwnerOf(uint256 _fighterId) {
-        require(
-            _msgSender() == fighter_to_owner[_fighterId],
-            "You are not the owner of this Fighter!"
-        );
-        _;
-    }
-
     modifier hasAvailablePupils() {
         require(
             user_available_pupils[_msgSender()] >= uint16(1),

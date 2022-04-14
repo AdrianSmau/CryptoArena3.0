@@ -2,4 +2,4 @@ import abi from "./Arena.json";
 
 export const arenaABI = abi.abi;
 
-export const address = "0x369ae9e8aE288f8EB78263e8352211a5fb64B298";
+export const address = "0x2080e64c5258f9Fe6247fD63098dEcA5a259bE1B";

@@ -14,6 +14,7 @@ import { BlockchainContext } from "../../context/Context";
 
 const LatestFightersCard = ({
   id,
+  url,
   name,
   level,
   timestamp,
@@ -33,6 +34,11 @@ const LatestFightersCard = ({
           >
             <p className="text-white text-base">
               Owner: {shorten_address(owner)}
+            </p>
+          </a>
+          <a href={url} target="_blank" rel="noopener noreferrer">
+            <p className="text-white text-base">
+              Link to this NFT from Rariable here!
             </p>
           </a>
           <p className="text-white text-base">Fighter's ID: {id}</p>
