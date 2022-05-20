@@ -2,10 +2,10 @@
 
 pragma solidity ^0.8.0;
 
-import "./FighterFactory.sol";
+import "./MarketGift.sol";
 import "./Merchant.sol";
 
-abstract contract FighterEvolution is FighterFactory, Merchant {
+abstract contract FighterEvolution is MarketGift, Merchant {
     using SafeMath for uint256;
     using SafeMath32 for uint32;
     using SafeMath16 for uint16;

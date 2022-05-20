@@ -15,9 +15,10 @@ abstract contract FighterFactory is Ownable, ERC721 {
     using SafeMath32 for uint32;
     using SafeMath16 for uint16;
 
-    uint256 cooldownTime = 1 minutes;
+    uint256 immutable cooldownTime = 1 minutes;
 
     struct Fighter {
+        bool isForSale;
         uint16 winCount;
         uint16 lossCount;
         uint16 HP;
@@ -68,6 +69,44 @@ abstract contract FighterFactory is Ownable, ERC721 {
         fighter_classes_images_path[
             FighterClass.Druid
         ] = "https://i.imgur.com/aS92Faz.png";
+    }
+
+    function balanceOf(address owner) public view override returns (uint256) {
+        require(
+            owner != address(0),
+            "ERC721: balance query for the zero address"
+        );
+        return owner_fighters_count[owner];
+    }
+
+    function ownerOf(uint256 tokenId) public view override returns (address) {
+        address owner = fighter_to_owner[tokenId];
+        require(
+            owner != address(0),
+            "ERC721: owner query for nonexistent token"
+        );
+        return owner;
+    }
+
+    function _transfer(
+        address from,
+        address to,
+        uint256 tokenId
+    ) internal override {
+        require(
+            fighter_to_owner[tokenId] == from,
+            "ERC721: transfer from incorrect owner"
+        );
+        require(to != address(0), "ERC721: transfer to the zero address");
+
+        // Clear approvals from the previous owner
+        _approve(address(0), tokenId);
+
+        owner_fighters_count[from] = owner_fighters_count[from].sub(1);
+        owner_fighters_count[to] = owner_fighters_count[to].add(1);
+        fighter_to_owner[tokenId] = to;
+
+        emit Transfer(from, to, tokenId);
     }
 
     modifier onlyOwnerOf(uint256 _fighterId) {
@@ -131,6 +170,20 @@ abstract contract FighterFactory is Ownable, ERC721 {
         return output;
     }
 
+    modifier notForSale(uint256 _fighterId) {
+        require(
+            !fighters[_fighterId].isForSale
+        );
+        _;
+    }
+
+    modifier forSale(uint256 _fighterId) {
+        require(
+            fighters[_fighterId].isForSale
+        );
+        _;
+    }
+
     modifier emptyBarracks() {
         require(
             owner_fighters_count[_msgSender()] == 0,
@@ -191,6 +244,7 @@ abstract contract FighterFactory is Ownable, ERC721 {
     {
         fighters.push(
             Fighter(
+                false,
                 0,
                 0,
                 100,

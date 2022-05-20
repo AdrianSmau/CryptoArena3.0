@@ -25,7 +25,7 @@ const Navbar = () => {
         <img src={logo} alt="logo" className="w-48" />
       </div>
       <ul className="text-white md:flex hidden list-none flex-row justify-between items-center flex-initial">
-        {["Home", "Barracks", "Arena", "Archive", "Merchant"].map(
+        {["Home", "Barracks", "Arena", "Archive", "Merchant", "Market"].map(
           (item, index) => (
             <NavbarItem key={item + index} title={item} />
           )
@@ -59,7 +59,7 @@ const Navbar = () => {
             <li className="text-xl w-full my-2">
               <AiOutlineClose onClick={() => setToggleMenu(false)} />
             </li>
-            {["Home", "Barracks", "Arena", "Archive", "Merchant"].map(
+            {["Home", "Barracks", "Arena", "Archive", "Merchant", "Market"].map(
               (item, index) => (
                 <NavbarItem
                   key={item + index}

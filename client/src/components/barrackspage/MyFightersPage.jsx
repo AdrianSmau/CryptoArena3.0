@@ -16,7 +16,8 @@ import BTierSlash from "../../../images/BTierSlash.png";
 import STierBlunt from "../../../images/STierBlunt.png";
 import STierSlash from "../../../images/STierSlash.png";
 
-import LoadingRedeemModal from "./LoadingRedeemModal";
+import MarketResult from "./MarketResult.jsx"
+import LoadingBarracksModal from "./LoadingBarracksModal";
 import SpendablePointsResult from "./SpendablePointsResult";
 import PupilRedeem from "./PupilRedeem";
 
@@ -32,10 +33,63 @@ const MyFightersPageCard = ({
   levelUpXP,
   spendablePoints,
   spendablePointsFunction,
+  putOnMarketFunction,
   showResultModal,
+  showMarketConfirmationModal,
   isLoading,
 }) => {
   const [showModal, setShowModal] = useState(false);
+  const [showMarketModal, setShowMarketModal] = useState(false);
+  const [showGiftModal, setShowGiftModal] = useState(false);
+
+  const MarketPriceModal = () => {
+    const [priceSelected, setPriceSelected] = useState(0);
+    return (
+      <div className="bg-neutral-800 bg-opacity-80 fixed inset-0 z-50">
+        <div className="flex h-screen justify-center items-center">
+          <div className="flex flex-col justify-center items-center bg-black p-2 md:p-4 border-4 border-red-900 rounded-xl">
+            <p className="text-white md:text-2xl text-3xl text-center text-gradient">
+              Put your Fighter up for sale on the Market! Insert the desired
+              price below!
+            </p>
+            <div className="flex flex-wrap justify-center items-center md:my-5 my-3">
+              <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center red-glassmorphism">
+                <input
+                  placeholder="Enter your chosen Fighter price!"
+                  type="number"
+                  step="0.005"
+                  value={priceSelected}
+                  onChange={(e) => setPriceSelected(e.target.value)}
+                  className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"
+                />
+              </div>
+            </div>
+            <div className="flex flex-row">
+              <button
+                type="button"
+                onClick={() => {
+                  if (priceSelected > 0) {
+                    setShowMarketModal(false);
+                    putOnMarketFunction(id, priceSelected);
+                  }
+                }}
+                className="bg-[#8e0005] py-2 px-5 mf:px-7 mx-2 mt-2 mf:mx-4 mf:mt-4 rounded-full cursor-pointer hover:bg-[#b20006]"
+              >
+                <p className="text-white text-base font-semibold">Sell</p>
+              </button>
+              <button
+                type="button"
+                onClick={() => setShowMarketModal(false)}
+                className="bg-[#8e0005] py-2 px-5 mf:px-7 mx-2 mt-2 mf:mx-4 mf:mt-4 rounded-full cursor-pointer hover:bg-[#b20006]"
+              >
+                <p className="text-white text-base font-semibold">Cancel</p>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   const SpendablePointsModal = () => {
     const [pointsLeft, setPointsLeft] = useState(spendablePoints);
@@ -225,7 +279,7 @@ const MyFightersPageCard = ({
 
   return (
     <>
-      <div className="bg-[#181918] m-2 flex flex-1 2xl:min-w-[380px] 2xl:max-w-[475px] sm:min-w-[255px] sm:max-w-[275px] h-[325px] align-center justify-center flex-col p-2 rounded-md hover:shadow-2xl">
+      <div className="bg-[#181918] m-2 flex flex-1 2xl:min-w-[380px] 2xl:max-w-[475px] sm:min-w-[255px] sm:max-w-[275px] h-[380px] align-center justify-center flex-col p-2 rounded-md hover:shadow-2xl">
         <div className="flex flex-col items-center w-full mt-2">
           <div className="w-full mb-2 p-1">
             <p className="text-white text-base sm:text-sm text-xs">
@@ -270,6 +324,19 @@ const MyFightersPageCard = ({
             </div>
           )}
           <div className="bg-black sm:text-sm text-xs p-1 sm:px-2 px-1 w-max rounded-3xl mt-0.25 shadow-2xl text-center">
+            <button
+              onClick={() => setShowMarketModal(true)}
+              className="text-white sm:font-bold font-semibold"
+            >
+              Put up for sale on Market
+            </button>
+          </div>
+          <div className="bg-black sm:text-sm text-xs p-1 sm:px-2 px-1 w-max rounded-3xl mt-0.25 shadow-2xl text-center">
+            <p className="text-white sm:font-bold font-semibold">
+              Transfer fighter as a gift
+            </p>
+          </div>
+          <div className="bg-black sm:text-sm text-xs p-1 sm:px-2 px-1 w-max rounded-3xl mt-0.25 shadow-2xl text-center">
             <Link
               to={`/fighters/${id}`}
               className="text-white sm:font-bold font-semibold"
@@ -279,9 +346,11 @@ const MyFightersPageCard = ({
           </div>
         </div>
       </div>
+      {showMarketModal && <MarketPriceModal />}
       {showModal && <SpendablePointsModal />}
       {showResultModal && <SpendablePointsResult />}
-      {isLoading && <LoadingRedeemModal />}
+      {showMarketConfirmationModal && <MarketResult />}
+      {isLoading && <LoadingBarracksModal />}
     </>
   );
 };
@@ -349,7 +418,9 @@ const MyFightersPage = () => {
     myPupils,
     isContextLoading,
     redeemSpendablePoints,
+    putOnMarket,
     displaySpendingResult,
+    displayUpForSaleConfirmation,
     isLoading,
     showRecruitModal,
     setShowRecruitModal,
@@ -384,6 +455,8 @@ const MyFightersPage = () => {
                 <MyFightersPageCard
                   key={i}
                   spendablePointsFunction={redeemSpendablePoints}
+                  putOnMarketFunction={putOnMarket}
+                  showMarketConfirmationModal={displayUpForSaleConfirmation}
                   showResultModal={displaySpendingResult}
                   isLoading={isLoading}
                   {...fighter}

@@ -14,6 +14,7 @@ import { BlockchainContext } from "../../context/Context";
 
 const LatestFightersCard = ({
   id,
+  isForSale,
   url,
   name,
   level,
@@ -27,20 +28,28 @@ const LatestFightersCard = ({
     <div className="bg-[#181918] m-4 flex flex-1 2xl:min-w-[450px] 2xl:max-w-[500px] sm:min-w-[270px] sm:max-w-[300px] flex-col p-3 rounded-md hover:shadow-2xl">
       <div className="flex flex-col items-center w-full mt-3">
         <div className="w-full mb-6 p-2">
-          <a
-            href={`https://rinkeby.etherscan.io/address/${owner}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          {isForSale ? (
             <p className="text-white text-base">
-              Owner: {shorten_address(owner)}
+              This Fighter is up for sale!
             </p>
-          </a>
-          <a href={url} target="_blank" rel="noopener noreferrer">
-            <p className="text-white text-base">
-              Link to this NFT from Rariable here!
-            </p>
-          </a>
+          ) : (
+            <>
+              <a
+                href={`https://rinkeby.etherscan.io/address/${owner}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <p className="text-white text-base">
+                  Owner: {shorten_address(owner)}
+                </p>
+              </a>
+              <a href={url} target="_blank" rel="noopener noreferrer">
+                <p className="text-white text-base">
+                  Link to this NFT from Rariable here!
+                </p>
+              </a>
+            </>
+          )}
           <p className="text-white text-base">Fighter's ID: {id}</p>
           <p className="text-white text-base">Fighter's name: {name}</p>
           <p className="text-white text-base">Fighter's level: {level}</p>

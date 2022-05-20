@@ -15,7 +15,7 @@ const NotFoundPage = () => {
           <img
             src={notFound}
             alt="404"
-            className="object-scale-down w-80 md:mt-10 mt-5 text-center white-glassmorphism"
+            className="object-scale-down w-80 md:mt-4 mt-2 text-center white-glassmorphism"
           />
         </div>
       </div>

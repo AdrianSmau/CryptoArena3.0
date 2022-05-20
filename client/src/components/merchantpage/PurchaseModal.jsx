@@ -42,14 +42,14 @@ const PurchaseModal = () => {
               onClick={handleProceedButton}
               className="bg-[#8e0005] py-2 px-5 mf:px-7 mx-2 mt-3 mf:mx-4 mf:mt-6 rounded-full cursor-pointer hover:bg-[#b20006]"
             >
-              <p className="text-white text-base font-semibold">YES</p>
+              <p className="text-white text-base font-semibold">Yes</p>
             </button>
             <button
               type="button"
               onClick={handleCancelButton}
               className="bg-[#8e0005] py-2 px-5 mf:px-7 mx-2 mt-3 mf:mx-4 mf:mt-6 rounded-full cursor-pointer hover:bg-[#b20006]"
             >
-              <p className="text-white text-base font-semibold">NO</p>
+              <p className="text-white text-base font-semibold">No</p>
             </button>
           </div>
         </div>

@@ -1,12 +1,12 @@
 import ethCoin from "../../../images/ethCoin.gif";
 
-const LoadingRedeemModal = () => {
+const LoadingBarracksModal = () => {
   return (
     <div className="bg-neutral-800 bg-opacity-80 fixed inset-0 z-50">
       <div className="flex h-screen justify-center items-center">
         <div className="flex flex-col justify-center items-center bg-black p-2 md:p-4 border-4 border-red-900 rounded-xl">
           <p className="text-white md:text-xl text-2xl text-center text-gradient">
-            Updating Fighter's stats!...
+            Processing chosen Blockchain function! This may take a bit!...
           </p>
           <img
             src={ethCoin}
@@ -19,4 +19,4 @@ const LoadingRedeemModal = () => {
   );
 };
 
-export default LoadingRedeemModal;
+export default LoadingBarracksModal;

@@ -43,7 +43,13 @@ contract Arena is FighterEvolution {
         uint256 _targetFighterId,
         bool _hasTargetWeapon,
         uint256 _targetWeaponId
-    ) external onlyOwnerOf(_myFighterId) noFriendlyAttacks(_targetFighterId) {
+    )
+        external
+        onlyOwnerOf(_myFighterId)
+        notForSale(_myFighterId)
+        notForSale(_targetFighterId)
+        noFriendlyAttacks(_targetFighterId)
+    {
         Fighter storage _myFighter = fighters[_myFighterId];
         require(
             _myFighter.readyTime <= block.timestamp,
@@ -245,4 +251,10 @@ contract Arena is FighterEvolution {
             }
         }
     }
+
+    function _collectBalance() external onlyOwner {
+        payable(_msgSender()).transfer(address(this).balance);
+    }
+
+    receive() external payable {}
 }

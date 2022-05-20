@@ -49,6 +49,12 @@ export const BlockchainProvider = ({ children }) => {
 
   const [displaySpendingResult, setDisplaySpendingResult] = useState(false);
 
+  const [displayUpForSaleConfirmation, setDisplayUpForSaleConfirmation] =
+    useState(false);
+
+  const [displayFighterBuyConfirmation, setDisplayFighterBuyConfirmation] =
+    useState(false);
+
   const [formDataPurchase, setFormDataPurchase] = useState({
     level: 0,
     type: -1,
@@ -136,6 +142,7 @@ export const BlockchainProvider = ({ children }) => {
         const formattedFighters = latestFighters.map((currentFighter) => ({
           id: currentFighter.id.toNumber(),
           name: currentFighter.fighter.name,
+          isForSale: currentFighter.fighter.isForSale,
           level: currentFighter.fighter.level,
           url:
             "https://rinkeby.rarible.com/token/" +
@@ -539,6 +546,95 @@ export const BlockchainProvider = ({ children }) => {
     }
   };
 
+  const putOnMarket = async (id, price) => {
+    try {
+      if (ethereum) {
+        const contract = getArenaContract();
+
+        const result = await contract.putUpForSale(
+          id,
+          ethers.utils.parseEther(price),
+          {
+            gasLimit: "0x249F0",
+          }
+        );
+
+        setIsLoading(true);
+        await result.wait();
+        setIsLoading(false);
+
+        setDisplayUpForSaleConfirmation(true);
+      } else {
+        console.log("Ethereum is not present!");
+      }
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+      setDisplayError(true);
+    }
+  };
+
+  const buyFighter = async (id, price) => {
+    try {
+      if (ethereum) {
+        const contract = getArenaContract();
+
+        const result = await contract.buyFighter(id, {
+          gasLimit: "0x249F0",
+          value: ethers.utils.parseEther(price)._hex,
+        });
+
+        setIsLoading(true);
+        await result.wait();
+        setIsLoading(false);
+
+        setDisplayFighterBuyConfirmation(true);
+      } else {
+        console.log("Ethereum is not present!");
+      }
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+      setDisplayError(true);
+    }
+  };
+
+  const getSeller = async (id) => {
+    try {
+      if (ethereum) {
+        const contract = getArenaContract();
+
+        const seller = await contract.getFighterSeller(id);
+
+        return seller;
+      } else {
+        console.log("Ethereum is not present!");
+      }
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+      setDisplayError(true);
+    }
+  };
+
+  const getPrice = async (id) => {
+    try {
+      if (ethereum) {
+        const contract = getArenaContract();
+
+        const price = await contract.getFighterPrice(id);
+
+        return price;
+      } else {
+        console.log("Ethereum is not present!");
+      }
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+      setDisplayError(true);
+    }
+  };
+
   /* ----------------------------------------------------------------------------- */
 
   useEffect(() => {
@@ -577,11 +673,19 @@ export const BlockchainProvider = ({ children }) => {
         displayReceipt,
         setDisplayReceipt,
         redeemSpendablePoints,
+        putOnMarket,
         displaySpendingResult,
         setDisplaySpendingResult,
+        buyFighter,
+        setDisplayFighterBuyConfirmation,
+        displayFighterBuyConfirmation,
+        displayUpForSaleConfirmation,
+        setDisplayUpForSaleConfirmation,
         myPupils,
         showRecruitModal,
         setShowRecruitModal,
+        getSeller,
+        getPrice,
       }}
     >
       {children}

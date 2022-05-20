@@ -9,10 +9,10 @@ abstract contract Merchant is WeaponFactory {
     using SafeMath32 for uint32;
     using SafeMath16 for uint16;
 
-    uint256 feePerLevel = 0.00075 ether;
-    uint256 BTierPrice = 0.0005 ether;
-    uint256 ATierPrice = 0.0015 ether;
-    uint256 STierPrice = 0.003 ether;
+    uint256 immutable feePerLevel = 0.00075 ether;
+    uint256 immutable BTierPrice = 0.0005 ether;
+    uint256 immutable ATierPrice = 0.0015 ether;
+    uint256 immutable STierPrice = 0.003 ether;
 
     modifier weaponPrice(uint256 price) {
         require(
@@ -37,7 +37,7 @@ abstract contract Merchant is WeaponFactory {
 
     function _computeWeaponPrice(uint32 _level, WeaponTier _tier)
         public
-        view
+        pure
         returns (uint256)
     {
         uint256 basePrice = feePerLevel.mul(uint256(_level));
@@ -61,10 +61,4 @@ abstract contract Merchant is WeaponFactory {
     function setSTierPrice(uint256 _fee) external onlyOwner {
         STierPrice = _fee;
     }*/
-
-    function _collectMerchantBalance() external onlyOwner {
-        payable(_msgSender()).transfer(address(this).balance);
-    }
-
-    receive() external payable {}
 }

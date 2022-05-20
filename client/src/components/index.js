@@ -26,4 +26,6 @@ export { default as PurchaseModal } from "./merchantpage/PurchaseModal";
 export { default as LoadingModal } from "./merchantpage/LoadingModal";
 export { default as ReceiptModal } from "./merchantpage/ReceiptModal";
 
+export {default as Market} from "./marketpage/Market";
+
 export { default as NotFoundPage } from "./notfoundpage/NotFoundPage";

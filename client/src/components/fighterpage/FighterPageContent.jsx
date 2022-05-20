@@ -14,6 +14,7 @@ import { BlockchainContext } from "../../context/Context";
 
 const FighterPageContentInfo = ({
   id,
+  isForSale,
   name,
   level,
   timestamp,
@@ -68,23 +69,28 @@ const FighterPageContentInfo = ({
         </div>
       </div>
       <div className="flex flex-col justify-around items-center p-2 md:mt-15 mt-10 w-full">
-        <p className="text-white md:text-2xl text-xl text-center my-4 text-base">
-          Fighter's name: {name}
-        </p>
-        <a
-          href={`https://rinkeby.etherscan.io/address/${owner}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        {isForSale ? (
           <p className="text-white md:text-2xl text-xl text-center my-4 text-base">
-            Fighter's owner: {shorten_address(owner)}
+            This Fighter is up for sale!
           </p>
-        </a>
-        <a href={url} target="_blank" rel="noopener noreferrer">
-          <p className="text-white md:text-2xl text-xl text-center my-4 text-base">
-            Link to this NFT from Rariable here!
-          </p>
-        </a>
+        ) : (
+          <>
+            <a
+              href={`https://rinkeby.etherscan.io/address/${owner}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <p className="text-white md:text-2xl text-xl text-center my-4 text-base">
+                Owner: {shorten_address(owner)}
+              </p>
+            </a>
+            <a href={url} target="_blank" rel="noopener noreferrer">
+              <p className="text-white md:text-2xl text-xl text-center my-4 text-base">
+                Link to this NFT from Rariable here!
+              </p>
+            </a>
+          </>
+        )}
         <p className="text-white md:text-2xl text-xl text-center my-4 text-base">
           Fighter's level: {level} ({currentXP} / {levelUpXP} for progression)
         </p>

@@ -324,6 +324,7 @@ const ArenaContent = () => {
                     (fighter) =>
                       fighter.level >= fighters[myFighterSelected].level
                   )
+                  .filter((fighter) => !fighter.isForSale)
                   .slice(0, 3)
                   .map((fighter, i) => (
                     <MyFightersCard

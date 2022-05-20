@@ -10,7 +10,15 @@ beforeEach(async () => {
 });
 
 describe("CryptoArena3.0", function () {
-  it("mint & tokenUri", async function () {
+  it("Market flow", async function () {
+    await arena.connect(addr1)._createFirstFighter("addr1", 2);
+    await arena.connect(addr2)._createFirstFighter("addr2", 0);
+    let tx = await arena.connect(addr1).putUpForSale(0, 1);
+    let receipt = await tx.wait();
+    console.log(receipt); 
+  });
+
+  xit("mint & tokenUri", async function () {
     await arena.connect(addr1)._createFirstFighter("addr1", 2);
 
     await arena.connect(addr1)._mintFighter(0);
