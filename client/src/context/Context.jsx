@@ -55,6 +55,8 @@ export const BlockchainProvider = ({ children }) => {
   const [displayFighterBuyConfirmation, setDisplayFighterBuyConfirmation] =
     useState(false);
 
+  const [displayGiftConfirmation, setDisplayGiftConfirmation] = useState(false);
+
   const [formDataPurchase, setFormDataPurchase] = useState({
     level: 0,
     type: -1,
@@ -599,6 +601,30 @@ export const BlockchainProvider = ({ children }) => {
     }
   };
 
+  const giftFighter = async (id, receiver) => {
+    try {
+      if (ethereum) {
+        const contract = getArenaContract();
+
+        const result = await contract.giftFighter(receiver, id, {
+          gasLimit: "0x249F0",
+        });
+
+        setIsLoading(true);
+        await result.wait();
+        setIsLoading(false);
+
+        setDisplayGiftConfirmation(true);
+      } else {
+        console.log("Ethereum is not present!");
+      }
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+      setDisplayError(true);
+    }
+  };
+
   const getSeller = async (id) => {
     try {
       if (ethereum) {
@@ -681,6 +707,9 @@ export const BlockchainProvider = ({ children }) => {
         displayFighterBuyConfirmation,
         displayUpForSaleConfirmation,
         setDisplayUpForSaleConfirmation,
+        giftFighter,
+        displayGiftConfirmation,
+        setDisplayGiftConfirmation,
         myPupils,
         showRecruitModal,
         setShowRecruitModal,

@@ -13,19 +13,6 @@ abstract contract MarketGift is FighterFactory {
     address private nftHolderAccount =
         0x2b6A10C78C6374D4b43d2fC2295023B745533951;
 
-    //event UpForSale(address indexed seller, uint256 fighterId, uint256 price);
-    /*event Sold(
-        address indexed buyer,
-        address indexed seller,
-        uint256 fighterId,
-        uint256 price
-    );*/
-    event Gift(
-        address indexed sender,
-        address indexed receiver,
-        uint256 fighterId
-    );
-
     mapping(uint256 => uint256) internal fighter_to_price;
     mapping(uint256 => address) internal fighter_to_seller;
 
@@ -36,7 +23,7 @@ abstract contract MarketGift is FighterFactory {
 
     modifier hasEnoughFighters(uint256 _fighterId) {
         require(
-            owner_fighters_count[fighter_to_owner[_fighterId]] >= 1, //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            owner_fighters_count[fighter_to_owner[_fighterId]] >= 1, //CHANGE WHEN DEPLOYING! ONLY FOR TESTS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             "You cannot sell or gift your only character!"
         );
         _;
@@ -49,12 +36,10 @@ abstract contract MarketGift is FighterFactory {
         hasValidPrice(price)
         notForSale(_myFighterId)
     {
-        //price = price * (1 ether);
         _transfer(_msgSender(), nftHolderAccount, _myFighterId);
         fighter_to_price[_myFighterId] = computeTotalPrice(price);
         fighter_to_seller[_myFighterId] = _msgSender();
         fighters[_myFighterId].isForSale = true;
-        //emit UpForSale(_msgSender(), _myFighterId, computeTotalPrice(price));
     }
 
     modifier fighterPrice(uint256 fighterId) {
@@ -80,12 +65,6 @@ abstract contract MarketGift is FighterFactory {
         _approve(_msgSender(), _fighterId);
         _transfer(nftHolderAccount, _msgSender(), _fighterId);
         payable(fighter_to_seller[_fighterId]).transfer(price);
-        /*emit Sold(
-            _msgSender(),
-            fighter_to_seller[_fighterId],
-            _fighterId,
-            fighter_to_price[_fighterId]
-        );*/
 
         fighter_to_price[_fighterId] = 0;
         fighter_to_seller[_fighterId] = address(0);
@@ -99,7 +78,6 @@ abstract contract MarketGift is FighterFactory {
     {
         require(receiver != address(0), "Cannot gift NFT to the zero address");
         _transfer(_msgSender(), receiver, _myFighterId);
-        emit Gift(_msgSender(), receiver, _myFighterId);
     }
 
     function getFighterPrice(uint256 fighterId)

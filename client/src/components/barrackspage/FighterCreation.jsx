@@ -42,13 +42,8 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
 const FighterCreation = () => {
   const [selectedClass, setSelectedClass] = useState(classOptions[0]);
 
-  const {
-    formDataFighter,
-    createNewFighter,
-    handleChangeFighter,
-    isLoading,
-    isMinting,
-  } = useContext(BlockchainContext);
+  const { formDataFighter, createNewFighter, handleChangeFighter, isLoading } =
+    useContext(BlockchainContext);
 
   const handleSubmit = (e) => {
     const fighterName = formDataFighter;

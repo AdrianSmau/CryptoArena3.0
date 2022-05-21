@@ -16,7 +16,8 @@ import BTierSlash from "../../../images/BTierSlash.png";
 import STierBlunt from "../../../images/STierBlunt.png";
 import STierSlash from "../../../images/STierSlash.png";
 
-import MarketResult from "./MarketResult.jsx"
+import MarketResult from "./MarketResult";
+import GiftResult from "./GiftResult";
 import LoadingBarracksModal from "./LoadingBarracksModal";
 import SpendablePointsResult from "./SpendablePointsResult";
 import PupilRedeem from "./PupilRedeem";
@@ -34,6 +35,8 @@ const MyFightersPageCard = ({
   spendablePoints,
   spendablePointsFunction,
   putOnMarketFunction,
+  giftingFunction,
+  giftingConfirmation,
   showResultModal,
   showMarketConfirmationModal,
   isLoading,
@@ -41,6 +44,57 @@ const MyFightersPageCard = ({
   const [showModal, setShowModal] = useState(false);
   const [showMarketModal, setShowMarketModal] = useState(false);
   const [showGiftModal, setShowGiftModal] = useState(false);
+
+  const GiftingModal = () => {
+    const [addressInserted, setAddressInserted] = useState("");
+    return (
+      <div className="bg-neutral-800 bg-opacity-80 fixed inset-0 z-50">
+        <div className="flex h-screen justify-center items-center">
+          <div className="flex flex-col justify-center items-center bg-black p-2 md:p-4 border-4 border-red-900 rounded-xl">
+            <p className="text-white md:text-2xl text-3xl text-center text-gradient">
+              Gift your Fighter to another user! Type the desired address below!
+            </p>
+            <p className="text-white md:text-2xl text-3xl text-center text-gradient">
+              [Warning] This cannot be undone! Be careful when typing the
+              address!
+            </p>
+            <div className="flex flex-wrap justify-center items-center md:my-5 my-3">
+              <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center red-glassmorphism">
+                <input
+                  placeholder="Enter your receiver's address!"
+                  type="text"
+                  value={addressInserted}
+                  onChange={(e) => setAddressInserted(e.target.value)}
+                  className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"
+                />
+              </div>
+            </div>
+            <div className="flex flex-row">
+              <button
+                type="button"
+                onClick={() => {
+                  if (addressInserted.length == 42) {
+                    setShowGiftModal(false);
+                    giftingFunction(id, addressInserted);
+                  }
+                }}
+                className="bg-[#8e0005] py-2 px-5 mf:px-7 mx-2 mt-2 mf:mx-4 mf:mt-4 rounded-full cursor-pointer hover:bg-[#b20006]"
+              >
+                <p className="text-white text-base font-semibold">Send</p>
+              </button>
+              <button
+                type="button"
+                onClick={() => setShowGiftModal(false)}
+                className="bg-[#8e0005] py-2 px-5 mf:px-7 mx-2 mt-2 mf:mx-4 mf:mt-4 rounded-full cursor-pointer hover:bg-[#b20006]"
+              >
+                <p className="text-white text-base font-semibold">Cancel</p>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   const MarketPriceModal = () => {
     const [priceSelected, setPriceSelected] = useState(0);
@@ -51,6 +105,9 @@ const MyFightersPageCard = ({
             <p className="text-white md:text-2xl text-3xl text-center text-gradient">
               Put your Fighter up for sale on the Market! Insert the desired
               price below!
+            </p>
+            <p className="text-white md:text-2xl text-3xl text-center text-gradient">
+              [Warning] This cannot be undone! Market charges a fee of 5%!
             </p>
             <div className="flex flex-wrap justify-center items-center md:my-5 my-3">
               <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center red-glassmorphism">
@@ -332,9 +389,12 @@ const MyFightersPageCard = ({
             </button>
           </div>
           <div className="bg-black sm:text-sm text-xs p-1 sm:px-2 px-1 w-max rounded-3xl mt-0.25 shadow-2xl text-center">
-            <p className="text-white sm:font-bold font-semibold">
+            <button
+              onClick={() => setShowGiftModal(true)}
+              className="text-white sm:font-bold font-semibold"
+            >
               Transfer fighter as a gift
-            </p>
+            </button>
           </div>
           <div className="bg-black sm:text-sm text-xs p-1 sm:px-2 px-1 w-max rounded-3xl mt-0.25 shadow-2xl text-center">
             <Link
@@ -347,9 +407,11 @@ const MyFightersPageCard = ({
         </div>
       </div>
       {showMarketModal && <MarketPriceModal />}
+      {showGiftModal && <GiftingModal />}
       {showModal && <SpendablePointsModal />}
       {showResultModal && <SpendablePointsResult />}
       {showMarketConfirmationModal && <MarketResult />}
+      {giftingConfirmation && <GiftResult />}
       {isLoading && <LoadingBarracksModal />}
     </>
   );
@@ -419,8 +481,10 @@ const MyFightersPage = () => {
     isContextLoading,
     redeemSpendablePoints,
     putOnMarket,
+    giftFighter,
     displaySpendingResult,
     displayUpForSaleConfirmation,
+    displayGiftConfirmation,
     isLoading,
     showRecruitModal,
     setShowRecruitModal,
@@ -456,6 +520,8 @@ const MyFightersPage = () => {
                   key={i}
                   spendablePointsFunction={redeemSpendablePoints}
                   putOnMarketFunction={putOnMarket}
+                  giftingFunction={giftFighter}
+                  giftingConfirmation={displayGiftConfirmation}
                   showMarketConfirmationModal={displayUpForSaleConfirmation}
                   showResultModal={displaySpendingResult}
                   isLoading={isLoading}
