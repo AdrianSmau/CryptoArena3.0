@@ -367,11 +367,11 @@ const MyFightersPageCard = ({
             alt="classImage"
             className="object-scale-down w-24"
           />
-          <div className="bg-black sm:text-sm text-xs p-2 sm:px-2 px-1 w-max rounded-3xl -mt-5 shadow-2xl text-center">
+          <div className="bg-black sm:text-sm text-xs p-1 sm:px-2 px-1 w-max rounded-3xl -mt-5 shadow-2xl text-center">
             <p className="text-white sm:font-bold font-semibold">{`Cooldown: ${timestamp.toLocaleString()}`}</p>
           </div>
           {spendablePoints > 0 && (
-            <div className="bg-black sm:text-sm text-xs p-2 sm:px-2 px-1 w-max rounded-3xl mt-0.25 shadow-2xl text-center">
+            <div className="bg-black sm:text-sm text-xs p-1 sm:px-2 px-1 w-max rounded-3xl mt-0.25 shadow-2xl text-center">
               <button
                 onClick={() => setShowModal(true)}
                 className="text-white sm:font-bold font-semibold"
