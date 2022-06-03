@@ -138,7 +138,7 @@ abstract contract FighterEvolution is MarketGift, Merchant {
         internal
         returns (bool)
     {
-        uint256 chance = uint256(skill) + 5;
+        uint256 chance = uint256(skill) * 2 + 5;
         randNonce = randNonce.add(1);
         uint256 generatedNumber = uint256(
             keccak256(abi.encodePacked(block.timestamp, _owner, randNonce))

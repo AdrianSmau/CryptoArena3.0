@@ -260,17 +260,9 @@ abstract contract FighterFactory is Ownable, ERC165, IERC721, IERC721Metadata {
         emit Transfer(address(0), to, tokenId);
     }
 
-    function _burn(uint256 tokenId) internal {
-        address owner = fighter_to_owner[tokenId];
-
-        // Clear approvals
-        _approve(address(0), tokenId);
-
-        owner_fighters_count[owner] -= 1;
-        delete fighter_to_owner[tokenId];
-
-        emit Transfer(owner, address(0), tokenId);
-    }
+    /*function _burn(uint256 tokenId) internal {
+        revert("You cannot delete/burn a Fighter!");
+    }*/
 
     function _transfer(
         address from,

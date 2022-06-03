@@ -360,78 +360,11 @@ export const BlockchainProvider = ({ children }) => {
 
         setYouWon(false);
 
-        const targetWeapons = await contract._getWeaponByFighterId(
-          targetFighterId
-        );
-
-        var hasTargetWeapon = false;
-        var chosenWeaponId = -1;
-        var bestDamage = 15;
-        const targetFighter = fighters[targetFighterId];
-        targetWeapons
-          .filter((weapon) => weapon.weapon.levelReq <= targetFighter.level)
-          .forEach((weapon) => {
-            if (weapon.weapon.weapType === 0) {
-              if (weapon.weapon.skillReq <= targetFighter.agility) {
-                if (targetFighter.fighterClass === 1) {
-                  if (weapon.weapon.damage * 2 > bestDamage) {
-                    if (!hasTargetWeapon) {
-                      hasTargetWeapon = true;
-                    }
-                    bestDamage = weapon.weapon.damage * 2;
-                    chosenWeaponId = weapon.id;
-                  }
-                } else {
-                  if (weapon.weapon.damage > bestDamage) {
-                    if (!hasTargetWeapon) {
-                      hasTargetWeapon = true;
-                    }
-                    bestDamage = weapon.weapon.damage;
-                    chosenWeaponId = weapon.id;
-                  }
-                }
-              }
-            } else {
-              if (weapon.weapon.skillReq <= targetFighter.strength) {
-                if (targetFighter.fighterClass === 0) {
-                  if (weapon.weapon.damage * 2 > bestDamage) {
-                    if (!hasTargetWeapon) {
-                      hasTargetWeapon = true;
-                    }
-                    bestDamage = weapon.weapon.damage * 2;
-                    chosenWeaponId = weapon.id;
-                  }
-                } else {
-                  if (weapon.weapon.damage > bestDamage) {
-                    if (!hasTargetWeapon) {
-                      hasTargetWeapon = true;
-                    }
-                    bestDamage = weapon.weapon.damage;
-                    chosenWeaponId = weapon.id;
-                  }
-                }
-              }
-            }
-          });
-
-        if (chosenWeaponId === -1) {
-          chosenWeaponId = 0;
-          console.log(
-            `For enemy fighter, no weapon was chosen, target damage is ${bestDamage}`
-          );
-        } else {
-          console.log(
-            `For enemy fighter, weapon ${chosenWeaponId} was chosen, target damage is ${bestDamage}`
-          );
-        }
-
         const result = await contract.attack(
           myFighterId,
           doIHaveWeapon,
           myWeaponId,
           targetFighterId,
-          hasTargetWeapon,
-          chosenWeaponId,
           {
             gasLimit: `0x${(
               210000 +

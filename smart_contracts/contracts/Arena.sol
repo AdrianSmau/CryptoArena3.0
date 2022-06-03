@@ -40,9 +40,7 @@ contract Arena is FighterEvolution {
         uint256 _myFighterId,
         bool _hasOwnerWeapon,
         uint256 _myWeaponId,
-        uint256 _targetFighterId,
-        bool _hasTargetWeapon,
-        uint256 _targetWeaponId
+        uint256 _targetFighterId
     )
         external
         onlyOwnerOf(_myFighterId)
@@ -95,43 +93,7 @@ contract Arena is FighterEvolution {
         }
 
         Fighter storage _targetFighter = fighters[_targetFighterId];
-        uint32 _targetDamage = unarmedDamage;
-        if (_hasTargetWeapon) {
-            require(
-                fighter_to_owner[_targetFighterId] ==
-                    weapon_to_owner[_targetWeaponId],
-                "You are not the owner of this Weapon!"
-            );
-
-            Weapon memory targetWeapon = weapons[_targetWeaponId];
-
-            require(
-                _targetFighter.level >= targetWeapon.levelReq,
-                "You cannot use this weapon, your level is too small!"
-            );
-            if (targetWeapon.weapType == WeaponType.Slash) {
-                require(
-                    _targetFighter.agility >= targetWeapon.skillReq,
-                    "You cannot use this weapon, your agility skill is insufficient!"
-                );
-            } else {
-                require(
-                    _targetFighter.strength >= targetWeapon.skillReq,
-                    "You cannot use this weapon, your strength skill is insufficient!"
-                );
-            }
-
-            if (
-                (_targetFighter.class == FighterClass.Samurai &&
-                    targetWeapon.weapType == WeaponType.Slash) ||
-                (_targetFighter.class == FighterClass.Warrior &&
-                    targetWeapon.weapType == WeaponType.Blunt)
-            ) {
-                _targetDamage = targetWeapon.damage.mul(2);
-            } else {
-                _targetDamage = targetWeapon.damage;
-            }
-        }
+        uint32 _targetDamage = (2 * _myDamage) / 3;
 
         bool iWon = attackLogic(
             _myFighterId,
@@ -162,13 +124,13 @@ contract Arena is FighterEvolution {
     ) private returns (bool) {
         uint32 _myRemainingHP = uint32(myFighter.HP);
         if (myFighter.class == FighterClass.Druid) {
-            _myRemainingHP = _myRemainingHP.add(25);
+            _myRemainingHP = _myRemainingHP.add(15);
             uint32 bonus = myFighter.level.mul(5);
             _myRemainingHP = _myRemainingHP.add(bonus);
         }
         uint32 _targetRemainingHP = uint32(targetFighter.HP);
         if (targetFighter.class == FighterClass.Druid) {
-            _targetRemainingHP = _targetRemainingHP.add(25);
+            _targetRemainingHP = _targetRemainingHP.add(15);
             uint32 bonus = myFighter.level.mul(5);
             _targetRemainingHP = _targetRemainingHP.add(bonus);
         }
