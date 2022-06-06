@@ -523,6 +523,8 @@ export const BlockchainProvider = ({ children }) => {
         await result.wait();
         setIsLoading(false);
 
+        //data
+
         setDisplayFighterBuyConfirmation(true);
       } else {
         console.log("Ethereum is not present!");

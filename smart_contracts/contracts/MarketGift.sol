@@ -11,7 +11,7 @@ abstract contract MarketGift is FighterFactory {
 
     uint16 public immutable feePercent = 5;
     address private nftHolderAccount =
-        0x2b6A10C78C6374D4b43d2fC2295023B745533951;
+        0x308BcAe2716EAd370Abec327978528Ff21981C4F;
 
     mapping(uint256 => uint256) internal fighter_to_price;
     mapping(uint256 => address) internal fighter_to_seller;

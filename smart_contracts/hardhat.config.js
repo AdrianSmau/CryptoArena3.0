@@ -1,6 +1,7 @@
 require("@nomiclabs/hardhat-waffle");
 require("@openzeppelin/hardhat-upgrades");
-const { privateKey, ropstenUrl, rinkebyUrl } = require("./secrets.json");
+require("@nomiclabs/hardhat-etherscan");
+const { privateKey, etherScanKey, ropstenUrl, rinkebyUrl } = require("./secrets.json");
 
 module.exports = {
   solidity: {
@@ -25,4 +26,7 @@ module.exports = {
       accounts: [privateKey],
     },
   },
+  etherscan: {
+    apiKey: etherScanKey
+  }
 };
