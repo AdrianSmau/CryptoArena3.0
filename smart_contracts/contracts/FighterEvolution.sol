@@ -38,7 +38,7 @@ abstract contract FighterEvolution is MarketGift, Merchant {
         ].sub(1);
     }
 
-    function _spendAvailablePoints(
+    function spendAvailablePoints(
         uint256 _fighterId,
         uint16 _STR,
         uint16 _AGL,

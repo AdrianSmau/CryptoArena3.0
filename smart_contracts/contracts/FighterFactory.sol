@@ -447,7 +447,7 @@ abstract contract FighterFactory is Ownable, ERC165, IERC721, IERC721Metadata {
         _;
     }
 
-    function _createFirstFighter(
+    function createFirstFighter(
         string calldata _givenName,
         FighterClass _class
     ) external emptyBarracks {

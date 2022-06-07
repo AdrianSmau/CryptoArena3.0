@@ -1,20 +1,22 @@
+from flask_cors import CORS
+from flask import Flask, request
+import json
+import numpy as np
+import pandas as pd
+from sklearn import preprocessing
+from keras import models
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
-from keras import models
-from sklearn import preprocessing
-import pandas as pd
-import numpy as np
-import json
-from flask import Flask, request
-
 
 DATA_FILE_NAME = 'data.json'
+LOSS_FILE_NAME = 'loss.json'
 MODEL_FILE_NAME = 'model'
 
 input_data_size = 4
 epochs = 5
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/feed', methods=['POST'])
@@ -57,11 +59,23 @@ def feed():
     # Save model
     model.save(MODEL_FILE_NAME)
 
-    # Return loss
-    return str(avg_loss)
+    # Save loss
+    with open(LOSS_FILE_NAME, 'w') as loss_file:
+        json.dump({"loss": str(format(avg_loss, ".4f"))}, loss_file)
+
+    return str(format(avg_loss, ".4f"))
 
 
-@app.route('/predict', methods=['GET'])
+@app.route('/loss', methods=['GET'])
+def loss():
+    # Fetch loss
+    with open(LOSS_FILE_NAME, 'r') as loss_file:
+        loss = json.load(loss_file)['loss']
+
+    return loss
+
+
+@app.route('/predict', methods=['POST'])
 def predict():
     # Obtain request data to be predicted
     entry = request.get_json()
@@ -93,4 +107,4 @@ def predict():
     test = test[np.newaxis, ...]
 
     # Evaluate
-    return str(abs(model.predict(test)[0][0]))
+    return str(format(abs(model.predict(test)[0][0]), ".4f"))

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import { arenaABI, address } from "../utils/constants";
+import axios from "axios";
 
 export const BlockchainContext = React.createContext();
 
@@ -19,6 +20,8 @@ export const BlockchainProvider = ({ children }) => {
   const [formDataFighter, setFormDataFighter] = useState({ fighterName: "" });
   const [isLoading, setIsLoading] = useState(false);
   const [isContextLoading, setIsContextLoading] = useState(false);
+
+  const [currentPredictionLoss, setCurrentPredictionLoss] = useState(-1);
 
   const [fighters, setFighters] = useState([]);
   const [myFighters, setMyFighters] = useState([]);
@@ -257,7 +260,7 @@ export const BlockchainProvider = ({ children }) => {
         const fighterName = formDataFighter.fighterName;
         const contract = getArenaContract();
 
-        const hash = await contract._createFirstFighter(
+        const hash = await contract.createFirstFighter(
           fighterName,
           fighterClass,
           {
@@ -509,6 +512,49 @@ export const BlockchainProvider = ({ children }) => {
     }
   };
 
+  const getPredictionLoss = async () => {
+    try {
+      return axios
+        .get("http://127.0.0.1:5000/loss")
+        .catch((err) => {
+          console.log(err);
+        })
+        .then((response) => setCurrentPredictionLoss(response.data));
+    } catch (error) {
+      console.log(error);
+      setDisplayError(true);
+    }
+  };
+
+  const getPredictedPrice = async (id) => {
+    try {
+      if (ethereum) {
+        // Request prediction form Flask server
+        const body = JSON.stringify({
+          level: fighters[id].level,
+          class: fighters[id].fighterClass,
+          wins: fighters[id].winCount,
+          losses: fighters[id].lossCount,
+        });
+
+        return axios
+          .post("http://127.0.0.1:5000/predict", body, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        console.log("Ethereum is not present!");
+      }
+    } catch (error) {
+      console.log(error);
+      setDisplayError(true);
+    }
+  };
+
   const buyFighter = async (id, price) => {
     try {
       if (ethereum) {
@@ -523,7 +569,29 @@ export const BlockchainProvider = ({ children }) => {
         await result.wait();
         setIsLoading(false);
 
-        //data
+        // Send data to Flask server in order to feed the algorithm
+        const body = JSON.stringify({
+          features: {
+            level: fighters[id].level,
+            class: fighters[id].fighterClass,
+            wins: fighters[id].winCount,
+            losses: fighters[id].lossCount,
+          },
+          target: (20 * price) / 21,
+        });
+
+        axios
+          .post("http://127.0.0.1:5000/feed", body, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .then((response) => {
+            setCurrentPredictionLoss(response.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
 
         setDisplayFighterBuyConfirmation(true);
       } else {
@@ -601,6 +669,7 @@ export const BlockchainProvider = ({ children }) => {
   useEffect(() => {
     checkIfWalletIsConnected();
     checkIfFightersExist();
+    getPredictionLoss();
   }, [fightersCount]);
 
   return (
@@ -650,6 +719,8 @@ export const BlockchainProvider = ({ children }) => {
         setShowRecruitModal,
         getSeller,
         getPrice,
+        getPredictedPrice,
+        currentPredictionLoss,
       }}
     >
       {children}

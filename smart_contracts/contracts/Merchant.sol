@@ -22,12 +22,12 @@ abstract contract Merchant is WeaponFactory {
         _;
     }
 
-    function _purchaseWeapon(
+    function purchaseWeapon(
         uint32 _level,
         WeaponType _type,
         WeaponTier _tier
-    ) external payable weaponPrice(_computeWeaponPrice(_level, _tier)) {
-        uint256 price = _computeWeaponPrice(_level, _tier);
+    ) external payable weaponPrice(computeWeaponPrice(_level, _tier)) {
+        uint256 price = computeWeaponPrice(_level, _tier);
         uint256 excess = msg.value - price;
         if (excess > 0) {
             payable(_msgSender()).transfer(excess);
@@ -35,7 +35,7 @@ abstract contract Merchant is WeaponFactory {
         _forgeWeapon(_msgSender(), _level, _type, _tier);
     }
 
-    function _computeWeaponPrice(uint32 _level, WeaponTier _tier)
+    function computeWeaponPrice(uint32 _level, WeaponTier _tier)
         public
         view
         returns (uint256)

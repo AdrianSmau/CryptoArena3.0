@@ -11,15 +11,15 @@ beforeEach(async () => {
 
 describe("CryptoArena3.0", function () {
   it("Market flow", async function () {
-    await arena.connect(addr1)._createFirstFighter("addr1", 2);
-    await arena.connect(addr2)._createFirstFighter("addr2", 0);
+    await arena.connect(addr1).createFirstFighter("addr1", 2);
+    await arena.connect(addr2).createFirstFighter("addr2", 0);
     let tx = await arena.connect(addr1).putUpForSale(0, 1);
     let receipt = await tx.wait();
     console.log(receipt); 
   });
 
   xit("mint & tokenUri", async function () {
-    await arena.connect(addr1)._createFirstFighter("addr1", 2);
+    await arena.connect(addr1).createFirstFighter("addr1", 2);
 
     await arena.connect(addr1)._mintFighter(0);
 
@@ -28,10 +28,10 @@ describe("CryptoArena3.0", function () {
   });
 
   xit("Errors attack flow", async function () {
-    await arena.connect(addr1)._createFirstFighter("addr1", 2);
-    await arena.connect(addr2)._createFirstFighter("addr2", 2);
-    await arena.connect(addr3)._createFirstFighter("addr3", 2);
-    await arena.connect(addr4)._createFirstFighter("addr4", 2);
+    await arena.connect(addr1).createFirstFighter("addr1", 2);
+    await arena.connect(addr2).createFirstFighter("addr2", 2);
+    await arena.connect(addr3).createFirstFighter("addr3", 2);
+    await arena.connect(addr4).createFirstFighter("addr4", 2);
     await network.provider.send("evm_increaseTime", [86400]);
     await arena.connect(addr4).attack(3, false, 0, 1);
     await arena.connect(addr3).attack(2, false, 0, 3);
@@ -42,7 +42,7 @@ describe("CryptoArena3.0", function () {
   });
 
   xit("Create a first Fighter correctly", async function () {
-    await arena._createFirstFighter("Jack", 2);
+    await arena.createFirstFighter("Jack", 2);
     const myFighters = await arena._getLatestFighters(1);
     expect(myFighters[0].fighter.name).to.equal("Jack");
     expect(myFighters[0].fighter.class).to.equal(2);
@@ -55,35 +55,35 @@ describe("CryptoArena3.0", function () {
   });
 
   xit("Not create a first Fighter with invalid name", async function () {
-    expect(arena._createFirstFighter("", 2)).to.be.revertedWith(
+    expect(arena.createFirstFighter("", 2)).to.be.revertedWith(
       "The name you inserted for your Fighter is invalid!"
     );
   });
 
   xit("Not create a first Fighter with invalid class", async function () {
-    expect(arena._createFirstFighter("Jack", 4)).to.be.revertedWith(
+    expect(arena.createFirstFighter("Jack", 4)).to.be.revertedWith(
       "The class you inserted for your Fighter is invalid!"
     );
   });
 
   xit("Not create a second Fighter after a first one has been created", async function () {
-    await arena._createFirstFighter("John", 2);
-    expect(arena._createFirstFighter("Jack", 1)).to.be.revertedWith(
+    await arena.createFirstFighter("John", 2);
+    expect(arena.createFirstFighter("Jack", 1)).to.be.revertedWith(
       "You already have fighters in your Barracks! Enter the Arena and earn yourself more Fighters!"
     );
   });
 
   xit("Not attack while on cooldown", async function () {
-    await arena.connect(addr1)._createFirstFighter("John", 2);
-    await arena.connect(addr2)._createFirstFighter("Jack", 1);
+    await arena.connect(addr1).createFirstFighter("John", 2);
+    await arena.connect(addr2).createFirstFighter("Jack", 1);
     expect(arena.connect(addr1).attack(0, false, 0, 1)).to.be.revertedWith(
       "Your fighter is not yet ready to fight!"
     );
   });
 
   xit("Not attack with a fighter you do not own", async function () {
-    await arena.connect(addr1)._createFirstFighter("John", 2);
-    await arena.connect(addr2)._createFirstFighter("Jack", 1);
+    await arena.connect(addr1).createFirstFighter("John", 2);
+    await arena.connect(addr2).createFirstFighter("Jack", 1);
     await network.provider.send("evm_increaseTime", [86400]);
     expect(arena.connect(addr1).attack(1, false, 0, 0)).to.be.revertedWith(
       "You are not the owner of this Fighter!"
@@ -91,8 +91,8 @@ describe("CryptoArena3.0", function () {
   });
 
   xit("Arena Fight Flow #1", async function () {
-    await arena.connect(addr1)._createFirstFighter("John", 2);
-    await arena.connect(addr2)._createFirstFighter("Jack", 1);
+    await arena.connect(addr1).createFirstFighter("John", 2);
+    await arena.connect(addr2).createFirstFighter("Jack", 1);
     await network.provider.send("evm_increaseTime", [86400]);
     await arena.connect(addr2).attack(1, false, 0, 0);
     await network.provider.send("evm_increaseTime", [86400]);
@@ -191,8 +191,8 @@ describe("CryptoArena3.0", function () {
   });
 
   xit("Arena Fight Flow #2", async function () {
-    await arena.connect(addr1)._createFirstFighter("John", 2);
-    await arena.connect(addr2)._createFirstFighter("Jack", 1);
+    await arena.connect(addr1).createFirstFighter("John", 2);
+    await arena.connect(addr2).createFirstFighter("Jack", 1);
     await network.provider.send("evm_increaseTime", [86400]);
     await arena.connect(addr2).attack(1, false, 0, 0);
     await network.provider.send("evm_increaseTime", [86400]);

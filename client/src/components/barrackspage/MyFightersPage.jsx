@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import Loader from "../common/Loader";
@@ -40,10 +40,23 @@ const MyFightersPageCard = ({
   showResultModal,
   showMarketConfirmationModal,
   isLoading,
+  getPricePrediction,
+  currentPredictionLoss,
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [showMarketModal, setShowMarketModal] = useState(false);
   const [showGiftModal, setShowGiftModal] = useState(false);
+  const [predictedPrice, setPredictedPrice] = useState(0);
+  const [priceRequested, setPriceRequested] = useState(false);
+
+  useEffect(() => {
+    if (predictedPrice == 0 && priceRequested) {
+      getPricePrediction(id).then((response) => {
+        setPredictedPrice(response.data);
+      });
+      setPriceRequested(false);
+    }
+  }, [priceRequested]);
 
   const GiftingModal = () => {
     const [addressInserted, setAddressInserted] = useState("");
@@ -108,6 +121,12 @@ const MyFightersPageCard = ({
             </p>
             <p className="text-white md:text-2xl text-3xl text-center text-gradient">
               [Warning] This cannot be undone! Market charges a fee of 5%!
+            </p>
+            <p className="text-white md:text-2xl text-3xl text-center text-gradient">
+              CryptoArena3.0 now has a native price predictor!
+            </p>
+            <p className="text-white md:text-2xl text-3xl text-center text-gradient">
+              The button 'Query price prediction model' will show the Fighter price!
             </p>
             <div className="flex flex-wrap justify-center items-center md:my-5 my-3">
               <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center red-glassmorphism">
@@ -336,12 +355,18 @@ const MyFightersPageCard = ({
 
   return (
     <>
-      <div className="bg-[#181918] m-2 flex flex-1 2xl:min-w-[380px] 2xl:max-w-[475px] sm:min-w-[255px] sm:max-w-[275px] h-[380px] align-center justify-center flex-col p-2 rounded-md hover:shadow-2xl">
+      <div className="bg-[#181918] m-2 flex flex-1 2xl:min-w-[380px] 2xl:max-w-[475px] sm:min-w-[255px] sm:max-w-[275px] h-[405px] align-center justify-center flex-col p-2 rounded-md hover:shadow-2xl">
         <div className="flex flex-col items-center w-full mt-2">
           <div className="w-full mb-2 p-1">
             <p className="text-white text-base sm:text-sm text-xs">
               Fighter's ID: {id}
             </p>
+            {predictedPrice > 0 && (
+              <p className="text-white text-base sm:text-sm text-xs">
+                Fighter's predicted price: {predictedPrice} ETH, by model with loss{" "}
+                {currentPredictionLoss}
+              </p>
+            )}
             <p className="text-white text-base sm:text-sm text-xs">
               Fighter's name: {name}
             </p>
@@ -386,6 +411,14 @@ const MyFightersPageCard = ({
               className="text-white sm:font-bold font-semibold"
             >
               Put up for sale on Market
+            </button>
+          </div>
+          <div className="bg-black sm:text-sm text-xs p-1 sm:px-2 px-1 w-max rounded-3xl mt-0.25 shadow-2xl text-center">
+            <button
+              onClick={() => setPriceRequested(true)}
+              className="text-white sm:font-bold font-semibold"
+            >
+              Query price prediction model
             </button>
           </div>
           <div className="bg-black sm:text-sm text-xs p-1 sm:px-2 px-1 w-max rounded-3xl mt-0.25 shadow-2xl text-center">
@@ -488,6 +521,8 @@ const MyFightersPage = () => {
     isLoading,
     showRecruitModal,
     setShowRecruitModal,
+    getPredictedPrice,
+    currentPredictionLoss,
   } = useContext(BlockchainContext);
 
   return (
@@ -525,6 +560,8 @@ const MyFightersPage = () => {
                   showMarketConfirmationModal={displayUpForSaleConfirmation}
                   showResultModal={displaySpendingResult}
                   isLoading={isLoading}
+                  getPricePrediction={getPredictedPrice}
+                  currentPredictionLoss={currentPredictionLoss}
                   {...fighter}
                 />
               ))}
