@@ -42,6 +42,7 @@ const MyFightersPageCard = ({
   isLoading,
   getPricePrediction,
   currentPredictionLoss,
+  myFightersCount,
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [showMarketModal, setShowMarketModal] = useState(false);
@@ -126,7 +127,8 @@ const MyFightersPageCard = ({
               CryptoArena3.0 now has a native price predictor!
             </p>
             <p className="text-white md:text-2xl text-3xl text-center text-gradient">
-              The button 'Query price prediction model' will show the Fighter price!
+              The button 'Query price prediction model' will show the Fighter
+              price!
             </p>
             <div className="flex flex-wrap justify-center items-center md:my-5 my-3">
               <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center red-glassmorphism">
@@ -355,7 +357,7 @@ const MyFightersPageCard = ({
 
   return (
     <>
-      <div className="bg-[#181918] m-2 flex flex-1 2xl:min-w-[380px] 2xl:max-w-[475px] sm:min-w-[255px] sm:max-w-[275px] h-[405px] align-center justify-center flex-col p-2 rounded-md hover:shadow-2xl">
+      <div className="bg-[#181918] m-2 flex flex-1 2xl:min-w-[380px] 2xl:max-w-[475px] sm:min-w-[255px] sm:max-w-[275px] min-h-[285px] max-h-[405px] align-center justify-center flex-col p-2 rounded-md hover:shadow-2xl">
         <div className="flex flex-col items-center w-full mt-2">
           <div className="w-full mb-2 p-1">
             <p className="text-white text-base sm:text-sm text-xs">
@@ -363,8 +365,8 @@ const MyFightersPageCard = ({
             </p>
             {predictedPrice > 0 && (
               <p className="text-white text-base sm:text-sm text-xs">
-                Fighter's predicted price: {predictedPrice} ETH, by model with loss{" "}
-                {currentPredictionLoss}
+                Fighter's predicted price: {predictedPrice} ETH, by model with
+                loss {currentPredictionLoss}
               </p>
             )}
             <p className="text-white text-base sm:text-sm text-xs">
@@ -407,28 +409,32 @@ const MyFightersPageCard = ({
           )}
           <div className="bg-black sm:text-sm text-xs p-1 sm:px-2 px-1 w-max rounded-3xl mt-0.25 shadow-2xl text-center">
             <button
-              onClick={() => setShowMarketModal(true)}
-              className="text-white sm:font-bold font-semibold"
-            >
-              Put up for sale on Market
-            </button>
-          </div>
-          <div className="bg-black sm:text-sm text-xs p-1 sm:px-2 px-1 w-max rounded-3xl mt-0.25 shadow-2xl text-center">
-            <button
               onClick={() => setPriceRequested(true)}
               className="text-white sm:font-bold font-semibold"
             >
               Query price prediction model
             </button>
           </div>
-          <div className="bg-black sm:text-sm text-xs p-1 sm:px-2 px-1 w-max rounded-3xl mt-0.25 shadow-2xl text-center">
-            <button
-              onClick={() => setShowGiftModal(true)}
-              className="text-white sm:font-bold font-semibold"
-            >
-              Transfer fighter as a gift
-            </button>
-          </div>
+          {myFightersCount >= 2 && (
+            <div className="bg-black sm:text-sm text-xs p-1 sm:px-2 px-1 w-max rounded-3xl mt-0.25 shadow-2xl text-center">
+              <button
+                onClick={() => setShowMarketModal(true)}
+                className="text-white sm:font-bold font-semibold"
+              >
+                Put up for sale on Market
+              </button>
+            </div>
+          )}
+          {myFightersCount >= 2 && (
+            <div className="bg-black sm:text-sm text-xs p-1 sm:px-2 px-1 w-max rounded-3xl mt-0.25 shadow-2xl text-center">
+              <button
+                onClick={() => setShowGiftModal(true)}
+                className="text-white sm:font-bold font-semibold"
+              >
+                Transfer fighter as a gift
+              </button>
+            </div>
+          )}
           <div className="bg-black sm:text-sm text-xs p-1 sm:px-2 px-1 w-max rounded-3xl mt-0.25 shadow-2xl text-center">
             <Link
               to={`/fighters/${id}`}
@@ -562,6 +568,7 @@ const MyFightersPage = () => {
                   isLoading={isLoading}
                   getPricePrediction={getPredictedPrice}
                   currentPredictionLoss={currentPredictionLoss}
+                  myFightersCount={myFighters.length}
                   {...fighter}
                 />
               ))}

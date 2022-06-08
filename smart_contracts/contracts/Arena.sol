@@ -93,7 +93,7 @@ contract Arena is FighterEvolution {
         }
 
         Fighter storage _targetFighter = fighters[_targetFighterId];
-        uint32 _targetDamage = (2 * _myDamage) / 3;
+        uint32 _targetDamage = (4 * _myDamage) / 5; // 20% damage debuff for the target
 
         bool iWon = attackLogic(
             _myFighterId,
@@ -134,6 +134,7 @@ contract Arena is FighterEvolution {
             uint32 bonus = myFighter.level.mul(5);
             _targetRemainingHP = _targetRemainingHP.add(bonus);
         }
+        _targetRemainingHP = (11 * _targetRemainingHP) / 10; // 10% HP buff for the target
         uint16 _damageTaken;
         while (true) {
             // myFighter attacks

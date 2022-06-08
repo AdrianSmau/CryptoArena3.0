@@ -23,7 +23,7 @@ abstract contract MarketGift is FighterFactory {
 
     modifier hasEnoughFighters(uint256 _fighterId) {
         require(
-            owner_fighters_count[fighter_to_owner[_fighterId]] >= 1, //CHANGE WHEN DEPLOYING! ONLY FOR TESTS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            owner_fighters_count[fighter_to_owner[_fighterId]] >= 2,
             "You cannot sell or gift your only character!"
         );
         _;

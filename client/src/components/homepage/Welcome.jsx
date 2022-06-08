@@ -37,6 +37,15 @@ const Welcome = () => {
                 new troops, level up your fighters and earn new weapons! Web3
                 has never been so fun!
               </p>
+              <a
+                href="https://docs.google.com/document/d/1o2lZrxTpVWmqFRAncoI1pS1lawIQrM_BZZPeUKItq8I/view"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <p className="mt-5 text-white font-light text-base">
+                  Consult CryptoArena3.0's project documentation here!
+                </p>
+              </a>
               {currentAccount && (
                 <p className="mt-5 text-white font-light text-base">
                   ⚔️Greetings, {shorten_address(currentAccount)}!⚔️

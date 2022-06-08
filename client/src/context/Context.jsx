@@ -396,7 +396,7 @@ export const BlockchainProvider = ({ children }) => {
     try {
       if (ethereum) {
         const contract = getArenaContract();
-        const price = await contract._computeWeaponPrice(level, tier);
+        const price = await contract.computeWeaponPrice(level, tier);
 
         return price;
       } else {
@@ -433,7 +433,7 @@ export const BlockchainProvider = ({ children }) => {
       if (ethereum) {
         const contract = getArenaContract();
 
-        const result = await contract._purchaseWeapon(level, type, tier, {
+        const result = await contract.purchaseWeapon(level, type, tier, {
           gasLimit: "0x1FBD0",
           value: ethers.utils.parseEther(value)._hex,
         });
