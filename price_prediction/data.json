@@ -1,1606 +1,2002 @@
 [
   {
-    "features": { "level": 7, "class": 1, "wins": 8, "losses": 15 },
-    "target": "0.0667"
+    "features": { "level": 19, "class": 2, "wins": 33, "losses": 20 },
+    "target": "0.0981"
   },
   {
-    "features": { "level": 13, "class": 1, "wins": 12, "losses": 29 },
-    "target": "0.0665"
+    "features": { "level": 11, "class": 2, "wins": 4, "losses": 37 },
+    "target": "0.0566"
   },
   {
-    "features": { "level": 14, "class": 1, "wins": 20, "losses": 23 },
-    "target": "0.0838"
+    "features": { "level": 4, "class": 2, "wins": 7, "losses": 1 },
+    "target": "0.0433"
   },
   {
-    "features": { "level": 9, "class": 1, "wins": 13, "losses": 13 },
-    "target": "0.0775"
+    "features": { "level": 20, "class": 0, "wins": 32, "losses": 27 },
+    "target": "0.1443"
   },
   {
-    "features": { "level": 20, "class": 2, "wins": 41, "losses": 11 },
-    "target": "0.1067"
+    "features": { "level": 22, "class": 0, "wins": 32, "losses": 34 },
+    "target": "0.1185"
   },
   {
-    "features": { "level": 17, "class": 2, "wins": 16, "losses": 41 },
-    "target": "0.0874"
+    "features": { "level": 6, "class": 0, "wins": 5, "losses": 13 },
+    "target": "0.0640"
   },
   {
-    "features": { "level": 12, "class": 0, "wins": 4, "losses": 38 },
-    "target": "0.0992"
-  },
-  {
-    "features": { "level": 13, "class": 2, "wins": 30, "losses": 2 },
-    "target": "0.0873"
-  },
-  {
-    "features": { "level": 11, "class": 2, "wins": 25, "losses": 3 },
-    "target": "0.0588"
-  },
-  {
-    "features": { "level": 5, "class": 0, "wins": 5, "losses": 10 },
-    "target": "0.0261"
-  },
-  {
-    "features": { "level": 7, "class": 1, "wins": 14, "losses": 2 },
-    "target": "0.0601"
-  },
-  {
-    "features": { "level": 20, "class": 0, "wins": 32, "losses": 26 },
-    "target": "0.0987"
-  },
-  {
-    "features": { "level": 7, "class": 1, "wins": 12, "losses": 7 },
-    "target": "0.0379"
-  },
-  {
-    "features": { "level": 21, "class": 2, "wins": 35, "losses": 25 },
-    "target": "0.1077"
-  },
-  {
-    "features": { "level": 16, "class": 0, "wins": 32, "losses": 11 },
-    "target": "0.1198"
-  },
-  {
-    "features": { "level": 10, "class": 1, "wins": 11, "losses": 22 },
-    "target": "0.0925"
-  },
-  {
-    "features": { "level": 12, "class": 1, "wins": 9, "losses": 33 },
-    "target": "0.0639"
-  },
-  {
-    "features": { "level": 7, "class": 0, "wins": 1, "losses": 25 },
-    "target": "0.0561"
-  },
-  {
-    "features": { "level": 18, "class": 2, "wins": 21, "losses": 35 },
-    "target": "0.1376"
-  },
-  {
-    "features": { "level": 13, "class": 1, "wins": 29, "losses": 2 },
-    "target": "0.1110"
-  },
-  {
-    "features": { "level": 18, "class": 1, "wins": 21, "losses": 36 },
-    "target": "0.1098"
-  },
-  {
-    "features": { "level": 14, "class": 0, "wins": 9, "losses": 40 },
-    "target": "0.0835"
-  },
-  {
-    "features": { "level": 9, "class": 1, "wins": 16, "losses": 9 },
-    "target": "0.0633"
-  },
-  {
-    "features": { "level": 13, "class": 2, "wins": 31, "losses": 1 },
-    "target": "0.0845"
-  },
-  {
-    "features": { "level": 13, "class": 2, "wins": 11, "losses": 33 },
-    "target": "0.0752"
-  },
-  {
-    "features": { "level": 8, "class": 1, "wins": 15, "losses": 5 },
-    "target": "0.0517"
-  },
-  {
-    "features": { "level": 10, "class": 2, "wins": 21, "losses": 3 },
-    "target": "0.0545"
-  },
-  {
-    "features": { "level": 22, "class": 2, "wins": 37, "losses": 25 },
-    "target": "0.1559"
-  },
-  {
-    "features": { "level": 9, "class": 1, "wins": 20, "losses": 2 },
-    "target": "0.0873"
-  },
-  {
-    "features": { "level": 8, "class": 0, "wins": 6, "losses": 20 },
-    "target": "0.0502"
-  },
-  {
-    "features": { "level": 16, "class": 0, "wins": 19, "losses": 32 },
-    "target": "0.1166"
-  },
-  {
-    "features": { "level": 17, "class": 1, "wins": 30, "losses": 19 },
-    "target": "0.1257"
-  },
-  {
-    "features": { "level": 20, "class": 0, "wins": 32, "losses": 26 },
-    "target": "0.1319"
-  },
-  {
-    "features": { "level": 12, "class": 1, "wins": 28, "losses": 1 },
-    "target": "0.0861"
-  },
-  {
-    "features": { "level": 21, "class": 2, "wins": 41, "losses": 18 },
-    "target": "0.1127"
-  },
-  {
-    "features": { "level": 16, "class": 2, "wins": 14, "losses": 38 },
-    "target": "0.1291"
-  },
-  {
-    "features": { "level": 26, "class": 0, "wins": 39, "losses": 38 },
-    "target": "0.1613"
-  },
-  {
-    "features": { "level": 10, "class": 2, "wins": 13, "losses": 16 },
-    "target": "0.0592"
-  },
-  {
-    "features": { "level": 7, "class": 0, "wins": 0, "losses": 24 },
-    "target": "0.0609"
-  },
-  {
-    "features": { "level": 6, "class": 2, "wins": 12, "losses": 1 },
-    "target": "0.0523"
-  },
-  {
-    "features": { "level": 14, "class": 0, "wins": 32, "losses": 3 },
-    "target": "0.1018"
-  },
-  {
-    "features": { "level": 5, "class": 2, "wins": 10, "losses": 3 },
-    "target": "0.0227"
-  },
-  {
-    "features": { "level": 13, "class": 0, "wins": 13, "losses": 28 },
-    "target": "0.0726"
-  },
-  {
-    "features": { "level": 20, "class": 0, "wins": 35, "losses": 20 },
-    "target": "0.1171"
-  },
-  {
-    "features": { "level": 11, "class": 2, "wins": 17, "losses": 15 },
-    "target": "0.0816"
-  },
-  {
-    "features": { "level": 11, "class": 0, "wins": 14, "losses": 18 },
-    "target": "0.1026"
-  },
-  {
-    "features": { "level": 15, "class": 2, "wins": 11, "losses": 40 },
-    "target": "0.1104"
-  },
-  {
-    "features": { "level": 22, "class": 0, "wins": 34, "losses": 30 },
-    "target": "0.1431"
-  },
-  {
-    "features": { "level": 8, "class": 0, "wins": 12, "losses": 9 },
-    "target": "0.0538"
-  },
-  {
-    "features": { "level": 17, "class": 1, "wins": 18, "losses": 37 },
-    "target": "0.1289"
-  },
-  {
-    "features": { "level": 26, "class": 2, "wins": 41, "losses": 38 },
-    "target": "0.1658"
-  },
-  {
-    "features": { "level": 23, "class": 0, "wins": 38, "losses": 30 },
-    "target": "0.1645"
-  },
-  {
-    "features": { "level": 25, "class": 2, "wins": 40, "losses": 32 },
-    "target": "0.1317"
-  },
-  {
-    "features": { "level": 18, "class": 2, "wins": 32, "losses": 19 },
-    "target": "0.0891"
-  },
-  {
-    "features": { "level": 23, "class": 0, "wins": 39, "losses": 28 },
-    "target": "0.1124"
-  },
-  {
-    "features": { "level": 15, "class": 0, "wins": 13, "losses": 36 },
-    "target": "0.0859"
-  },
-  {
-    "features": { "level": 21, "class": 1, "wins": 39, "losses": 19 },
-    "target": "0.1409"
-  },
-  {
-    "features": { "level": 21, "class": 0, "wins": 27, "losses": 37 },
-    "target": "0.1494"
-  },
-  {
-    "features": { "level": 15, "class": 0, "wins": 15, "losses": 35 },
-    "target": "0.1062"
-  },
-  {
-    "features": { "level": 10, "class": 2, "wins": 11, "losses": 21 },
-    "target": "0.0628"
-  },
-  {
-    "features": { "level": 6, "class": 1, "wins": 13, "losses": 1 },
-    "target": "0.0630"
-  },
-  {
-    "features": { "level": 10, "class": 2, "wins": 21, "losses": 3 },
-    "target": "0.0696"
-  },
-  {
-    "features": { "level": 15, "class": 1, "wins": 31, "losses": 7 },
-    "target": "0.0902"
-  },
-  {
-    "features": { "level": 9, "class": 1, "wins": 8, "losses": 21 },
-    "target": "0.0629"
-  },
-  {
-    "features": { "level": 16, "class": 0, "wins": 19, "losses": 33 },
-    "target": "0.1176"
-  },
-  {
-    "features": { "level": 11, "class": 1, "wins": 25, "losses": 3 },
-    "target": "0.0603"
-  },
-  {
-    "features": { "level": 23, "class": 2, "wins": 34, "losses": 34 },
-    "target": "0.1451"
-  },
-  {
-    "features": { "level": 24, "class": 1, "wins": 36, "losses": 36 },
-    "target": "0.1350"
-  },
-  {
-    "features": { "level": 23, "class": 1, "wins": 36, "losses": 31 },
-    "target": "0.1612"
-  },
-  {
-    "features": { "level": 14, "class": 0, "wins": 22, "losses": 19 },
-    "target": "0.0718"
-  },
-  {
-    "features": { "level": 10, "class": 0, "wins": 15, "losses": 13 },
-    "target": "0.0510"
-  },
-  {
-    "features": { "level": 11, "class": 1, "wins": 8, "losses": 31 },
-    "target": "0.0794"
-  },
-  {
-    "features": { "level": 9, "class": 1, "wins": 14, "losses": 11 },
-    "target": "0.0754"
-  },
-  {
-    "features": { "level": 11, "class": 2, "wins": 24, "losses": 2 },
-    "target": "0.0787"
-  },
-  {
-    "features": { "level": 23, "class": 1, "wins": 39, "losses": 26 },
-    "target": "0.1243"
-  },
-  {
-    "features": { "level": 13, "class": 2, "wins": 6, "losses": 41 },
-    "target": "0.0865"
-  },
-  {
-    "features": { "level": 4, "class": 1, "wins": 8, "losses": 2 },
-    "target": "0.0444"
-  },
-  {
-    "features": { "level": 14, "class": 0, "wins": 34, "losses": 0 },
-    "target": "0.0873"
-  },
-  {
-    "features": { "level": 23, "class": 1, "wins": 34, "losses": 37 },
-    "target": "0.1522"
-  },
-  {
-    "features": { "level": 11, "class": 1, "wins": 18, "losses": 15 },
-    "target": "0.0768"
-  },
-  {
-    "features": { "level": 17, "class": 1, "wins": 22, "losses": 30 },
-    "target": "0.1003"
-  },
-  {
-    "features": { "level": 12, "class": 2, "wins": 14, "losses": 22 },
-    "target": "0.1014"
-  },
-  {
-    "features": { "level": 11, "class": 1, "wins": 26, "losses": 1 },
-    "target": "0.0528"
-  },
-  {
-    "features": { "level": 10, "class": 2, "wins": 21, "losses": 3 },
-    "target": "0.0671"
-  },
-  {
-    "features": { "level": 11, "class": 2, "wins": 14, "losses": 19 },
-    "target": "0.0620"
-  },
-  {
-    "features": { "level": 23, "class": 2, "wins": 41, "losses": 25 },
-    "target": "0.1477"
-  },
-  {
-    "features": { "level": 18, "class": 0, "wins": 23, "losses": 33 },
-    "target": "0.1368"
-  },
-  {
-    "features": { "level": 18, "class": 1, "wins": 33, "losses": 19 },
-    "target": "0.1085"
-  },
-  {
-    "features": { "level": 15, "class": 0, "wins": 19, "losses": 29 },
-    "target": "0.0968"
-  },
-  {
-    "features": { "level": 16, "class": 0, "wins": 21, "losses": 30 },
-    "target": "0.1175"
-  },
-  {
-    "features": { "level": 11, "class": 1, "wins": 16, "losses": 18 },
-    "target": "0.0648"
-  },
-  {
-    "features": { "level": 16, "class": 0, "wins": 36, "losses": 4 },
-    "target": "0.0971"
-  },
-  {
-    "features": { "level": 13, "class": 1, "wins": 27, "losses": 7 },
-    "target": "0.0975"
-  },
-  {
-    "features": { "level": 17, "class": 1, "wins": 35, "losses": 8 },
-    "target": "0.1177"
-  },
-  {
-    "features": { "level": 10, "class": 2, "wins": 9, "losses": 25 },
-    "target": "0.0879"
-  },
-  {
-    "features": { "level": 17, "class": 0, "wins": 34, "losses": 11 },
-    "target": "0.0984"
-  },
-  {
-    "features": { "level": 15, "class": 2, "wins": 13, "losses": 36 },
-    "target": "0.0792"
-  },
-  {
-    "features": { "level": 17, "class": 2, "wins": 17, "losses": 39 },
-    "target": "0.1027"
-  },
-  {
-    "features": { "level": 7, "class": 2, "wins": 0, "losses": 24 },
-    "target": "0.0511"
-  },
-  {
-    "features": { "level": 9, "class": 0, "wins": 21, "losses": 1 },
-    "target": "0.0749"
-  },
-  {
-    "features": { "level": 11, "class": 1, "wins": 14, "losses": 20 },
-    "target": "0.0727"
-  },
-  {
-    "features": { "level": 15, "class": 2, "wins": 25, "losses": 17 },
-    "target": "0.0939"
-  },
-  {
-    "features": { "level": 25, "class": 0, "wins": 37, "losses": 38 },
-    "target": "0.1323"
-  },
-  {
-    "features": { "level": 8, "class": 2, "wins": 17, "losses": 3 },
-    "target": "0.0702"
-  },
-  {
-    "features": { "level": 7, "class": 1, "wins": 5, "losses": 19 },
-    "target": "0.0358"
-  },
-  {
-    "features": { "level": 25, "class": 1, "wins": 41, "losses": 32 },
-    "target": "0.1452"
-  },
-  {
-    "features": { "level": 15, "class": 1, "wins": 29, "losses": 11 },
-    "target": "0.0707"
-  },
-  {
-    "features": { "level": 24, "class": 2, "wins": 41, "losses": 28 },
-    "target": "0.1479"
-  },
-  {
-    "features": { "level": 22, "class": 2, "wins": 33, "losses": 33 },
-    "target": "0.1452"
-  },
-  {
-    "features": { "level": 16, "class": 1, "wins": 17, "losses": 33 },
-    "target": "0.0833"
-  },
-  {
-    "features": { "level": 13, "class": 0, "wins": 24, "losses": 10 },
-    "target": "0.0962"
-  },
-  {
-    "features": { "level": 27, "class": 0, "wins": 41, "losses": 41 },
-    "target": "0.1725"
-  },
-  {
-    "features": { "level": 14, "class": 0, "wins": 17, "losses": 25 },
-    "target": "0.0737"
-  },
-  {
-    "features": { "level": 21, "class": 0, "wins": 29, "losses": 35 },
-    "target": "0.1536"
-  },
-  {
-    "features": { "level": 24, "class": 0, "wins": 33, "losses": 40 },
-    "target": "0.1181"
-  },
-  {
-    "features": { "level": 5, "class": 0, "wins": 8, "losses": 5 },
-    "target": "0.0680"
-  },
-  {
-    "features": { "level": 8, "class": 1, "wins": 17, "losses": 3 },
-    "target": "0.0550"
-  },
-  {
-    "features": { "level": 17, "class": 1, "wins": 38, "losses": 6 },
-    "target": "0.1071"
-  },
-  {
-    "features": { "level": 3, "class": 2, "wins": 1, "losses": 10 },
-    "target": "0.0328"
-  },
-  {
-    "features": { "level": 11, "class": 0, "wins": 21, "losses": 8 },
-    "target": "0.0624"
-  },
-  {
-    "features": { "level": 3, "class": 1, "wins": 3, "losses": 5 },
-    "target": "0.0239"
-  },
-  {
-    "features": { "level": 2, "class": 0, "wins": 3, "losses": 2 },
-    "target": "0.0430"
-  },
-  {
-    "features": { "level": 11, "class": 0, "wins": 14, "losses": 18 },
-    "target": "0.0968"
-  },
-  {
-    "features": { "level": 3, "class": 0, "wins": 7, "losses": 0 },
-    "target": "0.0377"
-  },
-  {
-    "features": { "level": 11, "class": 1, "wins": 22, "losses": 6 },
-    "target": "0.0786"
-  },
-  {
-    "features": { "level": 22, "class": 1, "wins": 39, "losses": 24 },
-    "target": "0.1165"
-  },
-  {
-    "features": { "level": 11, "class": 1, "wins": 13, "losses": 20 },
-    "target": "0.0769"
-  },
-  {
-    "features": { "level": 15, "class": 0, "wins": 20, "losses": 27 },
-    "target": "0.0811"
-  },
-  {
-    "features": { "level": 14, "class": 0, "wins": 32, "losses": 3 },
-    "target": "0.0795"
-  },
-  {
-    "features": { "level": 8, "class": 1, "wins": 17, "losses": 3 },
-    "target": "0.0799"
-  },
-  {
-    "features": { "level": 21, "class": 1, "wins": 34, "losses": 27 },
-    "target": "0.1287"
-  },
-  {
-    "features": { "level": 3, "class": 2, "wins": 1, "losses": 9 },
-    "target": "0.0345"
-  },
-  {
-    "features": { "level": 17, "class": 1, "wins": 35, "losses": 11 },
-    "target": "0.1343"
-  },
-  {
-    "features": { "level": 16, "class": 1, "wins": 20, "losses": 29 },
-    "target": "0.1186"
-  },
-  {
-    "features": { "level": 20, "class": 0, "wins": 30, "losses": 28 },
-    "target": "0.1436"
-  },
-  {
-    "features": { "level": 8, "class": 0, "wins": 15, "losses": 6 },
-    "target": "0.0595"
-  },
-  {
-    "features": { "level": 17, "class": 2, "wins": 26, "losses": 24 },
-    "target": "0.0972"
-  },
-  {
-    "features": { "level": 11, "class": 0, "wins": 16, "losses": 17 },
-    "target": "0.0545"
-  },
-  {
-    "features": { "level": 16, "class": 0, "wins": 34, "losses": 6 },
-    "target": "0.1026"
-  },
-  {
-    "features": { "level": 8, "class": 1, "wins": 15, "losses": 5 },
-    "target": "0.0657"
-  },
-  {
-    "features": { "level": 15, "class": 0, "wins": 24, "losses": 21 },
-    "target": "0.1218"
-  },
-  {
-    "features": { "level": 22, "class": 0, "wins": 39, "losses": 22 },
-    "target": "0.1404"
-  },
-  {
-    "features": { "level": 16, "class": 2, "wins": 36, "losses": 3 },
-    "target": "0.1177"
-  },
-  {
-    "features": { "level": 16, "class": 1, "wins": 27, "losses": 17 },
-    "target": "0.0917"
-  },
-  {
-    "features": { "level": 13, "class": 2, "wins": 12, "losses": 31 },
-    "target": "0.0847"
-  },
-  {
-    "features": { "level": 15, "class": 1, "wins": 29, "losses": 13 },
-    "target": "0.0930"
-  },
-  {
-    "features": { "level": 22, "class": 0, "wins": 35, "losses": 29 },
-    "target": "0.1174"
-  },
-  {
-    "features": { "level": 5, "class": 0, "wins": 0, "losses": 19 },
-    "target": "0.0567"
-  },
-  {
-    "features": { "level": 18, "class": 0, "wins": 25, "losses": 29 },
-    "target": "0.1182"
-  },
-  {
-    "features": { "level": 9, "class": 1, "wins": 11, "losses": 18 },
-    "target": "0.0608"
-  },
-  {
-    "features": { "level": 23, "class": 1, "wins": 38, "losses": 31 },
-    "target": "0.1489"
-  },
-  {
-    "features": { "level": 13, "class": 0, "wins": 17, "losses": 24 },
-    "target": "0.0752"
-  },
-  {
-    "features": { "level": 17, "class": 1, "wins": 17, "losses": 38 },
-    "target": "0.0902"
-  },
-  {
-    "features": { "level": 18, "class": 2, "wins": 37, "losses": 10 },
-    "target": "0.1249"
-  },
-  {
-    "features": { "level": 19, "class": 1, "wins": 26, "losses": 33 },
-    "target": "0.1270"
-  },
-  {
-    "features": { "level": 19, "class": 2, "wins": 23, "losses": 39 },
-    "target": "0.1344"
-  },
-  {
-    "features": { "level": 18, "class": 1, "wins": 24, "losses": 31 },
-    "target": "0.1158"
-  },
-  {
-    "features": { "level": 23, "class": 2, "wins": 33, "losses": 36 },
-    "target": "0.1129"
-  },
-  {
-    "features": { "level": 3, "class": 2, "wins": 1, "losses": 7 },
-    "target": "0.0611"
-  },
-  {
-    "features": { "level": 9, "class": 1, "wins": 17, "losses": 5 },
-    "target": "0.0944"
-  },
-  {
-    "features": { "level": 10, "class": 2, "wins": 8, "losses": 24 },
-    "target": "0.0639"
-  },
-  {
-    "features": { "level": 17, "class": 0, "wins": 40, "losses": 0 },
-    "target": "0.1029"
-  },
-  {
-    "features": { "level": 12, "class": 0, "wins": 17, "losses": 20 },
-    "target": "0.0658"
-  },
-  {
-    "features": { "level": 15, "class": 2, "wins": 29, "losses": 13 },
-    "target": "0.0706"
-  },
-  {
-    "features": { "level": 15, "class": 2, "wins": 34, "losses": 5 },
-    "target": "0.1086"
-  },
-  {
-    "features": { "level": 7, "class": 0, "wins": 14, "losses": 4 },
-    "target": "0.0838"
-  },
-  {
-    "features": { "level": 19, "class": 1, "wins": 29, "losses": 27 },
-    "target": "0.1234"
-  },
-  {
-    "features": { "level": 10, "class": 1, "wins": 2, "losses": 35 },
-    "target": "0.0560"
-  },
-  {
-    "features": { "level": 14, "class": 2, "wins": 22, "losses": 18 },
-    "target": "0.0989"
-  },
-  {
-    "features": { "level": 19, "class": 2, "wins": 38, "losses": 12 },
-    "target": "0.1376"
-  },
-  {
-    "features": { "level": 19, "class": 0, "wins": 40, "losses": 9 },
-    "target": "0.0929"
-  },
-  {
-    "features": { "level": 13, "class": 0, "wins": 8, "losses": 39 },
-    "target": "0.0818"
-  },
-  {
-    "features": { "level": 17, "class": 1, "wins": 33, "losses": 12 },
-    "target": "0.1095"
-  },
-  {
-    "features": { "level": 13, "class": 1, "wins": 25, "losses": 10 },
-    "target": "0.0805"
-  },
-  {
-    "features": { "level": 22, "class": 1, "wins": 31, "losses": 38 },
-    "target": "0.1242"
-  },
-  {
-    "features": { "level": 15, "class": 0, "wins": 21, "losses": 26 },
-    "target": "0.1020"
-  },
-  {
-    "features": { "level": 13, "class": 0, "wins": 13, "losses": 31 },
-    "target": "0.0671"
-  },
-  {
-    "features": { "level": 6, "class": 0, "wins": 11, "losses": 3 },
-    "target": "0.0385"
-  },
-  {
-    "features": { "level": 5, "class": 0, "wins": 5, "losses": 8 },
-    "target": "0.0584"
-  },
-  {
-    "features": { "level": 17, "class": 1, "wins": 20, "losses": 33 },
-    "target": "0.0865"
-  },
-  {
-    "features": { "level": 9, "class": 1, "wins": 18, "losses": 7 },
-    "target": "0.0785"
-  },
-  {
-    "features": { "level": 15, "class": 1, "wins": 14, "losses": 34 },
-    "target": "0.1019"
-  },
-  {
-    "features": { "level": 10, "class": 0, "wins": 13, "losses": 18 },
-    "target": "0.0878"
-  },
-  {
-    "features": { "level": 10, "class": 1, "wins": 13, "losses": 18 },
-    "target": "0.0711"
-  },
-  {
-    "features": { "level": 12, "class": 1, "wins": 3, "losses": 40 },
-    "target": "0.0614"
-  },
-  {
-    "features": { "level": 7, "class": 0, "wins": 9, "losses": 12 },
-    "target": "0.0787"
-  },
-  {
-    "features": { "level": 22, "class": 2, "wins": 39, "losses": 24 },
-    "target": "0.1456"
-  },
-  {
-    "features": { "level": 7, "class": 0, "wins": 16, "losses": 0 },
-    "target": "0.0418"
-  },
-  {
-    "features": { "level": 15, "class": 2, "wins": 16, "losses": 32 },
-    "target": "0.0746"
-  },
-  {
-    "features": { "level": 12, "class": 1, "wins": 3, "losses": 40 },
-    "target": "0.0790"
-  },
-  {
-    "features": { "level": 10, "class": 0, "wins": 23, "losses": 1 },
-    "target": "0.0556"
-  },
-  {
-    "features": { "level": 20, "class": 2, "wins": 35, "losses": 23 },
-    "target": "0.1366"
-  },
-  {
-    "features": { "level": 14, "class": 1, "wins": 21, "losses": 22 },
-    "target": "0.0979"
-  },
-  {
-    "features": { "level": 8, "class": 1, "wins": 15, "losses": 4 },
-    "target": "0.0388"
-  },
-  {
-    "features": { "level": 18, "class": 2, "wins": 34, "losses": 17 },
-    "target": "0.1378"
-  },
-  {
-    "features": { "level": 8, "class": 2, "wins": 2, "losses": 28 },
-    "target": "0.0574"
-  },
-  {
-    "features": { "level": 10, "class": 1, "wins": 1, "losses": 36 },
-    "target": "0.0549"
-  },
-  {
-    "features": { "level": 21, "class": 0, "wins": 33, "losses": 30 },
-    "target": "0.1398"
-  },
-  {
-    "features": { "level": 15, "class": 2, "wins": 22, "losses": 23 },
-    "target": "0.1077"
-  },
-  {
-    "features": { "level": 15, "class": 0, "wins": 17, "losses": 32 },
-    "target": "0.0959"
-  },
-  {
-    "features": { "level": 14, "class": 1, "wins": 17, "losses": 28 },
-    "target": "0.0852"
-  },
-  {
-    "features": { "level": 11, "class": 1, "wins": 8, "losses": 31 },
-    "target": "0.0638"
-  },
-  {
-    "features": { "level": 15, "class": 1, "wins": 26, "losses": 18 },
-    "target": "0.0742"
-  },
-  {
-    "features": { "level": 16, "class": 0, "wins": 23, "losses": 25 },
-    "target": "0.0802"
-  },
-  {
-    "features": { "level": 13, "class": 2, "wins": 30, "losses": 0 },
-    "target": "0.0992"
-  },
-  {
-    "features": { "level": 7, "class": 2, "wins": 1, "losses": 23 },
-    "target": "0.0415"
-  },
-  {
-    "features": { "level": 13, "class": 1, "wins": 24, "losses": 10 },
-    "target": "0.0933"
-  },
-  {
-    "features": { "level": 19, "class": 1, "wins": 41, "losses": 7 },
-    "target": "0.1127"
-  },
-  {
-    "features": { "level": 23, "class": 2, "wins": 37, "losses": 31 },
-    "target": "0.1275"
-  },
-  {
-    "features": { "level": 12, "class": 2, "wins": 22, "losses": 12 },
-    "target": "0.0679"
-  },
-  {
-    "features": { "level": 22, "class": 2, "wins": 28, "losses": 41 },
-    "target": "0.1328"
-  },
-  {
-    "features": { "level": 4, "class": 1, "wins": 6, "losses": 5 },
-    "target": "0.0558"
-  },
-  {
-    "features": { "level": 17, "class": 1, "wins": 22, "losses": 31 },
-    "target": "0.1038"
-  },
-  {
-    "features": { "level": 14, "class": 2, "wins": 9, "losses": 39 },
-    "target": "0.0891"
-  },
-  {
-    "features": { "level": 8, "class": 1, "wins": 9, "losses": 15 },
-    "target": "0.0615"
-  },
-  {
-    "features": { "level": 17, "class": 1, "wins": 32, "losses": 16 },
-    "target": "0.1192"
-  },
-  {
-    "features": { "level": 18, "class": 0, "wins": 39, "losses": 9 },
-    "target": "0.1381"
-  },
-  {
-    "features": { "level": 26, "class": 2, "wins": 39, "losses": 38 },
-    "target": "0.1760"
-  },
-  {
-    "features": { "level": 9, "class": 0, "wins": 19, "losses": 3 },
-    "target": "0.0417"
-  },
-  {
-    "features": { "level": 15, "class": 1, "wins": 15, "losses": 35 },
-    "target": "0.1121"
-  },
-  {
-    "features": { "level": 25, "class": 2, "wins": 41, "losses": 34 },
-    "target": "0.1318"
-  },
-  {
-    "features": { "level": 20, "class": 1, "wins": 40, "losses": 15 },
-    "target": "0.1007"
-  },
-  {
-    "features": { "level": 11, "class": 1, "wins": 18, "losses": 14 },
-    "target": "0.0685"
-  },
-  {
-    "features": { "level": 10, "class": 2, "wins": 4, "losses": 30 },
-    "target": "0.0872"
-  },
-  {
-    "features": { "level": 13, "class": 1, "wins": 15, "losses": 26 },
-    "target": "0.1114"
-  },
-  {
-    "features": { "level": 17, "class": 2, "wins": 30, "losses": 16 },
-    "target": "0.1158"
-  },
-  {
-    "features": { "level": 14, "class": 1, "wins": 12, "losses": 36 },
-    "target": "0.0777"
-  },
-  {
-    "features": { "level": 22, "class": 2, "wins": 35, "losses": 28 },
-    "target": "0.1387"
-  },
-  {
-    "features": { "level": 5, "class": 1, "wins": 8, "losses": 4 },
-    "target": "0.0569"
-  },
-  {
-    "features": { "level": 10, "class": 2, "wins": 10, "losses": 23 },
-    "target": "0.0504"
-  },
-  {
-    "features": { "level": 24, "class": 2, "wins": 35, "losses": 39 },
-    "target": "0.1409"
-  },
-  {
-    "features": { "level": 17, "class": 2, "wins": 37, "losses": 8 },
-    "target": "0.1032"
-  },
-  {
-    "features": { "level": 18, "class": 0, "wins": 36, "losses": 11 },
-    "target": "0.1204"
-  },
-  {
-    "features": { "level": 17, "class": 0, "wins": 34, "losses": 12 },
-    "target": "0.1157"
-  },
-  {
-    "features": { "level": 2, "class": 2, "wins": 0, "losses": 7 },
-    "target": "0.0458"
-  },
-  {
-    "features": { "level": 17, "class": 0, "wins": 23, "losses": 28 },
-    "target": "0.1114"
-  },
-  {
-    "features": { "level": 10, "class": 0, "wins": 21, "losses": 6 },
-    "target": "0.0545"
-  },
-  {
-    "features": { "level": 17, "class": 1, "wins": 41, "losses": 0 },
-    "target": "0.1172"
-  },
-  {
-    "features": { "level": 16, "class": 0, "wins": 23, "losses": 24 },
-    "target": "0.0849"
-  },
-  {
-    "features": { "level": 8, "class": 1, "wins": 2, "losses": 26 },
-    "target": "0.0528"
-  },
-  {
-    "features": { "level": 21, "class": 2, "wins": 31, "losses": 33 },
-    "target": "0.1519"
-  },
-  {
-    "features": { "level": 19, "class": 0, "wins": 41, "losses": 8 },
-    "target": "0.1231"
-  },
-  {
-    "features": { "level": 25, "class": 0, "wins": 38, "losses": 38 },
-    "target": "0.1211"
-  },
-  {
-    "features": { "level": 12, "class": 1, "wins": 17, "losses": 17 },
-    "target": "0.0697"
-  },
-  {
-    "features": { "level": 12, "class": 2, "wins": 10, "losses": 31 },
-    "target": "0.0944"
-  },
-  {
-    "features": { "level": 8, "class": 0, "wins": 4, "losses": 23 },
-    "target": "0.0371"
-  },
-  {
-    "features": { "level": 19, "class": 2, "wins": 27, "losses": 32 },
-    "target": "0.1082"
-  },
-  {
-    "features": { "level": 15, "class": 1, "wins": 19, "losses": 28 },
-    "target": "0.0707"
-  },
-  {
-    "features": { "level": 8, "class": 1, "wins": 17, "losses": 2 },
-    "target": "0.0851"
-  },
-  {
-    "features": { "level": 21, "class": 0, "wins": 36, "losses": 23 },
-    "target": "0.1117"
-  },
-  {
-    "features": { "level": 6, "class": 0, "wins": 11, "losses": 3 },
-    "target": "0.0557"
+    "features": { "level": 2, "class": 2, "wins": 1, "losses": 3 },
+    "target": "0.0164"
   },
   {
     "features": { "level": 14, "class": 2, "wins": 27, "losses": 11 },
-    "target": "0.0882"
+    "target": "0.1165"
   },
   {
-    "features": { "level": 18, "class": 1, "wins": 25, "losses": 31 },
-    "target": "0.0873"
+    "features": { "level": 8, "class": 2, "wins": 10, "losses": 14 },
+    "target": "0.0549"
   },
   {
-    "features": { "level": 8, "class": 1, "wins": 3, "losses": 26 },
-    "target": "0.0809"
-  },
-  {
-    "features": { "level": 20, "class": 2, "wins": 39, "losses": 15 },
-    "target": "0.1214"
-  },
-  {
-    "features": { "level": 11, "class": 2, "wins": 13, "losses": 22 },
-    "target": "0.0984"
-  },
-  {
-    "features": { "level": 25, "class": 2, "wins": 35, "losses": 41 },
-    "target": "0.1434"
-  },
-  {
-    "features": { "level": 19, "class": 1, "wins": 31, "losses": 25 },
-    "target": "0.1171"
-  },
-  {
-    "features": { "level": 14, "class": 1, "wins": 8, "losses": 40 },
-    "target": "0.0867"
-  },
-  {
-    "features": { "level": 21, "class": 1, "wins": 28, "losses": 38 },
-    "target": "0.1060"
-  },
-  {
-    "features": { "level": 18, "class": 2, "wins": 27, "losses": 27 },
-    "target": "0.1145"
-  },
-  {
-    "features": { "level": 22, "class": 1, "wins": 36, "losses": 28 },
-    "target": "0.1132"
-  },
-  {
-    "features": { "level": 6, "class": 1, "wins": 7, "losses": 10 },
-    "target": "0.0541"
-  },
-  {
-    "features": { "level": 16, "class": 0, "wins": 23, "losses": 24 },
-    "target": "0.1147"
-  },
-  {
-    "features": { "level": 14, "class": 2, "wins": 10, "losses": 39 },
-    "target": "0.0941"
-  },
-  {
-    "features": { "level": 19, "class": 0, "wins": 41, "losses": 10 },
-    "target": "0.1279"
-  },
-  {
-    "features": { "level": 5, "class": 1, "wins": 9, "losses": 3 },
-    "target": "0.0553"
-  },
-  {
-    "features": { "level": 12, "class": 1, "wins": 9, "losses": 32 },
-    "target": "0.0986"
-  },
-  {
-    "features": { "level": 22, "class": 0, "wins": 29, "losses": 41 },
-    "target": "0.1062"
-  },
-  {
-    "features": { "level": 5, "class": 1, "wins": 4, "losses": 11 },
-    "target": "0.0546"
-  },
-  {
-    "features": { "level": 19, "class": 2, "wins": 22, "losses": 39 },
-    "target": "0.1375"
-  },
-  {
-    "features": { "level": 18, "class": 2, "wins": 27, "losses": 26 },
-    "target": "0.1295"
-  },
-  {
-    "features": { "level": 7, "class": 0, "wins": 1, "losses": 23 },
-    "target": "0.0831"
-  },
-  {
-    "features": { "level": 23, "class": 0, "wins": 39, "losses": 29 },
-    "target": "0.1517"
-  },
-  {
-    "features": { "level": 11, "class": 1, "wins": 4, "losses": 37 },
-    "target": "0.0901"
-  },
-  {
-    "features": { "level": 13, "class": 1, "wins": 28, "losses": 6 },
-    "target": "0.0657"
-  },
-  {
-    "features": { "level": 14, "class": 0, "wins": 33, "losses": 0 },
-    "target": "0.1068"
-  },
-  {
-    "features": { "level": 14, "class": 1, "wins": 12, "losses": 34 },
-    "target": "0.1147"
-  },
-  {
-    "features": { "level": 9, "class": 0, "wins": 13, "losses": 15 },
-    "target": "0.0916"
-  },
-  {
-    "features": { "level": 22, "class": 1, "wins": 41, "losses": 19 },
-    "target": "0.1584"
-  },
-  {
-    "features": { "level": 15, "class": 2, "wins": 29, "losses": 12 },
-    "target": "0.0758"
-  },
-  {
-    "features": { "level": 7, "class": 1, "wins": 12, "losses": 6 },
-    "target": "0.0336"
-  },
-  {
-    "features": { "level": 7, "class": 0, "wins": 10, "losses": 9 },
-    "target": "0.0844"
-  },
-  {
-    "features": { "level": 21, "class": 2, "wins": 39, "losses": 20 },
-    "target": "0.1431"
-  },
-  {
-    "features": { "level": 21, "class": 1, "wins": 36, "losses": 25 },
-    "target": "0.1353"
-  },
-  {
-    "features": { "level": 8, "class": 0, "wins": 12, "losses": 11 },
-    "target": "0.0809"
-  },
-  {
-    "features": { "level": 9, "class": 2, "wins": 13, "losses": 13 },
-    "target": "0.0489"
-  },
-  {
-    "features": { "level": 13, "class": 0, "wins": 20, "losses": 16 },
-    "target": "0.0777"
-  },
-  {
-    "features": { "level": 14, "class": 0, "wins": 24, "losses": 17 },
-    "target": "0.0703"
-  },
-  {
-    "features": { "level": 12, "class": 0, "wins": 29, "losses": 1 },
-    "target": "0.0985"
-  },
-  {
-    "features": { "level": 6, "class": 0, "wins": 6, "losses": 14 },
-    "target": "0.0324"
-  },
-  {
-    "features": { "level": 10, "class": 0, "wins": 12, "losses": 20 },
-    "target": "0.0501"
-  },
-  {
-    "features": { "level": 10, "class": 2, "wins": 14, "losses": 14 },
-    "target": "0.0659"
-  },
-  {
-    "features": { "level": 18, "class": 1, "wins": 39, "losses": 7 },
-    "target": "0.1330"
-  },
-  {
-    "features": { "level": 15, "class": 1, "wins": 30, "losses": 8 },
-    "target": "0.1208"
-  },
-  {
-    "features": { "level": 3, "class": 0, "wins": 7, "losses": 0 },
-    "target": "0.0265"
-  },
-  {
-    "features": { "level": 4, "class": 0, "wins": 3, "losses": 11 },
-    "target": "0.0679"
-  },
-  {
-    "features": { "level": 9, "class": 0, "wins": 12, "losses": 14 },
-    "target": "0.0572"
-  },
-  {
-    "features": { "level": 19, "class": 2, "wins": 34, "losses": 21 },
-    "target": "0.1069"
-  },
-  {
-    "features": { "level": 24, "class": 0, "wins": 41, "losses": 27 },
-    "target": "0.1517"
-  },
-  {
-    "features": { "level": 11, "class": 2, "wins": 25, "losses": 3 },
-    "target": "0.0853"
-  },
-  {
-    "features": { "level": 16, "class": 1, "wins": 38, "losses": 1 },
-    "target": "0.0977"
-  },
-  {
-    "features": { "level": 23, "class": 2, "wins": 33, "losses": 38 },
-    "target": "0.1351"
-  },
-  {
-    "features": { "level": 1, "class": 2, "wins": 0, "losses": 0 },
-    "target": "0.0127"
-  },
-  {
-    "features": { "level": 19, "class": 1, "wins": 32, "losses": 24 },
-    "target": "0.0961"
-  },
-  {
-    "features": { "level": 8, "class": 2, "wins": 16, "losses": 4 },
-    "target": "0.0611"
-  },
-  {
-    "features": { "level": 14, "class": 2, "wins": 10, "losses": 38 },
-    "target": "0.0977"
-  },
-  {
-    "features": { "level": 12, "class": 0, "wins": 20, "losses": 15 },
-    "target": "0.0727"
-  },
-  {
-    "features": { "level": 16, "class": 0, "wins": 38, "losses": 2 },
-    "target": "0.1267"
-  },
-  {
-    "features": { "level": 17, "class": 1, "wins": 17, "losses": 37 },
-    "target": "0.0896"
-  },
-  {
-    "features": { "level": 11, "class": 1, "wins": 10, "losses": 24 },
-    "target": "0.0514"
-  },
-  {
-    "features": { "level": 20, "class": 1, "wins": 28, "losses": 35 },
-    "target": "0.1079"
-  },
-  {
-    "features": { "level": 20, "class": 0, "wins": 30, "losses": 29 },
-    "target": "0.0962"
-  },
-  {
-    "features": { "level": 6, "class": 2, "wins": 1, "losses": 22 },
-    "target": "0.0770"
-  },
-  {
-    "features": { "level": 11, "class": 1, "wins": 22, "losses": 8 },
-    "target": "0.0909"
-  },
-  {
-    "features": { "level": 21, "class": 0, "wins": 41, "losses": 16 },
-    "target": "0.1211"
-  },
-  {
-    "features": { "level": 10, "class": 2, "wins": 23, "losses": 3 },
-    "target": "0.0764"
-  },
-  {
-    "features": { "level": 5, "class": 1, "wins": 9, "losses": 4 },
-    "target": "0.0694"
-  },
-  {
-    "features": { "level": 19, "class": 2, "wins": 26, "losses": 31 },
-    "target": "0.0937"
-  },
-  {
-    "features": { "level": 5, "class": 0, "wins": 6, "losses": 7 },
-    "target": "0.0597"
-  },
-  {
-    "features": { "level": 19, "class": 0, "wins": 34, "losses": 20 },
-    "target": "0.1170"
-  },
-  {
-    "features": { "level": 16, "class": 2, "wins": 31, "losses": 12 },
-    "target": "0.0860"
-  },
-  {
-    "features": { "level": 21, "class": 0, "wins": 35, "losses": 24 },
-    "target": "0.1388"
-  },
-  {
-    "features": { "level": 16, "class": 1, "wins": 36, "losses": 3 },
-    "target": "0.0914"
-  },
-  {
-    "features": { "level": 26, "class": 0, "wins": 40, "losses": 37 },
-    "target": "0.1629"
-  },
-  {
-    "features": { "level": 11, "class": 2, "wins": 23, "losses": 4 },
-    "target": "0.1039"
-  },
-  {
-    "features": { "level": 14, "class": 0, "wins": 12, "losses": 34 },
-    "target": "0.0748"
-  },
-  {
-    "features": { "level": 14, "class": 2, "wins": 13, "losses": 34 },
-    "target": "0.1148"
-  },
-  {
-    "features": { "level": 24, "class": 2, "wins": 37, "losses": 34 },
-    "target": "0.1383"
-  },
-  {
-    "features": { "level": 17, "class": 0, "wins": 38, "losses": 5 },
-    "target": "0.1317"
-  },
-  {
-    "features": { "level": 14, "class": 1, "wins": 23, "losses": 16 },
-    "target": "0.1005"
-  },
-  {
-    "features": { "level": 10, "class": 1, "wins": 0, "losses": 36 },
-    "target": "0.0776"
-  },
-  {
-    "features": { "level": 8, "class": 0, "wins": 18, "losses": 3 },
-    "target": "0.0626"
-  },
-  {
-    "features": { "level": 16, "class": 1, "wins": 26, "losses": 21 },
-    "target": "0.1226"
-  },
-  {
-    "features": { "level": 11, "class": 2, "wins": 25, "losses": 3 },
-    "target": "0.0725"
-  },
-  {
-    "features": { "level": 7, "class": 2, "wins": 7, "losses": 14 },
-    "target": "0.0309"
-  },
-  {
-    "features": { "level": 22, "class": 2, "wins": 27, "losses": 41 },
-    "target": "0.1260"
-  },
-  {
-    "features": { "level": 19, "class": 0, "wins": 27, "losses": 31 },
-    "target": "0.0934"
-  },
-  {
-    "features": { "level": 9, "class": 0, "wins": 5, "losses": 26 },
-    "target": "0.0425"
-  },
-  {
-    "features": { "level": 5, "class": 0, "wins": 6, "losses": 9 },
-    "target": "0.0298"
-  },
-  {
-    "features": { "level": 15, "class": 2, "wins": 19, "losses": 29 },
-    "target": "0.0968"
-  },
-  {
-    "features": { "level": 13, "class": 1, "wins": 23, "losses": 14 },
-    "target": "0.1103"
-  },
-  {
-    "features": { "level": 15, "class": 0, "wins": 33, "losses": 5 },
-    "target": "0.1177"
-  },
-  {
-    "features": { "level": 18, "class": 1, "wins": 35, "losses": 15 },
-    "target": "0.1110"
-  },
-  {
-    "features": { "level": 24, "class": 2, "wins": 36, "losses": 38 },
-    "target": "0.1156"
-  },
-  {
-    "features": { "level": 20, "class": 1, "wins": 39, "losses": 15 },
-    "target": "0.1405"
-  },
-  {
-    "features": { "level": 18, "class": 0, "wins": 37, "losses": 10 },
-    "target": "0.1231"
-  },
-  {
-    "features": { "level": 12, "class": 2, "wins": 4, "losses": 38 },
-    "target": "0.0663"
-  },
-  {
-    "features": { "level": 17, "class": 1, "wins": 17, "losses": 40 },
-    "target": "0.0834"
-  },
-  {
-    "features": { "level": 8, "class": 2, "wins": 1, "losses": 30 },
-    "target": "0.0493"
-  },
-  {
-    "features": { "level": 14, "class": 0, "wins": 14, "losses": 32 },
-    "target": "0.0709"
-  },
-  {
-    "features": { "level": 15, "class": 1, "wins": 25, "losses": 17 },
-    "target": "0.0855"
-  },
-  {
-    "features": { "level": 15, "class": 1, "wins": 10, "losses": 41 },
-    "target": "0.1041"
-  },
-  {
-    "features": { "level": 5, "class": 1, "wins": 3, "losses": 14 },
-    "target": "0.0479"
-  },
-  {
-    "features": { "level": 13, "class": 2, "wins": 6, "losses": 41 },
+    "features": { "level": 11, "class": 2, "wins": 21, "losses": 8 },
     "target": "0.0664"
   },
   {
-    "features": { "level": 7, "class": 1, "wins": 6, "losses": 18 },
-    "target": "0.0595"
+    "features": { "level": 23, "class": 1, "wins": 39, "losses": 28 },
+    "target": "0.1585"
   },
   {
-    "features": { "level": 11, "class": 1, "wins": 6, "losses": 34 },
-    "target": "0.0987"
+    "features": { "level": 13, "class": 0, "wins": 28, "losses": 6 },
+    "target": "0.0845"
   },
   {
-    "features": { "level": 18, "class": 2, "wins": 35, "losses": 13 },
-    "target": "0.1151"
+    "features": { "level": 14, "class": 2, "wins": 24, "losses": 15 },
+    "target": "0.0718"
   },
   {
-    "features": { "level": 10, "class": 0, "wins": 19, "losses": 8 },
-    "target": "0.0906"
+    "features": { "level": 16, "class": 1, "wins": 17, "losses": 35 },
+    "target": "0.0921"
   },
   {
-    "features": { "level": 11, "class": 1, "wins": 6, "losses": 31 },
-    "target": "0.0794"
+    "features": { "level": 19, "class": 2, "wins": 27, "losses": 29 },
+    "target": "0.1403"
   },
   {
-    "features": { "level": 24, "class": 0, "wins": 38, "losses": 33 },
-    "target": "0.1310"
+    "features": { "level": 9, "class": 2, "wins": 6, "losses": 25 },
+    "target": "0.0833"
   },
   {
-    "features": { "level": 4, "class": 1, "wins": 8, "losses": 3 },
-    "target": "0.0345"
+    "features": { "level": 12, "class": 2, "wins": 12, "losses": 28 },
+    "target": "0.0894"
   },
   {
-    "features": { "level": 13, "class": 2, "wins": 16, "losses": 23 },
-    "target": "0.1125"
+    "features": { "level": 17, "class": 0, "wins": 15, "losses": 40 },
+    "target": "0.0957"
   },
   {
-    "features": { "level": 11, "class": 1, "wins": 15, "losses": 17 },
-    "target": "0.0725"
+    "features": { "level": 15, "class": 1, "wins": 19, "losses": 29 },
+    "target": "0.1042"
   },
   {
-    "features": { "level": 13, "class": 1, "wins": 24, "losses": 10 },
-    "target": "0.0791"
+    "features": { "level": 6, "class": 0, "wins": 1, "losses": 20 },
+    "target": "0.0450"
   },
   {
-    "features": { "level": 9, "class": 0, "wins": 6, "losses": 25 },
-    "target": "0.0837"
+    "features": { "level": 22, "class": 2, "wins": 32, "losses": 36 },
+    "target": "0.1212"
   },
   {
-    "features": { "level": 11, "class": 2, "wins": 1, "losses": 40 },
-    "target": "0.0742"
+    "features": { "level": 17, "class": 0, "wins": 24, "losses": 26 },
+    "target": "0.1067"
   },
   {
-    "features": { "level": 5, "class": 2, "wins": 9, "losses": 3 },
-    "target": "0.0693"
+    "features": { "level": 20, "class": 1, "wins": 32, "losses": 27 },
+    "target": "0.1117"
   },
   {
-    "features": { "level": 5, "class": 0, "wins": 2, "losses": 13 },
-    "target": "0.0726"
-  },
-  {
-    "features": { "level": 14, "class": 0, "wins": 13, "losses": 34 },
-    "target": "0.1155"
-  },
-  {
-    "features": { "level": 17, "class": 1, "wins": 15, "losses": 41 },
-    "target": "0.1097"
-  },
-  {
-    "features": { "level": 7, "class": 0, "wins": 6, "losses": 18 },
-    "target": "0.0572"
-  },
-  {
-    "features": { "level": 12, "class": 1, "wins": 26, "losses": 3 },
-    "target": "0.0738"
-  },
-  {
-    "features": { "level": 10, "class": 2, "wins": 12, "losses": 19 },
-    "target": "0.0546"
-  },
-  {
-    "features": { "level": 10, "class": 0, "wins": 6, "losses": 28 },
-    "target": "0.0643"
-  },
-  {
-    "features": { "level": 19, "class": 2, "wins": 35, "losses": 16 },
-    "target": "0.1027"
-  },
-  {
-    "features": { "level": 18, "class": 0, "wins": 25, "losses": 29 },
-    "target": "0.0962"
-  },
-  {
-    "features": { "level": 12, "class": 2, "wins": 17, "losses": 20 },
-    "target": "0.1006"
-  },
-  {
-    "features": { "level": 11, "class": 0, "wins": 18, "losses": 15 },
-    "target": "0.0694"
-  },
-  {
-    "features": { "level": 5, "class": 0, "wins": 8, "losses": 7 },
-    "target": "0.0748"
-  },
-  {
-    "features": { "level": 12, "class": 1, "wins": 11, "losses": 30 },
-    "target": "0.0780"
-  },
-  {
-    "features": { "level": 14, "class": 0, "wins": 7, "losses": 41 },
-    "target": "0.0726"
-  },
-  {
-    "features": { "level": 20, "class": 2, "wins": 41, "losses": 14 },
-    "target": "0.1320"
-  },
-  {
-    "features": { "level": 23, "class": 2, "wins": 39, "losses": 26 },
-    "target": "0.1246"
-  },
-  {
-    "features": { "level": 10, "class": 2, "wins": 10, "losses": 21 },
+    "features": { "level": 17, "class": 2, "wins": 31, "losses": 15 },
     "target": "0.0869"
   },
   {
-    "features": { "level": 3, "class": 1, "wins": 4, "losses": 2 },
-    "target": "0.0476"
+    "features": { "level": 6, "class": 2, "wins": 7, "losses": 10 },
+    "target": "0.0797"
   },
   {
-    "features": { "level": 4, "class": 1, "wins": 7, "losses": 4 },
-    "target": "0.0335"
+    "features": { "level": 10, "class": 2, "wins": 0, "losses": 37 },
+    "target": "0.0712"
   },
   {
-    "features": { "level": 23, "class": 1, "wins": 30, "losses": 40 },
-    "target": "0.1486"
+    "features": { "level": 5, "class": 0, "wins": 5, "losses": 11 },
+    "target": "0.0550"
   },
   {
-    "features": { "level": 8, "class": 2, "wins": 19, "losses": 0 },
-    "target": "0.0564"
+    "features": { "level": 9, "class": 2, "wins": 13, "losses": 13 },
+    "target": "0.0758"
   },
   {
-    "features": { "level": 19, "class": 0, "wins": 34, "losses": 18 },
-    "target": "0.1387"
+    "features": { "level": 5, "class": 2, "wins": 2, "losses": 13 },
+    "target": "0.0354"
   },
   {
-    "features": { "level": 5, "class": 1, "wins": 6, "losses": 10 },
-    "target": "0.0539"
+    "features": { "level": 12, "class": 0, "wins": 9, "losses": 30 },
+    "target": "0.0814"
   },
   {
-    "features": { "level": 16, "class": 0, "wins": 15, "losses": 36 },
-    "target": "0.1142"
+    "features": { "level": 19, "class": 1, "wins": 23, "losses": 38 },
+    "target": "0.1197"
   },
   {
-    "features": { "level": 19, "class": 0, "wins": 22, "losses": 40 },
-    "target": "0.1327"
+    "features": { "level": 9, "class": 1, "wins": 14, "losses": 13 },
+    "target": "0.0720"
   },
   {
-    "features": { "level": 20, "class": 0, "wins": 25, "losses": 37 },
-    "target": "0.1434"
+    "features": { "level": 12, "class": 2, "wins": 26, "losses": 4 },
+    "target": "0.0577"
   },
   {
-    "features": { "level": 10, "class": 0, "wins": 12, "losses": 17 },
-    "target": "0.0622"
+    "features": { "level": 10, "class": 1, "wins": 11, "losses": 20 },
+    "target": "0.0886"
   },
   {
-    "features": { "level": 26, "class": 0, "wins": 41, "losses": 37 },
-    "target": "0.1762"
+    "features": { "level": 25, "class": 1, "wins": 41, "losses": 33 },
+    "target": "0.1514"
   },
   {
-    "features": { "level": 7, "class": 2, "wins": 11, "losses": 7 },
+    "features": { "level": 15, "class": 1, "wins": 27, "losses": 15 },
+    "target": "0.0726"
+  },
+  {
+    "features": { "level": 4, "class": 1, "wins": 7, "losses": 1 },
+    "target": "0.0254"
+  },
+  {
+    "features": { "level": 18, "class": 2, "wins": 21, "losses": 35 },
+    "target": "0.1145"
+  },
+  {
+    "features": { "level": 18, "class": 0, "wins": 33, "losses": 19 },
+    "target": "0.0937"
+  },
+  {
+    "features": { "level": 22, "class": 0, "wins": 31, "losses": 38 },
+    "target": "0.1124"
+  },
+  {
+    "features": { "level": 19, "class": 1, "wins": 25, "losses": 35 },
+    "target": "0.0911"
+  },
+  {
+    "features": { "level": 15, "class": 0, "wins": 24, "losses": 20 },
+    "target": "0.0776"
+  },
+  {
+    "features": { "level": 25, "class": 0, "wins": 40, "losses": 35 },
+    "target": "0.1680"
+  },
+  {
+    "features": { "level": 9, "class": 0, "wins": 2, "losses": 32 },
+    "target": "0.0483"
+  },
+  {
+    "features": { "level": 5, "class": 1, "wins": 1, "losses": 18 },
+    "target": "0.0384"
+  },
+  {
+    "features": { "level": 17, "class": 2, "wins": 32, "losses": 14 },
+    "target": "0.1269"
+  },
+  {
+    "features": { "level": 15, "class": 2, "wins": 20, "losses": 27 },
+    "target": "0.0981"
+  },
+  {
+    "features": { "level": 10, "class": 1, "wins": 3, "losses": 33 },
+    "target": "0.0700"
+  },
+  {
+    "features": { "level": 17, "class": 2, "wins": 22, "losses": 32 },
+    "target": "0.1335"
+  },
+  {
+    "features": { "level": 11, "class": 0, "wins": 5, "losses": 34 },
+    "target": "0.0716"
+  },
+  {
+    "features": { "level": 12, "class": 1, "wins": 11, "losses": 27 },
+    "target": "0.1070"
+  },
+  {
+    "features": { "level": 23, "class": 2, "wins": 31, "losses": 40 },
+    "target": "0.1316"
+  },
+  {
+    "features": { "level": 16, "class": 1, "wins": 17, "losses": 36 },
+    "target": "0.1134"
+  },
+  {
+    "features": { "level": 17, "class": 1, "wins": 23, "losses": 29 },
+    "target": "0.0969"
+  },
+  {
+    "features": { "level": 22, "class": 0, "wins": 37, "losses": 28 },
+    "target": "0.1400"
+  },
+  {
+    "features": { "level": 12, "class": 2, "wins": 22, "losses": 12 },
+    "target": "0.0818"
+  },
+  {
+    "features": { "level": 20, "class": 1, "wins": 39, "losses": 15 },
+    "target": "0.1244"
+  },
+  {
+    "features": { "level": 18, "class": 2, "wins": 36, "losses": 13 },
+    "target": "0.1267"
+  },
+  {
+    "features": { "level": 19, "class": 1, "wins": 35, "losses": 19 },
+    "target": "0.1182"
+  },
+  {
+    "features": { "level": 19, "class": 2, "wins": 24, "losses": 35 },
+    "target": "0.1362"
+  },
+  {
+    "features": { "level": 3, "class": 1, "wins": 1, "losses": 10 },
+    "target": "0.0447"
+  },
+  {
+    "features": { "level": 23, "class": 0, "wins": 36, "losses": 31 },
+    "target": "0.1452"
+  },
+  {
+    "features": { "level": 12, "class": 2, "wins": 11, "losses": 29 },
+    "target": "0.0759"
+  },
+  {
+    "features": { "level": 17, "class": 1, "wins": 18, "losses": 39 },
+    "target": "0.0811"
+  },
+  {
+    "features": { "level": 11, "class": 1, "wins": 16, "losses": 16 },
+    "target": "0.0534"
+  },
+  {
+    "features": { "level": 12, "class": 1, "wins": 18, "losses": 16 },
+    "target": "0.1062"
+  },
+  {
+    "features": { "level": 11, "class": 2, "wins": 15, "losses": 18 },
+    "target": "0.0549"
+  },
+  {
+    "features": { "level": 18, "class": 2, "wins": 20, "losses": 39 },
+    "target": "0.1158"
+  },
+  {
+    "features": { "level": 7, "class": 1, "wins": 10, "losses": 10 },
+    "target": "0.0635"
+  },
+  {
+    "features": { "level": 21, "class": 1, "wins": 34, "losses": 27 },
+    "target": "0.1083"
+  },
+  {
+    "features": { "level": 14, "class": 0, "wins": 29, "losses": 8 },
+    "target": "0.0686"
+  },
+  {
+    "features": { "level": 23, "class": 1, "wins": 33, "losses": 37 },
+    "target": "0.1253"
+  },
+  {
+    "features": { "level": 16, "class": 1, "wins": 23, "losses": 27 },
+    "target": "0.1249"
+  },
+  {
+    "features": { "level": 17, "class": 2, "wins": 38, "losses": 5 },
+    "target": "0.0944"
+  },
+  {
+    "features": { "level": 15, "class": 1, "wins": 11, "losses": 39 },
+    "target": "0.0744"
+  },
+  {
+    "features": { "level": 16, "class": 2, "wins": 37, "losses": 1 },
+    "target": "0.1071"
+  },
+  {
+    "features": { "level": 20, "class": 1, "wins": 34, "losses": 22 },
+    "target": "0.1104"
+  },
+  {
+    "features": { "level": 10, "class": 0, "wins": 4, "losses": 33 },
+    "target": "0.0806"
+  },
+  {
+    "features": { "level": 21, "class": 0, "wins": 27, "losses": 38 },
+    "target": "0.1500"
+  },
+  {
+    "features": { "level": 16, "class": 2, "wins": 16, "losses": 38 },
+    "target": "0.1248"
+  },
+  {
+    "features": { "level": 7, "class": 0, "wins": 7, "losses": 14 },
+    "target": "0.0491"
+  },
+  {
+    "features": { "level": 11, "class": 0, "wins": 18, "losses": 12 },
+    "target": "0.0929"
+  },
+  {
+    "features": { "level": 21, "class": 2, "wins": 36, "losses": 25 },
+    "target": "0.1354"
+  },
+  {
+    "features": { "level": 25, "class": 2, "wins": 36, "losses": 40 },
+    "target": "0.1746"
+  },
+  {
+    "features": { "level": 12, "class": 0, "wins": 28, "losses": 2 },
+    "target": "0.0901"
+  },
+  {
+    "features": { "level": 5, "class": 2, "wins": 9, "losses": 5 },
+    "target": "0.0630"
+  },
+  {
+    "features": { "level": 6, "class": 0, "wins": 11, "losses": 5 },
+    "target": "0.0449"
+  },
+  {
+    "features": { "level": 7, "class": 0, "wins": 1, "losses": 26 },
+    "target": "0.0727"
+  },
+  {
+    "features": { "level": 23, "class": 2, "wins": 40, "losses": 25 },
+    "target": "0.1403"
+  },
+  {
+    "features": { "level": 10, "class": 1, "wins": 15, "losses": 15 },
+    "target": "0.0815"
+  },
+  {
+    "features": { "level": 15, "class": 0, "wins": 35, "losses": 1 },
+    "target": "0.0706"
+  },
+  {
+    "features": { "level": 13, "class": 1, "wins": 13, "losses": 29 },
+    "target": "0.0605"
+  },
+  {
+    "features": { "level": 4, "class": 1, "wins": 7, "losses": 2 },
+    "target": "0.0679"
+  },
+  {
+    "features": { "level": 23, "class": 0, "wins": 40, "losses": 24 },
+    "target": "0.1441"
+  },
+  {
+    "features": { "level": 15, "class": 1, "wins": 16, "losses": 33 },
+    "target": "0.1025"
+  },
+  {
+    "features": { "level": 24, "class": 1, "wins": 39, "losses": 30 },
+    "target": "0.1388"
+  },
+  {
+    "features": { "level": 13, "class": 0, "wins": 13, "losses": 29 },
+    "target": "0.1108"
+  },
+  {
+    "features": { "level": 11, "class": 2, "wins": 20, "losses": 10 },
+    "target": "0.0667"
+  },
+  {
+    "features": { "level": 19, "class": 2, "wins": 26, "losses": 34 },
+    "target": "0.1275"
+  },
+  {
+    "features": { "level": 9, "class": 2, "wins": 14, "losses": 10 },
+    "target": "0.0690"
+  },
+  {
+    "features": { "level": 10, "class": 2, "wins": 10, "losses": 23 },
+    "target": "0.0579"
+  },
+  {
+    "features": { "level": 9, "class": 1, "wins": 18, "losses": 7 },
+    "target": "0.0607"
+  },
+  {
+    "features": { "level": 9, "class": 1, "wins": 7, "losses": 21 },
+    "target": "0.0604"
+  },
+  {
+    "features": { "level": 14, "class": 1, "wins": 12, "losses": 34 },
+    "target": "0.1133"
+  },
+  {
+    "features": { "level": 15, "class": 1, "wins": 20, "losses": 24 },
+    "target": "0.0750"
+  },
+  {
+    "features": { "level": 15, "class": 2, "wins": 10, "losses": 41 },
+    "target": "0.0781"
+  },
+  {
+    "features": { "level": 14, "class": 2, "wins": 25, "losses": 15 },
+    "target": "0.1165"
+  },
+  {
+    "features": { "level": 12, "class": 0, "wins": 18, "losses": 18 },
+    "target": "0.0771"
+  },
+  {
+    "features": { "level": 19, "class": 2, "wins": 22, "losses": 40 },
+    "target": "0.1251"
+  },
+  {
+    "features": { "level": 8, "class": 2, "wins": 15, "losses": 7 },
+    "target": "0.0538"
+  },
+  {
+    "features": { "level": 3, "class": 0, "wins": 3, "losses": 6 },
+    "target": "0.0487"
+  },
+  {
+    "features": { "level": 23, "class": 0, "wins": 41, "losses": 24 },
+    "target": "0.1646"
+  },
+  {
+    "features": { "level": 5, "class": 1, "wins": 3, "losses": 15 },
+    "target": "0.0478"
+  },
+  {
+    "features": { "level": 10, "class": 1, "wins": 13, "losses": 18 },
+    "target": "0.0690"
+  },
+  {
+    "features": { "level": 10, "class": 1, "wins": 18, "losses": 9 },
+    "target": "0.0798"
+  },
+  {
+    "features": { "level": 20, "class": 1, "wins": 25, "losses": 38 },
+    "target": "0.1244"
+  },
+  {
+    "features": { "level": 6, "class": 1, "wins": 12, "losses": 2 },
+    "target": "0.0291"
+  },
+  {
+    "features": { "level": 25, "class": 1, "wins": 40, "losses": 34 },
+    "target": "0.1524"
+  },
+  {
+    "features": { "level": 16, "class": 1, "wins": 28, "losses": 17 },
+    "target": "0.1209"
+  },
+  {
+    "features": { "level": 10, "class": 1, "wins": 23, "losses": 0 },
+    "target": "0.0743"
+  },
+  {
+    "features": { "level": 7, "class": 2, "wins": 3, "losses": 22 },
+    "target": "0.0381"
+  },
+  {
+    "features": { "level": 3, "class": 1, "wins": 0, "losses": 9 },
+    "target": "0.0396"
+  },
+  {
+    "features": { "level": 14, "class": 1, "wins": 21, "losses": 21 },
+    "target": "0.0711"
+  },
+  {
+    "features": { "level": 15, "class": 1, "wins": 13, "losses": 39 },
+    "target": "0.1146"
+  },
+  {
+    "features": { "level": 12, "class": 1, "wins": 12, "losses": 28 },
+    "target": "0.0659"
+  },
+  {
+    "features": { "level": 22, "class": 2, "wins": 35, "losses": 29 },
+    "target": "0.1239"
+  },
+  {
+    "features": { "level": 13, "class": 0, "wins": 28, "losses": 4 },
+    "target": "0.1045"
+  },
+  {
+    "features": { "level": 14, "class": 0, "wins": 23, "losses": 19 },
+    "target": "0.1116"
+  },
+  {
+    "features": { "level": 14, "class": 1, "wins": 28, "losses": 8 },
+    "target": "0.0977"
+  },
+  {
+    "features": { "level": 19, "class": 0, "wins": 39, "losses": 10 },
+    "target": "0.1020"
+  },
+  {
+    "features": { "level": 9, "class": 0, "wins": 6, "losses": 23 },
+    "target": "0.0538"
+  },
+  {
+    "features": { "level": 12, "class": 2, "wins": 18, "losses": 16 },
+    "target": "0.0926"
+  },
+  {
+    "features": { "level": 15, "class": 0, "wins": 27, "losses": 15 },
+    "target": "0.0948"
+  },
+  {
+    "features": { "level": 18, "class": 0, "wins": 21, "losses": 35 },
+    "target": "0.1292"
+  },
+  {
+    "features": { "level": 2, "class": 1, "wins": 3, "losses": 2 },
+    "target": "0.0435"
+  },
+  {
+    "features": { "level": 15, "class": 1, "wins": 34, "losses": 4 },
+    "target": "0.1056"
+  },
+  {
+    "features": { "level": 15, "class": 1, "wins": 34, "losses": 3 },
+    "target": "0.1099"
+  },
+  {
+    "features": { "level": 25, "class": 2, "wins": 35, "losses": 40 },
+    "target": "0.1381"
+  },
+  {
+    "features": { "level": 19, "class": 1, "wins": 32, "losses": 22 },
+    "target": "0.1183"
+  },
+  {
+    "features": { "level": 16, "class": 1, "wins": 14, "losses": 39 },
+    "target": "0.0771"
+  },
+  {
+    "features": { "level": 10, "class": 0, "wins": 12, "losses": 19 },
+    "target": "0.0778"
+  },
+  {
+    "features": { "level": 20, "class": 2, "wins": 32, "losses": 25 },
+    "target": "0.1471"
+  },
+  {
+    "features": { "level": 16, "class": 1, "wins": 31, "losses": 12 },
+    "target": "0.1100"
+  },
+  {
+    "features": { "level": 4, "class": 0, "wins": 0, "losses": 14 },
+    "target": "0.0424"
+  },
+  {
+    "features": { "level": 6, "class": 2, "wins": 4, "losses": 14 },
+    "target": "0.0675"
+  },
+  {
+    "features": { "level": 1, "class": 2, "wins": 0, "losses": 1 },
+    "target": "0.0415"
+  },
+  {
+    "features": { "level": 10, "class": 2, "wins": 8, "losses": 26 },
+    "target": "0.0968"
+  },
+  {
+    "features": { "level": 11, "class": 1, "wins": 5, "losses": 34 },
+    "target": "0.1049"
+  },
+  {
+    "features": { "level": 19, "class": 0, "wins": 25, "losses": 35 },
+    "target": "0.1254"
+  },
+  {
+    "features": { "level": 15, "class": 2, "wins": 27, "losses": 16 },
     "target": "0.0740"
   },
   {
-    "features": { "level": 21, "class": 1, "wins": 35, "losses": 24 },
+    "features": { "level": 12, "class": 1, "wins": 12, "losses": 27 },
+    "target": "0.0717"
+  },
+  {
+    "features": { "level": 10, "class": 2, "wins": 10, "losses": 20 },
+    "target": "0.0648"
+  },
+  {
+    "features": { "level": 9, "class": 0, "wins": 8, "losses": 20 },
+    "target": "0.0818"
+  },
+  {
+    "features": { "level": 11, "class": 0, "wins": 26, "losses": 1 },
+    "target": "0.0536"
+  },
+  {
+    "features": { "level": 12, "class": 1, "wins": 6, "losses": 35 },
+    "target": "0.1003"
+  },
+  {
+    "features": { "level": 20, "class": 0, "wins": 29, "losses": 33 },
+    "target": "0.1123"
+  },
+  {
+    "features": { "level": 25, "class": 0, "wins": 38, "losses": 39 },
+    "target": "0.1644"
+  },
+  {
+    "features": { "level": 26, "class": 1, "wins": 40, "losses": 38 },
+    "target": "0.1713"
+  },
+  {
+    "features": { "level": 7, "class": 2, "wins": 15, "losses": 0 },
+    "target": "0.0334"
+  },
+  {
+    "features": { "level": 7, "class": 1, "wins": 2, "losses": 23 },
+    "target": "0.0363"
+  },
+  {
+    "features": { "level": 16, "class": 0, "wins": 23, "losses": 25 },
+    "target": "0.1113"
+  },
+  {
+    "features": { "level": 5, "class": 1, "wins": 9, "losses": 2 },
+    "target": "0.0688"
+  },
+  {
+    "features": { "level": 16, "class": 0, "wins": 36, "losses": 5 },
+    "target": "0.0967"
+  },
+  {
+    "features": { "level": 12, "class": 1, "wins": 9, "losses": 33 },
+    "target": "0.0983"
+  },
+  {
+    "features": { "level": 12, "class": 1, "wins": 16, "losses": 21 },
+    "target": "0.0851"
+  },
+  {
+    "features": { "level": 22, "class": 1, "wins": 29, "losses": 38 },
+    "target": "0.1463"
+  },
+  {
+    "features": { "level": 14, "class": 0, "wins": 20, "losses": 22 },
+    "target": "0.0826"
+  },
+  {
+    "features": { "level": 21, "class": 1, "wins": 33, "losses": 31 },
+    "target": "0.1210"
+  },
+  {
+    "features": { "level": 19, "class": 1, "wins": 37, "losses": 16 },
+    "target": "0.1411"
+  },
+  {
+    "features": { "level": 22, "class": 1, "wins": 34, "losses": 33 },
+    "target": "0.1420"
+  },
+  {
+    "features": { "level": 8, "class": 1, "wins": 18, "losses": 1 },
+    "target": "0.0362"
+  },
+  {
+    "features": { "level": 16, "class": 0, "wins": 13, "losses": 41 },
+    "target": "0.1198"
+  },
+  {
+    "features": { "level": 5, "class": 1, "wins": 4, "losses": 10 },
+    "target": "0.0652"
+  },
+  {
+    "features": { "level": 18, "class": 2, "wins": 32, "losses": 18 },
+    "target": "0.1051"
+  },
+  {
+    "features": { "level": 12, "class": 2, "wins": 18, "losses": 17 },
+    "target": "0.0842"
+  },
+  {
+    "features": { "level": 16, "class": 2, "wins": 29, "losses": 17 },
+    "target": "0.1127"
+  },
+  {
+    "features": { "level": 14, "class": 1, "wins": 15, "losses": 29 },
+    "target": "0.0951"
+  },
+  {
+    "features": { "level": 18, "class": 0, "wins": 20, "losses": 37 },
+    "target": "0.1210"
+  },
+  {
+    "features": { "level": 16, "class": 1, "wins": 25, "losses": 23 },
+    "target": "0.1147"
+  },
+  {
+    "features": { "level": 18, "class": 1, "wins": 25, "losses": 29 },
+    "target": "0.1105"
+  },
+  {
+    "features": { "level": 13, "class": 1, "wins": 14, "losses": 26 },
+    "target": "0.1137"
+  },
+  {
+    "features": { "level": 14, "class": 2, "wins": 13, "losses": 35 },
+    "target": "0.1027"
+  },
+  {
+    "features": { "level": 19, "class": 0, "wins": 35, "losses": 17 },
+    "target": "0.1360"
+  },
+  {
+    "features": { "level": 5, "class": 0, "wins": 9, "losses": 2 },
+    "target": "0.0555"
+  },
+  {
+    "features": { "level": 15, "class": 0, "wins": 24, "losses": 18 },
+    "target": "0.0768"
+  },
+  {
+    "features": { "level": 18, "class": 0, "wins": 34, "losses": 15 },
+    "target": "0.0932"
+  },
+  {
+    "features": { "level": 2, "class": 1, "wins": 2, "losses": 2 },
+    "target": "0.0516"
+  },
+  {
+    "features": { "level": 19, "class": 0, "wins": 24, "losses": 37 },
+    "target": "0.1218"
+  },
+  {
+    "features": { "level": 10, "class": 0, "wins": 11, "losses": 20 },
+    "target": "0.0635"
+  },
+  {
+    "features": { "level": 8, "class": 1, "wins": 0, "losses": 31 },
+    "target": "0.0519"
+  },
+  {
+    "features": { "level": 19, "class": 2, "wins": 24, "losses": 35 },
+    "target": "0.1441"
+  },
+  {
+    "features": { "level": 14, "class": 2, "wins": 14, "losses": 33 },
+    "target": "0.0700"
+  },
+  {
+    "features": { "level": 12, "class": 0, "wins": 3, "losses": 41 },
+    "target": "0.1063"
+  },
+  {
+    "features": { "level": 12, "class": 0, "wins": 21, "losses": 11 },
+    "target": "0.0914"
+  },
+  {
+    "features": { "level": 17, "class": 1, "wins": 32, "losses": 15 },
+    "target": "0.0879"
+  },
+  {
+    "features": { "level": 2, "class": 1, "wins": 3, "losses": 3 },
+    "target": "0.0330"
+  },
+  {
+    "features": { "level": 22, "class": 2, "wins": 31, "losses": 35 },
+    "target": "0.1219"
+  },
+  {
+    "features": { "level": 4, "class": 0, "wins": 3, "losses": 10 },
+    "target": "0.0522"
+  },
+  {
+    "features": { "level": 19, "class": 1, "wins": 24, "losses": 34 },
+    "target": "0.0963"
+  },
+  {
+    "features": { "level": 10, "class": 2, "wins": 10, "losses": 23 },
+    "target": "0.0804"
+  },
+  {
+    "features": { "level": 9, "class": 1, "wins": 8, "losses": 22 },
+    "target": "0.0579"
+  },
+  {
+    "features": { "level": 21, "class": 2, "wins": 30, "losses": 35 },
+    "target": "0.1502"
+  },
+  {
+    "features": { "level": 11, "class": 0, "wins": 24, "losses": 5 },
+    "target": "0.0563"
+  },
+  {
+    "features": { "level": 20, "class": 0, "wins": 31, "losses": 28 },
+    "target": "0.1160"
+  },
+  {
+    "features": { "level": 20, "class": 1, "wins": 35, "losses": 22 },
+    "target": "0.1252"
+  },
+  {
+    "features": { "level": 16, "class": 0, "wins": 21, "losses": 28 },
+    "target": "0.0839"
+  },
+  {
+    "features": { "level": 7, "class": 1, "wins": 5, "losses": 16 },
+    "target": "0.0652"
+  },
+  {
+    "features": { "level": 16, "class": 0, "wins": 30, "losses": 14 },
+    "target": "0.1104"
+  },
+  {
+    "features": { "level": 12, "class": 1, "wins": 23, "losses": 9 },
+    "target": "0.0886"
+  },
+  {
+    "features": { "level": 12, "class": 1, "wins": 25, "losses": 5 },
+    "target": "0.0763"
+  },
+  {
+    "features": { "level": 18, "class": 1, "wins": 35, "losses": 14 },
+    "target": "0.1108"
+  },
+  {
+    "features": { "level": 25, "class": 2, "wins": 37, "losses": 38 },
+    "target": "0.1740"
+  },
+  {
+    "features": { "level": 14, "class": 2, "wins": 29, "losses": 9 },
+    "target": "0.1051"
+  },
+  {
+    "features": { "level": 13, "class": 0, "wins": 18, "losses": 20 },
+    "target": "0.1024"
+  },
+  {
+    "features": { "level": 15, "class": 2, "wins": 24, "losses": 19 },
+    "target": "0.1147"
+  },
+  {
+    "features": { "level": 11, "class": 0, "wins": 26, "losses": 1 },
+    "target": "0.0964"
+  },
+  {
+    "features": { "level": 8, "class": 1, "wins": 11, "losses": 11 },
+    "target": "0.0707"
+  },
+  {
+    "features": { "level": 13, "class": 0, "wins": 31, "losses": 0 },
+    "target": "0.0635"
+  },
+  {
+    "features": { "level": 14, "class": 0, "wins": 27, "losses": 10 },
+    "target": "0.1139"
+  },
+  {
+    "features": { "level": 11, "class": 2, "wins": 11, "losses": 23 },
+    "target": "0.0880"
+  },
+  {
+    "features": { "level": 19, "class": 2, "wins": 37, "losses": 13 },
+    "target": "0.1335"
+  },
+  {
+    "features": { "level": 14, "class": 1, "wins": 17, "losses": 26 },
+    "target": "0.1054"
+  },
+  {
+    "features": { "level": 5, "class": 1, "wins": 1, "losses": 17 },
+    "target": "0.0447"
+  },
+  {
+    "features": { "level": 12, "class": 0, "wins": 24, "losses": 9 },
+    "target": "0.0753"
+  },
+  {
+    "features": { "level": 21, "class": 0, "wins": 26, "losses": 39 },
+    "target": "0.1447"
+  },
+  {
+    "features": { "level": 22, "class": 2, "wins": 35, "losses": 29 },
+    "target": "0.1099"
+  },
+  {
+    "features": { "level": 25, "class": 1, "wins": 35, "losses": 41 },
+    "target": "0.1360"
+  },
+  {
+    "features": { "level": 17, "class": 0, "wins": 28, "losses": 21 },
+    "target": "0.1241"
+  },
+  {
+    "features": { "level": 4, "class": 2, "wins": 1, "losses": 12 },
+    "target": "0.0470"
+  },
+  {
+    "features": { "level": 4, "class": 0, "wins": 0, "losses": 15 },
+    "target": "0.0487"
+  },
+  {
+    "features": { "level": 17, "class": 0, "wins": 27, "losses": 21 },
+    "target": "0.1251"
+  },
+  {
+    "features": { "level": 21, "class": 0, "wins": 28, "losses": 38 },
+    "target": "0.1346"
+  },
+  {
+    "features": { "level": 14, "class": 0, "wins": 22, "losses": 20 },
+    "target": "0.0751"
+  },
+  {
+    "features": { "level": 7, "class": 0, "wins": 7, "losses": 16 },
+    "target": "0.0822"
+  },
+  {
+    "features": { "level": 12, "class": 0, "wins": 12, "losses": 27 },
+    "target": "0.0725"
+  },
+  {
+    "features": { "level": 15, "class": 1, "wins": 24, "losses": 21 },
+    "target": "0.0731"
+  },
+  {
+    "features": { "level": 21, "class": 1, "wins": 29, "losses": 37 },
+    "target": "0.1304"
+  },
+  {
+    "features": { "level": 17, "class": 0, "wins": 39, "losses": 3 },
+    "target": "0.0949"
+  },
+  {
+    "features": { "level": 14, "class": 1, "wins": 33, "losses": 3 },
+    "target": "0.1105"
+  },
+  {
+    "features": { "level": 20, "class": 1, "wins": 33, "losses": 25 },
+    "target": "0.1488"
+  },
+  {
+    "features": { "level": 16, "class": 0, "wins": 14, "losses": 40 },
+    "target": "0.1211"
+  },
+  {
+    "features": { "level": 20, "class": 1, "wins": 24, "losses": 39 },
+    "target": "0.1270"
+  },
+  {
+    "features": { "level": 9, "class": 0, "wins": 17, "losses": 8 },
+    "target": "0.0937"
+  },
+  {
+    "features": { "level": 27, "class": 0, "wins": 41, "losses": 40 },
+    "target": "0.1500"
+  },
+  {
+    "features": { "level": 6, "class": 0, "wins": 5, "losses": 12 },
+    "target": "0.0705"
+  },
+  {
+    "features": { "level": 25, "class": 2, "wins": 38, "losses": 39 },
+    "target": "0.1371"
+  },
+  {
+    "features": { "level": 21, "class": 1, "wins": 31, "losses": 31 },
+    "target": "0.1315"
+  },
+  {
+    "features": { "level": 16, "class": 1, "wins": 21, "losses": 27 },
+    "target": "0.0858"
+  },
+  {
+    "features": { "level": 18, "class": 0, "wins": 37, "losses": 11 },
+    "target": "0.1206"
+  },
+  {
+    "features": { "level": 8, "class": 1, "wins": 7, "losses": 20 },
+    "target": "0.0355"
+  },
+  {
+    "features": { "level": 9, "class": 1, "wins": 4, "losses": 29 },
+    "target": "0.0880"
+  },
+  {
+    "features": { "level": 16, "class": 1, "wins": 17, "losses": 36 },
+    "target": "0.0841"
+  },
+  {
+    "features": { "level": 4, "class": 0, "wins": 1, "losses": 14 },
+    "target": "0.0606"
+  },
+  {
+    "features": { "level": 19, "class": 0, "wins": 30, "losses": 25 },
+    "target": "0.1202"
+  },
+  {
+    "features": { "level": 13, "class": 1, "wins": 6, "losses": 39 },
+    "target": "0.0640"
+  },
+  {
+    "features": { "level": 8, "class": 1, "wins": 5, "losses": 20 },
+    "target": "0.0472"
+  },
+  {
+    "features": { "level": 18, "class": 2, "wins": 37, "losses": 10 },
+    "target": "0.1299"
+  },
+  {
+    "features": { "level": 18, "class": 1, "wins": 22, "losses": 34 },
+    "target": "0.1115"
+  },
+  {
+    "features": { "level": 11, "class": 0, "wins": 1, "losses": 41 },
+    "target": "0.0993"
+  },
+  {
+    "features": { "level": 15, "class": 1, "wins": 13, "losses": 36 },
+    "target": "0.0996"
+  },
+  {
+    "features": { "level": 14, "class": 2, "wins": 26, "losses": 11 },
+    "target": "0.0927"
+  },
+  {
+    "features": { "level": 4, "class": 1, "wins": 7, "losses": 4 },
+    "target": "0.0426"
+  },
+  {
+    "features": { "level": 17, "class": 0, "wins": 36, "losses": 8 },
+    "target": "0.1153"
+  },
+  {
+    "features": { "level": 11, "class": 0, "wins": 25, "losses": 1 },
+    "target": "0.0955"
+  },
+  {
+    "features": { "level": 11, "class": 0, "wins": 7, "losses": 31 },
+    "target": "0.0527"
+  },
+  {
+    "features": { "level": 13, "class": 2, "wins": 18, "losses": 23 },
+    "target": "0.0831"
+  },
+  {
+    "features": { "level": 8, "class": 1, "wins": 5, "losses": 22 },
+    "target": "0.0691"
+  },
+  {
+    "features": { "level": 16, "class": 2, "wins": 18, "losses": 35 },
+    "target": "0.0966"
+  },
+  {
+    "features": { "level": 13, "class": 2, "wins": 16, "losses": 24 },
+    "target": "0.0698"
+  },
+  {
+    "features": { "level": 10, "class": 2, "wins": 3, "losses": 35 },
+    "target": "0.0808"
+  },
+  {
+    "features": { "level": 14, "class": 0, "wins": 8, "losses": 40 },
+    "target": "0.1163"
+  },
+  {
+    "features": { "level": 26, "class": 1, "wins": 41, "losses": 35 },
+    "target": "0.1774"
+  },
+  {
+    "features": { "level": 18, "class": 2, "wins": 27, "losses": 27 },
+    "target": "0.1202"
+  },
+  {
+    "features": { "level": 12, "class": 1, "wins": 21, "losses": 12 },
+    "target": "0.1065"
+  },
+  {
+    "features": { "level": 18, "class": 0, "wins": 25, "losses": 30 },
+    "target": "0.1054"
+  },
+  {
+    "features": { "level": 16, "class": 0, "wins": 38, "losses": 1 },
+    "target": "0.1122"
+  },
+  {
+    "features": { "level": 17, "class": 2, "wins": 23, "losses": 28 },
+    "target": "0.1196"
+  },
+  {
+    "features": { "level": 21, "class": 1, "wins": 41, "losses": 15 },
+    "target": "0.1007"
+  },
+  {
+    "features": { "level": 11, "class": 1, "wins": 24, "losses": 3 },
+    "target": "0.1002"
+  },
+  {
+    "features": { "level": 22, "class": 0, "wins": 34, "losses": 30 },
+    "target": "0.1085"
+  },
+  {
+    "features": { "level": 21, "class": 1, "wins": 29, "losses": 34 },
+    "target": "0.1077"
+  },
+  {
+    "features": { "level": 6, "class": 0, "wins": 7, "losses": 9 },
+    "target": "0.0692"
+  },
+  {
+    "features": { "level": 17, "class": 1, "wins": 37, "losses": 8 },
+    "target": "0.1345"
+  },
+  {
+    "features": { "level": 24, "class": 2, "wins": 36, "losses": 36 },
+    "target": "0.1210"
+  },
+  {
+    "features": { "level": 13, "class": 1, "wins": 25, "losses": 9 },
+    "target": "0.0757"
+  },
+  {
+    "features": { "level": 2, "class": 1, "wins": 1, "losses": 6 },
+    "target": "0.0436"
+  },
+  {
+    "features": { "level": 17, "class": 2, "wins": 17, "losses": 39 },
+    "target": "0.1035"
+  },
+  {
+    "features": { "level": 13, "class": 2, "wins": 5, "losses": 41 },
+    "target": "0.0830"
+  },
+  {
+    "features": { "level": 9, "class": 0, "wins": 5, "losses": 26 },
+    "target": "0.0647"
+  },
+  {
+    "features": { "level": 10, "class": 0, "wins": 14, "losses": 17 },
+    "target": "0.0476"
+  },
+  {
+    "features": { "level": 15, "class": 2, "wins": 10, "losses": 41 },
+    "target": "0.0844"
+  },
+  {
+    "features": { "level": 7, "class": 0, "wins": 9, "losses": 12 },
+    "target": "0.0538"
+  },
+  {
+    "features": { "level": 8, "class": 2, "wins": 17, "losses": 2 },
+    "target": "0.0714"
+  },
+  {
+    "features": { "level": 14, "class": 0, "wins": 19, "losses": 22 },
+    "target": "0.1155"
+  },
+  {
+    "features": { "level": 22, "class": 0, "wins": 30, "losses": 37 },
+    "target": "0.1085"
+  },
+  {
+    "features": { "level": 7, "class": 1, "wins": 9, "losses": 11 },
+    "target": "0.0538"
+  },
+  {
+    "features": { "level": 18, "class": 0, "wins": 30, "losses": 21 },
+    "target": "0.1173"
+  },
+  {
+    "features": { "level": 12, "class": 0, "wins": 15, "losses": 21 },
+    "target": "0.0763"
+  },
+  {
+    "features": { "level": 14, "class": 2, "wins": 29, "losses": 9 },
+    "target": "0.0674"
+  },
+  {
+    "features": { "level": 18, "class": 0, "wins": 25, "losses": 31 },
+    "target": "0.0976"
+  },
+  {
+    "features": { "level": 8, "class": 2, "wins": 15, "losses": 6 },
+    "target": "0.0490"
+  },
+  {
+    "features": { "level": 19, "class": 1, "wins": 39, "losses": 11 },
+    "target": "0.1183"
+  },
+  {
+    "features": { "level": 23, "class": 2, "wins": 34, "losses": 37 },
+    "target": "0.1561"
+  },
+  {
+    "features": { "level": 25, "class": 1, "wins": 41, "losses": 33 },
+    "target": "0.1710"
+  },
+  {
+    "features": { "level": 10, "class": 1, "wins": 10, "losses": 23 },
+    "target": "0.0700"
+  },
+  {
+    "features": { "level": 27, "class": 0, "wins": 40, "losses": 40 },
+    "target": "0.1416"
+  },
+  {
+    "features": { "level": 2, "class": 0, "wins": 1, "losses": 6 },
+    "target": "0.0203"
+  },
+  {
+    "features": { "level": 13, "class": 0, "wins": 23, "losses": 14 },
+    "target": "0.0760"
+  },
+  {
+    "features": { "level": 15, "class": 0, "wins": 35, "losses": 3 },
+    "target": "0.0999"
+  },
+  {
+    "features": { "level": 18, "class": 1, "wins": 26, "losses": 29 },
+    "target": "0.1314"
+  },
+  {
+    "features": { "level": 12, "class": 0, "wins": 17, "losses": 18 },
+    "target": "0.1047"
+  },
+  {
+    "features": { "level": 27, "class": 0, "wins": 41, "losses": 41 },
+    "target": "0.1842"
+  },
+  {
+    "features": { "level": 15, "class": 1, "wins": 32, "losses": 7 },
+    "target": "0.1166"
+  },
+  {
+    "features": { "level": 23, "class": 1, "wins": 40, "losses": 26 },
+    "target": "0.1491"
+  },
+  {
+    "features": { "level": 4, "class": 2, "wins": 6, "losses": 4 },
+    "target": "0.0316"
+  },
+  {
+    "features": { "level": 22, "class": 0, "wins": 41, "losses": 19 },
+    "target": "0.1440"
+  },
+  {
+    "features": { "level": 20, "class": 2, "wins": 32, "losses": 26 },
+    "target": "0.1178"
+  },
+  {
+    "features": { "level": 23, "class": 2, "wins": 31, "losses": 40 },
+    "target": "0.1164"
+  },
+  {
+    "features": { "level": 8, "class": 1, "wins": 9, "losses": 15 },
+    "target": "0.0466"
+  },
+  {
+    "features": { "level": 6, "class": 2, "wins": 2, "losses": 18 },
+    "target": "0.0742"
+  },
+  {
+    "features": { "level": 9, "class": 1, "wins": 6, "losses": 25 },
+    "target": "0.0727"
+  },
+  {
+    "features": { "level": 20, "class": 0, "wins": 30, "losses": 28 },
+    "target": "0.1448"
+  },
+  {
+    "features": { "level": 7, "class": 2, "wins": 14, "losses": 3 },
+    "target": "0.0838"
+  },
+  {
+    "features": { "level": 17, "class": 2, "wins": 15, "losses": 41 },
+    "target": "0.0831"
+  },
+  {
+    "features": { "level": 22, "class": 0, "wins": 36, "losses": 29 },
+    "target": "0.1565"
+  },
+  {
+    "features": { "level": 20, "class": 0, "wins": 32, "losses": 26 },
+    "target": "0.1018"
+  },
+  {
+    "features": { "level": 17, "class": 1, "wins": 15, "losses": 41 },
+    "target": "0.0907"
+  },
+  {
+    "features": { "level": 18, "class": 2, "wins": 26, "losses": 30 },
+    "target": "0.0921"
+  },
+  {
+    "features": { "level": 14, "class": 0, "wins": 23, "losses": 18 },
+    "target": "0.1058"
+  },
+  {
+    "features": { "level": 8, "class": 1, "wins": 9, "losses": 17 },
+    "target": "0.0498"
+  },
+  {
+    "features": { "level": 24, "class": 0, "wins": 33, "losses": 41 },
+    "target": "0.1388"
+  },
+  {
+    "features": { "level": 11, "class": 0, "wins": 23, "losses": 7 },
+    "target": "0.0953"
+  },
+  {
+    "features": { "level": 13, "class": 0, "wins": 5, "losses": 41 },
+    "target": "0.1145"
+  },
+  {
+    "features": { "level": 26, "class": 1, "wins": 39, "losses": 39 },
+    "target": "0.1537"
+  },
+  {
+    "features": { "level": 7, "class": 2, "wins": 5, "losses": 19 },
+    "target": "0.0765"
+  },
+  {
+    "features": { "level": 12, "class": 2, "wins": 23, "losses": 8 },
+    "target": "0.0585"
+  },
+  {
+    "features": { "level": 11, "class": 0, "wins": 5, "losses": 33 },
+    "target": "0.0783"
+  },
+  {
+    "features": { "level": 8, "class": 2, "wins": 5, "losses": 21 },
+    "target": "0.0517"
+  },
+  {
+    "features": { "level": 16, "class": 2, "wins": 27, "losses": 20 },
+    "target": "0.0910"
+  },
+  {
+    "features": { "level": 21, "class": 1, "wins": 34, "losses": 29 },
+    "target": "0.1408"
+  },
+  {
+    "features": { "level": 10, "class": 1, "wins": 10, "losses": 21 },
+    "target": "0.0978"
+  },
+  {
+    "features": { "level": 10, "class": 0, "wins": 0, "losses": 39 },
+    "target": "0.0853"
+  },
+  {
+    "features": { "level": 22, "class": 1, "wins": 31, "losses": 36 },
+    "target": "0.1490"
+  },
+  {
+    "features": { "level": 14, "class": 1, "wins": 11, "losses": 37 },
+    "target": "0.1028"
+  },
+  {
+    "features": { "level": 5, "class": 2, "wins": 1, "losses": 15 },
+    "target": "0.0401"
+  },
+  {
+    "features": { "level": 14, "class": 0, "wins": 18, "losses": 24 },
+    "target": "0.0669"
+  },
+  {
+    "features": { "level": 18, "class": 1, "wins": 39, "losses": 9 },
     "target": "0.1242"
   },
   {
-    "features": { "level": 18, "class": 1, "wins": 24, "losses": 33 },
-    "target": "0.1391"
+    "features": { "level": 17, "class": 2, "wins": 27, "losses": 22 },
+    "target": "0.0888"
+  },
+  {
+    "features": { "level": 6, "class": 1, "wins": 9, "losses": 6 },
+    "target": "0.0283"
+  },
+  {
+    "features": { "level": 13, "class": 0, "wins": 29, "losses": 3 },
+    "target": "0.0686"
+  },
+  {
+    "features": { "level": 16, "class": 1, "wins": 21, "losses": 30 },
+    "target": "0.1142"
+  },
+  {
+    "features": { "level": 10, "class": 1, "wins": 1, "losses": 38 },
+    "target": "0.0624"
+  },
+  {
+    "features": { "level": 11, "class": 2, "wins": 13, "losses": 22 },
+    "target": "0.0911"
+  },
+  {
+    "features": { "level": 10, "class": 0, "wins": 2, "losses": 35 },
+    "target": "0.0712"
+  },
+  {
+    "features": { "level": 17, "class": 2, "wins": 37, "losses": 5 },
+    "target": "0.1257"
+  },
+  {
+    "features": { "level": 15, "class": 0, "wins": 33, "losses": 4 },
+    "target": "0.0759"
+  },
+  {
+    "features": { "level": 10, "class": 0, "wins": 7, "losses": 25 },
+    "target": "0.0634"
+  },
+  {
+    "features": { "level": 4, "class": 1, "wins": 7, "losses": 1 },
+    "target": "0.0253"
+  },
+  {
+    "features": { "level": 16, "class": 2, "wins": 26, "losses": 19 },
+    "target": "0.1115"
+  },
+  {
+    "features": { "level": 20, "class": 0, "wins": 34, "losses": 25 },
+    "target": "0.1191"
+  },
+  {
+    "features": { "level": 14, "class": 2, "wins": 23, "losses": 18 },
+    "target": "0.0835"
+  },
+  {
+    "features": { "level": 20, "class": 1, "wins": 23, "losses": 40 },
+    "target": "0.1004"
+  },
+  {
+    "features": { "level": 21, "class": 1, "wins": 25, "losses": 40 },
+    "target": "0.1351"
+  },
+  {
+    "features": { "level": 21, "class": 0, "wins": 34, "losses": 29 },
+    "target": "0.1105"
+  },
+  {
+    "features": { "level": 12, "class": 0, "wins": 22, "losses": 12 },
+    "target": "0.1076"
+  },
+  {
+    "features": { "level": 6, "class": 2, "wins": 13, "losses": 1 },
+    "target": "0.0597"
+  },
+  {
+    "features": { "level": 14, "class": 0, "wins": 9, "losses": 38 },
+    "target": "0.0718"
+  },
+  {
+    "features": { "level": 17, "class": 1, "wins": 22, "losses": 29 },
+    "target": "0.0884"
+  },
+  {
+    "features": { "level": 9, "class": 2, "wins": 18, "losses": 5 },
+    "target": "0.0652"
+  },
+  {
+    "features": { "level": 8, "class": 2, "wins": 17, "losses": 3 },
+    "target": "0.0619"
+  },
+  {
+    "features": { "level": 10, "class": 0, "wins": 0, "losses": 36 },
+    "target": "0.0931"
+  },
+  {
+    "features": { "level": 10, "class": 0, "wins": 5, "losses": 28 },
+    "target": "0.0478"
+  },
+  {
+    "features": { "level": 10, "class": 1, "wins": 15, "losses": 15 },
+    "target": "0.0553"
+  },
+  {
+    "features": { "level": 20, "class": 0, "wins": 23, "losses": 41 },
+    "target": "0.1185"
+  },
+  {
+    "features": { "level": 13, "class": 2, "wins": 24, "losses": 13 },
+    "target": "0.0729"
+  },
+  {
+    "features": { "level": 22, "class": 0, "wins": 34, "losses": 33 },
+    "target": "0.1296"
+  },
+  {
+    "features": { "level": 2, "class": 1, "wins": 1, "losses": 4 },
+    "target": "0.0333"
+  },
+  {
+    "features": { "level": 19, "class": 0, "wins": 29, "losses": 28 },
+    "target": "0.1387"
+  },
+  {
+    "features": { "level": 18, "class": 0, "wins": 32, "losses": 20 },
+    "target": "0.0956"
+  },
+  {
+    "features": { "level": 11, "class": 0, "wins": 15, "losses": 17 },
+    "target": "0.0879"
+  },
+  {
+    "features": { "level": 11, "class": 0, "wins": 4, "losses": 37 },
+    "target": "0.0887"
+  },
+  {
+    "features": { "level": 9, "class": 1, "wins": 1, "losses": 31 },
+    "target": "0.0605"
+  },
+  {
+    "features": { "level": 15, "class": 0, "wins": 18, "losses": 31 },
+    "target": "0.1218"
+  },
+  {
+    "features": { "level": 15, "class": 0, "wins": 17, "losses": 31 },
+    "target": "0.1195"
+  },
+  {
+    "features": { "level": 23, "class": 2, "wins": 41, "losses": 24 },
+    "target": "0.1585"
   },
   {
     "features": { "level": 11, "class": 1, "wins": 13, "losses": 22 },
-    "target": "0.1048"
+    "target": "0.1021"
   },
   {
-    "features": { "level": 1, "class": 1, "wins": 0, "losses": 0 },
-    "target": "0.01575"
+    "features": { "level": 14, "class": 2, "wins": 31, "losses": 4 },
+    "target": "0.1046"
+  },
+  {
+    "features": { "level": 22, "class": 0, "wins": 39, "losses": 23 },
+    "target": "0.1306"
+  },
+  {
+    "features": { "level": 17, "class": 0, "wins": 23, "losses": 30 },
+    "target": "0.1267"
+  },
+  {
+    "features": { "level": 10, "class": 2, "wins": 6, "losses": 27 },
+    "target": "0.0643"
+  },
+  {
+    "features": { "level": 18, "class": 0, "wins": 41, "losses": 4 },
+    "target": "0.1295"
+  },
+  {
+    "features": { "level": 11, "class": 0, "wins": 16, "losses": 17 },
+    "target": "0.0728"
+  },
+  {
+    "features": { "level": 11, "class": 1, "wins": 4, "losses": 35 },
+    "target": "0.0511"
+  },
+  {
+    "features": { "level": 11, "class": 0, "wins": 21, "losses": 7 },
+    "target": "0.0883"
+  },
+  {
+    "features": { "level": 10, "class": 0, "wins": 7, "losses": 28 },
+    "target": "0.0553"
+  },
+  {
+    "features": { "level": 12, "class": 2, "wins": 5, "losses": 38 },
+    "target": "0.1054"
+  },
+  {
+    "features": { "level": 19, "class": 2, "wins": 28, "losses": 29 },
+    "target": "0.1121"
+  },
+  {
+    "features": { "level": 7, "class": 2, "wins": 6, "losses": 18 },
+    "target": "0.0624"
+  },
+  {
+    "features": { "level": 13, "class": 1, "wins": 13, "losses": 28 },
+    "target": "0.0703"
+  },
+  {
+    "features": { "level": 24, "class": 1, "wins": 39, "losses": 33 },
+    "target": "0.1607"
+  },
+  {
+    "features": { "level": 10, "class": 0, "wins": 8, "losses": 26 },
+    "target": "0.0952"
+  },
+  {
+    "features": { "level": 20, "class": 2, "wins": 36, "losses": 21 },
+    "target": "0.1440"
+  },
+  {
+    "features": { "level": 18, "class": 0, "wins": 31, "losses": 20 },
+    "target": "0.1287"
+  },
+  {
+    "features": { "level": 19, "class": 0, "wins": 21, "losses": 41 },
+    "target": "0.1395"
+  },
+  {
+    "features": { "level": 14, "class": 1, "wins": 28, "losses": 11 },
+    "target": "0.0855"
+  },
+  {
+    "features": { "level": 13, "class": 1, "wins": 12, "losses": 29 },
+    "target": "0.0975"
+  },
+  {
+    "features": { "level": 16, "class": 0, "wins": 22, "losses": 26 },
+    "target": "0.0849"
+  },
+  {
+    "features": { "level": 7, "class": 2, "wins": 6, "losses": 17 },
+    "target": "0.0404"
+  },
+  {
+    "features": { "level": 26, "class": 1, "wins": 37, "losses": 41 },
+    "target": "0.1450"
+  },
+  {
+    "features": { "level": 14, "class": 0, "wins": 16, "losses": 30 },
+    "target": "0.0987"
+  },
+  {
+    "features": { "level": 17, "class": 0, "wins": 41, "losses": 2 },
+    "target": "0.1045"
+  },
+  {
+    "features": { "level": 3, "class": 0, "wins": 2, "losses": 5 },
+    "target": "0.0557"
+  },
+  {
+    "features": { "level": 6, "class": 2, "wins": 4, "losses": 17 },
+    "target": "0.0389"
+  },
+  {
+    "features": { "level": 11, "class": 0, "wins": 25, "losses": 3 },
+    "target": "0.0528"
+  },
+  {
+    "features": { "level": 15, "class": 2, "wins": 10, "losses": 40 },
+    "target": "0.0750"
+  },
+  {
+    "features": { "level": 14, "class": 0, "wins": 26, "losses": 14 },
+    "target": "0.0859"
+  },
+  {
+    "features": { "level": 16, "class": 0, "wins": 29, "losses": 17 },
+    "target": "0.0847"
+  },
+  {
+    "features": { "level": 13, "class": 2, "wins": 29, "losses": 2 },
+    "target": "0.0774"
+  },
+  {
+    "features": { "level": 23, "class": 0, "wins": 40, "losses": 27 },
+    "target": "0.1188"
+  },
+  {
+    "features": { "level": 9, "class": 2, "wins": 21, "losses": 0 },
+    "target": "0.0569"
+  },
+  {
+    "features": { "level": 17, "class": 0, "wins": 40, "losses": 1 },
+    "target": "0.1076"
+  },
+  {
+    "features": { "level": 10, "class": 2, "wins": 20, "losses": 5 },
+    "target": "0.0653"
+  },
+  {
+    "features": { "level": 12, "class": 2, "wins": 26, "losses": 5 },
+    "target": "0.0663"
+  },
+  {
+    "features": { "level": 19, "class": 1, "wins": 28, "losses": 29 },
+    "target": "0.1168"
+  },
+  {
+    "features": { "level": 14, "class": 1, "wins": 25, "losses": 13 },
+    "target": "0.0824"
+  },
+  {
+    "features": { "level": 7, "class": 0, "wins": 12, "losses": 7 },
+    "target": "0.0383"
+  },
+  {
+    "features": { "level": 6, "class": 2, "wins": 14, "losses": 1 },
+    "target": "0.0710"
+  },
+  {
+    "features": { "level": 10, "class": 1, "wins": 18, "losses": 9 },
+    "target": "0.0645"
+  },
+  {
+    "features": { "level": 4, "class": 1, "wins": 8, "losses": 0 },
+    "target": "0.0543"
+  },
+  {
+    "features": { "level": 26, "class": 0, "wins": 39, "losses": 41 },
+    "target": "0.1319"
+  },
+  {
+    "features": { "level": 10, "class": 1, "wins": 3, "losses": 33 },
+    "target": "0.0569"
+  },
+  {
+    "features": { "level": 21, "class": 0, "wins": 38, "losses": 21 },
+    "target": "0.1476"
+  },
+  {
+    "features": { "level": 10, "class": 2, "wins": 15, "losses": 15 },
+    "target": "0.0528"
+  },
+  {
+    "features": { "level": 10, "class": 0, "wins": 8, "losses": 24 },
+    "target": "0.0465"
+  },
+  {
+    "features": { "level": 21, "class": 0, "wins": 31, "losses": 32 },
+    "target": "0.1437"
+  },
+  {
+    "features": { "level": 20, "class": 1, "wins": 28, "losses": 34 },
+    "target": "0.1222"
+  },
+  {
+    "features": { "level": 6, "class": 2, "wins": 12, "losses": 2 },
+    "target": "0.0328"
+  },
+  {
+    "features": { "level": 14, "class": 2, "wins": 9, "losses": 40 },
+    "target": "0.0912"
+  },
+  {
+    "features": { "level": 17, "class": 0, "wins": 22, "losses": 30 },
+    "target": "0.1024"
+  },
+  {
+    "features": { "level": 12, "class": 1, "wins": 10, "losses": 29 },
+    "target": "0.0743"
+  },
+  {
+    "features": { "level": 13, "class": 1, "wins": 10, "losses": 32 },
+    "target": "0.0805"
+  },
+  {
+    "features": { "level": 26, "class": 2, "wins": 40, "losses": 36 },
+    "target": "0.1656"
+  },
+  {
+    "features": { "level": 13, "class": 2, "wins": 21, "losses": 16 },
+    "target": "0.1131"
+  },
+  {
+    "features": { "level": 19, "class": 0, "wins": 31, "losses": 26 },
+    "target": "0.1002"
+  },
+  {
+    "features": { "level": 23, "class": 0, "wins": 35, "losses": 33 },
+    "target": "0.1355"
+  },
+  {
+    "features": { "level": 24, "class": 1, "wins": 36, "losses": 38 },
+    "target": "0.1611"
+  },
+  {
+    "features": { "level": 11, "class": 0, "wins": 9, "losses": 29 },
+    "target": "0.0650"
+  },
+  {
+    "features": { "level": 16, "class": 2, "wins": 36, "losses": 4 },
+    "target": "0.1034"
+  },
+  {
+    "features": { "level": 9, "class": 2, "wins": 15, "losses": 9 },
+    "target": "0.0786"
+  },
+  {
+    "features": { "level": 9, "class": 0, "wins": 19, "losses": 5 },
+    "target": "0.0905"
+  },
+  {
+    "features": { "level": 7, "class": 2, "wins": 1, "losses": 23 },
+    "target": "0.0677"
+  },
+  {
+    "features": { "level": 20, "class": 0, "wins": 41, "losses": 12 },
+    "target": "0.1207"
+  },
+  {
+    "features": { "level": 18, "class": 0, "wins": 30, "losses": 20 },
+    "target": "0.1309"
+  },
+  {
+    "features": { "level": 17, "class": 2, "wins": 23, "losses": 29 },
+    "target": "0.1071"
+  },
+  {
+    "features": { "level": 18, "class": 0, "wins": 24, "losses": 32 },
+    "target": "0.1059"
+  },
+  {
+    "features": { "level": 10, "class": 2, "wins": 15, "losses": 12 },
+    "target": "0.0959"
+  },
+  {
+    "features": { "level": 12, "class": 0, "wins": 25, "losses": 7 },
+    "target": "0.0996"
+  },
+  {
+    "features": { "level": 26, "class": 0, "wins": 40, "losses": 36 },
+    "target": "0.1657"
+  },
+  {
+    "features": { "level": 16, "class": 2, "wins": 25, "losses": 21 },
+    "target": "0.0834"
+  },
+  {
+    "features": { "level": 7, "class": 2, "wins": 7, "losses": 14 },
+    "target": "0.0631"
+  },
+  {
+    "features": { "level": 4, "class": 0, "wins": 1, "losses": 12 },
+    "target": "0.0497"
+  },
+  {
+    "features": { "level": 16, "class": 1, "wins": 14, "losses": 39 },
+    "target": "0.0847"
+  },
+  {
+    "features": { "level": 11, "class": 1, "wins": 5, "losses": 35 },
+    "target": "0.0996"
+  },
+  {
+    "features": { "level": 14, "class": 0, "wins": 12, "losses": 36 },
+    "target": "0.1058"
+  },
+  {
+    "features": { "level": 8, "class": 0, "wins": 7, "losses": 20 },
+    "target": "0.0460"
+  },
+  {
+    "features": { "level": 9, "class": 0, "wins": 17, "losses": 5 },
+    "target": "0.0550"
+  },
+  {
+    "features": { "level": 10, "class": 1, "wins": 12, "losses": 17 },
+    "target": "0.0529"
+  },
+  {
+    "features": { "level": 14, "class": 1, "wins": 9, "losses": 40 },
+    "target": "0.1032"
+  },
+  {
+    "features": { "level": 9, "class": 2, "wins": 10, "losses": 16 },
+    "target": "0.0532"
+  },
+  {
+    "features": { "level": 24, "class": 1, "wins": 37, "losses": 33 },
+    "target": "0.1671"
+  },
+  {
+    "features": { "level": 18, "class": 1, "wins": 37, "losses": 12 },
+    "target": "0.0949"
+  },
+  {
+    "features": { "level": 11, "class": 2, "wins": 2, "losses": 40 },
+    "target": "0.0570"
+  },
+  {
+    "features": { "level": 12, "class": 0, "wins": 27, "losses": 1 },
+    "target": "0.0970"
+  },
+  {
+    "features": { "level": 5, "class": 2, "wins": 4, "losses": 13 },
+    "target": "0.0484"
+  },
+  {
+    "features": { "level": 17, "class": 2, "wins": 26, "losses": 24 },
+    "target": "0.1183"
+  },
+  {
+    "features": { "level": 16, "class": 2, "wins": 18, "losses": 33 },
+    "target": "0.0945"
+  },
+  {
+    "features": { "level": 20, "class": 0, "wins": 33, "losses": 27 },
+    "target": "0.1437"
+  },
+  {
+    "features": { "level": 7, "class": 0, "wins": 7, "losses": 16 },
+    "target": "0.0503"
+  },
+  {
+    "features": { "level": 17, "class": 1, "wins": 33, "losses": 14 },
+    "target": "0.1335"
+  },
+  {
+    "features": { "level": 11, "class": 0, "wins": 1, "losses": 39 },
+    "target": "0.0699"
+  },
+  {
+    "features": { "level": 12, "class": 2, "wins": 23, "losses": 9 },
+    "target": "0.0711"
+  },
+  {
+    "features": { "level": 17, "class": 2, "wins": 20, "losses": 34 },
+    "target": "0.0845"
+  },
+  {
+    "features": { "level": 15, "class": 1, "wins": 26, "losses": 18 },
+    "target": "0.0962"
+  },
+  {
+    "features": { "level": 23, "class": 1, "wins": 37, "losses": 30 },
+    "target": "0.1336"
+  },
+  {
+    "features": { "level": 6, "class": 1, "wins": 1, "losses": 22 },
+    "target": "0.0490"
+  },
+  {
+    "features": { "level": 22, "class": 2, "wins": 30, "losses": 37 },
+    "target": "0.1201"
+  },
+  {
+    "features": { "level": 24, "class": 1, "wins": 41, "losses": 27 },
+    "target": "0.1309"
+  },
+  {
+    "features": { "level": 5, "class": 2, "wins": 1, "losses": 18 },
+    "target": "0.0378"
+  },
+  {
+    "features": { "level": 16, "class": 2, "wins": 16, "losses": 36 },
+    "target": "0.1155"
+  },
+  {
+    "features": { "level": 16, "class": 0, "wins": 32, "losses": 12 },
+    "target": "0.1100"
+  },
+  {
+    "features": { "level": 17, "class": 2, "wins": 38, "losses": 6 },
+    "target": "0.0937"
+  },
+  {
+    "features": { "level": 4, "class": 2, "wins": 4, "losses": 6 },
+    "target": "0.0211"
+  },
+  {
+    "features": { "level": 17, "class": 2, "wins": 32, "losses": 15 },
+    "target": "0.1306"
+  },
+  {
+    "features": { "level": 14, "class": 2, "wins": 13, "losses": 34 },
+    "target": "0.1142"
+  },
+  {
+    "features": { "level": 25, "class": 2, "wins": 35, "losses": 41 },
+    "target": "0.1454"
+  },
+  {
+    "features": { "level": 16, "class": 1, "wins": 20, "losses": 31 },
+    "target": "0.1232"
+  },
+  {
+    "features": { "level": 3, "class": 1, "wins": 7, "losses": 0 },
+    "target": "0.0156"
+  },
+  {
+    "features": { "level": 10, "class": 0, "wins": 23, "losses": 2 },
+    "target": "0.0691"
+  },
+  {
+    "features": { "level": 19, "class": 0, "wins": 21, "losses": 39 },
+    "target": "0.1424"
+  },
+  {
+    "features": { "level": 19, "class": 0, "wins": 28, "losses": 31 },
+    "target": "0.1442"
   }
 ]

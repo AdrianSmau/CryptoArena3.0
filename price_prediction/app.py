@@ -1,3 +1,6 @@
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
 from flask_cors import CORS
 from flask import Flask, request
 import json
@@ -5,8 +8,6 @@ import numpy as np
 import pandas as pd
 from sklearn import preprocessing
 from keras import models
-import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 
 DATA_FILE_NAME = 'data.json'
@@ -54,16 +55,16 @@ def feed():
     history = model.fit(train_data, target_data,
                         epochs=epochs, verbose=0, shuffle=False)
 
-    avg_loss = np.mean(history.history['loss'])
+    loss = history.history['loss'][epochs - 1]
 
     # Save model
     model.save(MODEL_FILE_NAME)
 
     # Save loss
     with open(LOSS_FILE_NAME, 'w') as loss_file:
-        json.dump({"loss": str(format(avg_loss, ".4f"))}, loss_file)
+        json.dump({"loss": str(format(loss, ".4f"))}, loss_file)
 
-    return str(format(avg_loss, ".4f"))
+    return str(format(loss, ".4f"))
 
 
 @app.route('/loss', methods=['GET'])
