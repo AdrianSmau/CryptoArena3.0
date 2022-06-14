@@ -334,9 +334,9 @@ export const BlockchainProvider = ({ children }) => {
             var result = -1;
             if (damage == 0) {
               if (attackerId == myFighterId) {
-                result = 0;
-              } else {
                 result = 1;
+              } else {
+                result = 0;
               }
             } else {
               if (wasCritical) {
@@ -458,7 +458,7 @@ export const BlockchainProvider = ({ children }) => {
       if (ethereum) {
         const contract = getArenaContract();
 
-        const result = await contract._spendAvailablePoints(
+        const result = await contract.spendAvailablePoints(
           id,
           str,
           agl,

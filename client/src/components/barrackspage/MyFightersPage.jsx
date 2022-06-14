@@ -403,7 +403,7 @@ const MyFightersPageCard = ({
                 onClick={() => setShowModal(true)}
                 className="text-white sm:font-bold font-semibold"
               >
-                Spend fighter's available points!
+                Spend fighter's available points
               </button>
             </div>
           )}
@@ -431,7 +431,7 @@ const MyFightersPageCard = ({
                 onClick={() => setShowGiftModal(true)}
                 className="text-white sm:font-bold font-semibold"
               >
-                Transfer fighter as a gift
+                Transfer Fighter as a gift
               </button>
             </div>
           )}
